@@ -4,10 +4,10 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const SCRIPT_PATH = fs.existsSync(path.resolve('agentic-repo-shell/scripts/harness/check-method-health.mjs'))
-  ? path.resolve('agentic-repo-shell/scripts/harness/check-method-health.mjs')
-  : path.resolve('scripts/harness/check-method-health.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT_PATH = path.resolve(TEST_DIR, 'check-method-health.mjs');
 
 function createFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'method-health-shell-'));
@@ -33,7 +33,9 @@ function createFixture() {
   fs.writeFileSync(path.join(root, '.agents', 'README.md'), '# Adapters\n');
   fs.writeFileSync(path.join(root, '.github', 'pull_request_template.md'), 'Task packet\n');
   fs.writeFileSync(path.join(root, 'docs', 'harness', 'HARNESS_ENGINEERING_CONTRACT.md'), '# Contract\n');
+  fs.writeFileSync(path.join(root, 'docs', 'harness', 'DOCUMENT_FRONTMATTER_SPEC.md'), '# Frontmatter\n');
   fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-adoption.mjs'), '#!/usr/bin/env node\n');
+  fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-doc-frontmatter.mjs'), '#!/usr/bin/env node\n');
   return root;
 }
 

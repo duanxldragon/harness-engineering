@@ -28,7 +28,8 @@
 5. [docs/harness/TASK_PACKET_SPEC.md](./docs/harness/TASK_PACKET_SPEC.md)
 6. [docs/harness/VERIFICATION_EVIDENCE_SPEC.md](./docs/harness/VERIFICATION_EVIDENCE_SPEC.md)
 7. [docs/harness/REVIEW_LOOP_SPEC.md](./docs/harness/REVIEW_LOOP_SPEC.md)
-8. [.agents/README.md](./.agents/README.md)
+8. [docs/harness/DOCUMENT_FRONTMATTER_SPEC.md](./docs/harness/DOCUMENT_FRONTMATTER_SPEC.md)
+9. [.agents/README.md](./.agents/README.md)
 
 如果你要做仓库发布或方法迁移，再继续看：
 
@@ -71,6 +72,7 @@
 ```powershell
 node scripts/harness/check-adoption.mjs --strict
 node scripts/harness/check-method-health.mjs --strict
+node scripts/harness/check-doc-frontmatter.mjs --report-legacy
 node --test agentic-repo-shell/scripts/harness/*.test.mjs
 node --test pantheon-overlay/scripts/harness/*.test.mjs
 ```

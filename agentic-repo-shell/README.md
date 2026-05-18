@@ -82,6 +82,30 @@ Notes:
 5. run `scripts/harness/*` locally and in CI
 6. run `scripts/harness/check-method-health.mjs --strict` after method upgrades
 
+## Document Governance Gate
+
+The repo shell also carries a portable machine-readable document governance gate:
+
+- `docs/harness/DOCUMENT_FRONTMATTER_SPEC.md`
+- `scripts/harness/check-doc-frontmatter.mjs`
+
+Use it when the repository adopts governed docs such as:
+
+- `docs/contracts/*`
+- `docs/designs/*`
+- `docs/acceptances/*`
+- retained specs under `docs/superpowers/specs/*`
+- retained history under `docs/archive/*`
+
+Recommended checks:
+
+```powershell
+node scripts/harness/check-doc-frontmatter.mjs
+node scripts/harness/check-doc-frontmatter.mjs --report-legacy
+```
+
+The gate verifies frontmatter presence, required metadata, contract linkage, contract body vs frontmatter relation drift, and the rule that `docs/README.md` main-entry links should point only to `Active` docs.
+
 ## Optional Overlays
 
 The default shell is generic.

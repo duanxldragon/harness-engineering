@@ -159,9 +159,36 @@ node scripts/harness/check-method-health.mjs --strict
 
 Pantheon-specific inheritance, drift, architecture, and backend contract checks live in `pantheon-overlay/`.
 
+### `check-doc-frontmatter.mjs`
+
+Validates governed Markdown docs against the portable frontmatter convention in `docs/harness/DOCUMENT_FRONTMATTER_SPEC.md`.
+
+Default report-only mode:
+
+```powershell
+node scripts/harness/check-doc-frontmatter.mjs
+```
+
+Legacy metadata scan:
+
+```powershell
+node scripts/harness/check-doc-frontmatter.mjs --report-legacy
+```
+
+Current checks include:
+
+- YAML frontmatter presence
+- required base fields
+- retained doc rules for `docs/superpowers/specs/*` and `docs/archive/*`
+- `linked_contracts` existence
+- `Superseded -> superseded_by`
+- contract body `关联设计 / 关联评估 / 关联整改 / 关联验收` vs frontmatter relation fields
+- `docs/README.md` link existence
+- `docs/README.md` main-entry links target only `Active` docs
+
 ## Common Conventions
 
-All check scripts accept `--root <path>` so they can be run from a fixture directory in tests. When omitted, the scripts default to `process.cwd()`.
+All check scripts accept `--root <path>` so they can be run from a fixture directory in tests. When omitted, they default to the repository root inferred from the script location.
 
 ## Tests
 
@@ -182,3 +209,4 @@ Test coverage by script:
 | `check-visual-evidence.mjs` | `check-visual-evidence.test.mjs` |
 | `check-adoption.mjs` | `check-adoption.test.mjs` |
 | `check-method-health.mjs` | `check-method-health.test.mjs` |
+| `check-doc-frontmatter.mjs` | `check-doc-frontmatter.test.mjs` |

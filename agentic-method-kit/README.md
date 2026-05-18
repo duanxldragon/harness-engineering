@@ -25,12 +25,14 @@ Optional overlay:
 - Standard task packet, evidence, review, and PR templates
 - Portable schemas for task packets and verification evidence
 - Portable schema and machine-readable convention for review artifacts
+- Portable document frontmatter schema and README/contract linkage convention
 - Explicit method versioning and upgrade guidance
 - Portable checks for:
   - task packet structure
   - evidence structure
   - review linkage structure
   - adoption and OpenSpec linkage
+  - document governance frontmatter and linkage drift
   - method health and upgrade drift
 
 ## Versioning
@@ -130,8 +132,10 @@ For non-trivial work, the portable closed loop is:
 - task packet
 - evidence `commands.json`
 - review `review.md` with an embedded machine-readable JSON block
+- governed docs with YAML frontmatter and explicit contract linkage when the repository uses doc governance
 
-The JSON block inside `review.md` is the portable convention that closes the loop without introducing a second review artifact format.
+The JSON block inside `review.md` closes the delivery loop.
+The document frontmatter convention closes the repository governance loop for contracts, designs, assessments, remediations, acceptances, retained specs, and retained archive docs.
 
 ## Core Principle
 

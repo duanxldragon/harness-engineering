@@ -4,10 +4,10 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const SCRIPT = fs.existsSync(path.resolve('agentic-repo-shell/scripts/harness/check-task-packet.mjs'))
-  ? path.resolve('agentic-repo-shell/scripts/harness/check-task-packet.mjs')
-  : path.resolve('scripts/harness/check-task-packet.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT = path.resolve(TEST_DIR, 'check-task-packet.mjs');
 
 const VALID_PACKET = `# Task Packet: Sample
 

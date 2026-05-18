@@ -212,6 +212,7 @@ This rule applies equally to:
 7. 涉及 UI 时，已执行视觉质量门并保存截图、浏览器证据或未运行原因。
 8. 已列出未验证项和剩余风险。
 9. Review gate 没有未解决的 P0/P1。
+10. 如果仓库启用了文档治理，还需通过 `DOCUMENT_FRONTMATTER_SPEC.md` 定义的 frontmatter / README / 合同关联校验。
 
 ## 8. Trivial 任务例外
 
@@ -230,4 +231,4 @@ Harness 成熟度分三阶段推进：
 
 1. 协议层：建立 `docs/harness/*` 与 `.agents/*`，确保工具无关。
 2. 证据层：建立 task packet、evidence schema 和证据目录。
-3. 门禁层：把架构边界、权限、i18n、审计、drift 检查下沉为脚本和 CI。
+3. 门禁层：把架构边界、权限、i18n、审计、drift、文档 frontmatter 治理检查下沉为脚本和 CI。

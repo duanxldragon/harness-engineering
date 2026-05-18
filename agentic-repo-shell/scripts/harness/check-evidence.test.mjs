@@ -4,10 +4,10 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { execFileSync, spawnSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const SCRIPT = fs.existsSync(path.resolve('agentic-repo-shell/scripts/harness/check-evidence.mjs'))
-  ? path.resolve('agentic-repo-shell/scripts/harness/check-evidence.mjs')
-  : path.resolve('scripts/harness/check-evidence.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT = path.resolve(TEST_DIR, 'check-evidence.mjs');
 
 function makeFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'check-evidence-'));
