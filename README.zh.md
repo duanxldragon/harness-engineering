@@ -13,6 +13,7 @@
 - `pantheon-overlay/`：可选的 Pantheon 继承治理 overlay
 - `docs/harness/`：方法根契约文档
 - `scripts/`：bootstrap 与校验脚本
+- `.codex/skills/`：项目本地 Codex 技能包，可随仓库一起迁移
 
 下游仓库通常不应该整仓复制当前 repo，而是复制它真正需要的发布面。
 
@@ -36,6 +37,7 @@
 3. [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
 4. [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md)
 5. [PANTHEON_CONSUMER_SYNC_POLICY.md](./PANTHEON_CONSUMER_SYNC_POLICY.md)
+6. [docs/SKILLS.md](./docs/SKILLS.md)
 
 ## 新项目怎么用
 
@@ -60,6 +62,7 @@
 - Codex、Claude Code、Cursor 或其他 agent 运行环境
 
 方法本身不强制依赖某个特定 skill 包。skills 是执行层加速器，真正的事实源仍然是仓库中的契约、模板和校验脚本。
+如果你希望项目迁移时不再重复安装 skills，建议把项目需要的 skills 保存在 `.codex/skills/`，并通过 `scripts/sync-codex-skills.ps1` 从用户目录刷新。
 
 ## 校验与发布
 

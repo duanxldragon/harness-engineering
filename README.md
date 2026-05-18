@@ -15,6 +15,7 @@ The method is distributed in layers:
 - `pantheon-overlay/`: optional Pantheon-specific inheritance and governance overlay
 - `docs/harness/`: root-level reference contracts for the method
 - `scripts/`: bootstrap and validation helpers
+- `.codex/skills/`: project-local Codex skills that can travel with the repository
 
 This root repository is the canonical maintenance workspace for those layers. A downstream business repository should usually copy only the publishable surfaces, not this entire repo.
 
@@ -38,6 +39,7 @@ Then continue with repository distribution and release mechanics:
 3. [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
 4. [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md)
 5. [PANTHEON_CONSUMER_SYNC_POLICY.md](./PANTHEON_CONSUMER_SYNC_POLICY.md)
+6. [docs/SKILLS.md](./docs/SKILLS.md)
 
 ## How To Use It In A New Project
 
@@ -62,6 +64,7 @@ Optional but recommended:
 - Codex, Claude Code, Cursor, or another agent runtime
 
 No specific skill bundle is required to adopt the method. Skills are execution accelerators; the actual source of truth remains the repository contracts, templates, and checks.
+If you want project migration to avoid re-installing skills on a new machine, keep the required project skills in `.codex/skills/` and refresh them with `scripts/sync-codex-skills.ps1`.
 
 ## Validation And Release
 
