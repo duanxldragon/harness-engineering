@@ -17,6 +17,12 @@ The method is distributed in layers:
 - `scripts/`: bootstrap and validation helpers
 - `.codex/skills/`: project-local Codex skills that can travel with the repository
 
+Additional boundary:
+
+- repo-owned `.codex/skills/*` that are committed here are part of the method surface
+- synced user-home skills are only an optional acceleration layer and are not included in the default release surface
+- the default ignored synced sets currently include `.codex/skills/.system/`, `.codex/skills/gstack-*/`, `.codex/skills/impeccable/`, and `.codex/skills/ui-ux-pro-max/`
+
 This root repository is the canonical maintenance workspace for those layers. A downstream business repository should usually copy only the publishable surfaces, not this entire repo.
 
 ## Recommended Reading Order
@@ -66,6 +72,7 @@ Optional but recommended:
 
 No specific skill bundle is required to adopt the method. Skills are execution accelerators; the actual source of truth remains the repository contracts, templates, and checks.
 If you want project migration to avoid re-installing skills on a new machine, keep the required project skills in `.codex/skills/` and refresh them with `scripts/sync-codex-skills.ps1`.
+Synced user-local skills should still be treated as workstation assets by default, not as release artifacts.
 
 ## Validation And Release
 

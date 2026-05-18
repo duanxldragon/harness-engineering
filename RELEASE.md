@@ -33,6 +33,22 @@ For full distribution-workspace extraction dry-runs, also use:
 
 The publishable surfaces are the package directories themselves.
 
+Default release scope includes:
+
+- `agentic-method-kit/`
+- `agentic-repo-shell/`
+- `pantheon-overlay/`
+- root-level method docs, manifests, and bootstrap scripts that describe or validate those packages
+
+Optional local skill sync assets are not part of the default release artifact:
+
+- synced user-home skills under `.codex/skills/.system/`
+- synced external skill packs such as `.codex/skills/gstack-*/`
+- local copies of globally available helper skills such as `.codex/skills/impeccable/` and `.codex/skills/ui-ux-pro-max/`
+
+Those directories are treated as workstation accelerators, not canonical method source.
+If a skill must become part of the released method, it should be curated intentionally and committed as a repo-owned skill rather than piggybacking on local sync output.
+
 The root workspace is:
 
 - a maintenance environment

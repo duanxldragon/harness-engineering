@@ -15,6 +15,12 @@
 - `scripts/`：bootstrap 与校验脚本
 - `.codex/skills/`：项目本地 Codex 技能包，可随仓库一起迁移
 
+补充约定：
+
+- 仓库自带、已提交的 `.codex/skills/*` 属于方法资产，可以随仓库发布或迁移
+- 从用户目录同步进来的本地 skills 只属于可选加速层，不默认纳入发布版本
+- 当前默认忽略的同步技能包括 `.codex/skills/.system/`、`.codex/skills/gstack-*/`、`.codex/skills/impeccable/`、`.codex/skills/ui-ux-pro-max/`
+
 下游仓库通常不应该整仓复制当前 repo，而是复制它真正需要的发布面。
 
 ## 推荐阅读顺序
@@ -64,6 +70,7 @@
 
 方法本身不强制依赖某个特定 skill 包。skills 是执行层加速器，真正的事实源仍然是仓库中的契约、模板和校验脚本。
 如果你希望项目迁移时不再重复安装 skills，建议把项目需要的 skills 保存在 `.codex/skills/`，并通过 `scripts/sync-codex-skills.ps1` 从用户目录刷新。
+但同步出来的用户本地 skills 默认按“工作站增强资产”处理，不应直接当作正式发布面。
 
 ## 校验与发布
 

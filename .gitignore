@@ -9,3 +9,7 @@ check-images/
 *.jpeg
 *.png
 .worktrees/
+.codex/skills/.system/
+.codex/skills/gstack-*/
+.codex/skills/impeccable/
+.codex/skills/ui-ux-pro-max/
