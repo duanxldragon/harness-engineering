@@ -1,133 +1,98 @@
-# Agentic Method Distribution Workspace
+# Agentic Method Workspace
 
-This repository is the maintenance and distribution workspace for the reusable agentic method stack.
+This repository is the standalone maintenance and distribution workspace for a reusable agentic development method.
 
-Pantheon is an optional overlay and a reference consumer, but this repository is not tied to any one product family. It exists to assemble, validate, version, and publish the reusable method layers.
+Chinese documentation is available in [README.zh.md](./README.zh.md).
 
-It does not own the foundation code or business code directly. Instead, it provides:
+It is intentionally product-agnostic. Pantheon is supported through an optional overlay, but the repository itself is meant to serve any team that wants a portable Harness Engineering workflow across Codex, Claude Code, Cursor, GitHub Copilot, OpenHands, or human-driven execution.
 
-- tool-agnostic Harness Engineering protocol under `docs/harness/`
-- shared agent adapters under `.agents/`
-- distribution-workspace bootstrap and migration documents
-- portable method source under `agentic-method-kit/`
-- copyable repo shell under `agentic-repo-shell/`
-- optional Pantheon-specific overlay under `pantheon-overlay/`
+## What This Repository Publishes
 
-## Distribution Surfaces
+The method is distributed in layers:
 
-If the goal is to copy the method into another repository, the primary distributable surfaces are:
+- `agentic-method-kit/`: method source of truth, schemas, templates, playbook, version metadata
+- `agentic-repo-shell/`: copyable repo-local shell with adapters, CI entrypoints, and runtime skeleton
+- `pantheon-overlay/`: optional Pantheon-specific inheritance and governance overlay
+- `docs/harness/`: root-level reference contracts for the method
+- `scripts/`: bootstrap and validation helpers
 
-- `agentic-method-kit/`
-- `agentic-repo-shell/`
-- `pantheon-overlay/` when Pantheon inheritance governance is needed
-- `scripts/bootstrap-agentic-repo.ps1` when bootstrapping from this workspace directly
+This root repository is the canonical maintenance workspace for those layers. A downstream business repository should usually copy only the publishable surfaces, not this entire repo.
 
-The root workspace is not the primary copy target. It is the maintenance workspace that assembles, tests, versions, and documents those distributable layers.
+## Recommended Reading Order
 
-Start with:
+Start here if you want to understand the method itself:
 
-- [DISTRIBUTION.md](./DISTRIBUTION.md)
-- [RELEASE.md](./RELEASE.md)
-- [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
-- [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md)
-- [PANTHEON_CONSUMER_SYNC_POLICY.md](./PANTHEON_CONSUMER_SYNC_POLICY.md)
-- [WORKSPACE_MANIFEST.json](./WORKSPACE_MANIFEST.json)
+1. [agentic-method-kit/README.md](./agentic-method-kit/README.md)
+2. [agentic-method-kit/METHOD_PLAYBOOK.md](./agentic-method-kit/METHOD_PLAYBOOK.md)
+3. [docs/harness/HARNESS_ENGINEERING_CONTRACT.md](./docs/harness/HARNESS_ENGINEERING_CONTRACT.md)
+4. [docs/harness/AGENT_INTERFACE_CONTRACT.md](./docs/harness/AGENT_INTERFACE_CONTRACT.md)
+5. [docs/harness/TASK_PACKET_SPEC.md](./docs/harness/TASK_PACKET_SPEC.md)
+6. [docs/harness/VERIFICATION_EVIDENCE_SPEC.md](./docs/harness/VERIFICATION_EVIDENCE_SPEC.md)
+7. [docs/harness/REVIEW_LOOP_SPEC.md](./docs/harness/REVIEW_LOOP_SPEC.md)
+8. [.agents/README.md](./.agents/README.md)
 
-## Reference Consumers
+Then continue with repository distribution and release mechanics:
 
-- any repository that wants a portable Harness Engineering method stack
-- `pantheon-base`: foundation repository for platform and `system/*` capabilities
-- `pantheon-ops`: derived business repository for operations-domain modules
-- future `pantheon-xx`: additional derived business repositories that inherit `pantheon-base`
+1. [DISTRIBUTION.md](./DISTRIBUTION.md)
+2. [RELEASE.md](./RELEASE.md)
+3. [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
+4. [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md)
+5. [PANTHEON_CONSUMER_SYNC_POLICY.md](./PANTHEON_CONSUMER_SYNC_POLICY.md)
 
-## What Lives Here
+## How To Use It In A New Project
 
-- workspace inheritance rules
-- project inheritance template
-- base upgrade workflow
-- tool-agnostic Harness Engineering contracts
-- shared agent adapter documentation
-- distribution release and migration guides
-- optional minimal archive metadata under `archive/`
-
-## What Does Not Live Here
-
-- copied base contracts or base design documents
-- copied business design documents
-- direct platform or business implementation code
-- active delivery task packets or runtime evidence for the distributable starter packages
-
-## Reading Order
-
-For tool-agnostic Harness Engineering, start with:
-
-1. `agentic-method-kit/README.md`
-2. `agentic-method-kit/METHOD_PLAYBOOK.md`
-3. `docs/harness/HARNESS_ENGINEERING_CONTRACT.md`
-4. `docs/harness/AGENT_INTERFACE_CONTRACT.md`
-5. `docs/harness/TASK_PACKET_SPEC.md`
-6. `docs/harness/VERIFICATION_EVIDENCE_SPEC.md`
-7. `docs/harness/REVIEW_LOOP_SPEC.md`
-8. `.agents/README.md`
-
-If you only want the reusable method package rather than the full distribution workspace, start with:
-
-1. `agentic-method-kit/README.md`
-2. `agentic-repo-shell/README.md`
-3. `pantheon-overlay/README.md` when applicable
-
-For distribution and migration mechanics, continue with:
-
-1. `DISTRIBUTION.md`
-2. `RELEASE.md`
-3. `MIGRATION_TO_STANDALONE_REPO.md`
-4. `STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md`
-
-## New Project Bootstrap
-
-For a new repository, the recommended starting bundle is:
+For a normal repository bootstrap, the recommended copy set is:
 
 1. `agentic-method-kit/`
 2. `agentic-repo-shell/`
 3. optional `pantheon-overlay/`
-4. optional `pantheon-base/`
 
-`agentic-method-kit/` is the method source of truth.
-`agentic-repo-shell/` is the repo-local shell you copy into the new repository root.
-`pantheon-overlay/` is only for repositories that use Pantheon base/business inheritance.
+Use the root workspace directly only when you are maintaining or releasing the method itself.
 
-Minimum environment for that new repository:
+## Environment
+
+Minimum environment:
 
 - `git`
 - `node` 20+
+- PowerShell for the provided bootstrap scripts
 
-You do not need to preinstall a special skill pack to use the method.
-Skills are optional accelerators; contracts, templates, and check scripts are the actual source of truth.
+Optional but recommended:
 
-The current bootstrap helper is:
+- Codex, Claude Code, Cursor, or another agent runtime
 
-- `scripts/bootstrap-agentic-repo.ps1`
-- `scripts/scaffold-standalone-method-repo.ps1`
+No specific skill bundle is required to adopt the method. Skills are execution accelerators; the actual source of truth remains the repository contracts, templates, and checks.
 
-The current workspace also publishes repo-shell compatibility metadata in:
+## Validation And Release
 
-- `SHELL_VERSION.json`
+Core release checks:
 
-## Harness Engineering Model
+```powershell
+node scripts/harness/check-adoption.mjs --strict
+node scripts/harness/check-method-health.mjs --strict
+node --test agentic-repo-shell/scripts/harness/*.test.mjs
+node --test pantheon-overlay/scripts/harness/*.test.mjs
+```
 
-This workspace treats Codex, Claude Code, Cursor, GitHub Copilot, OpenHands, Aider, and human engineers as execution adapters over the same repository protocol.
+Release metadata currently starts at version `1.0.0`:
 
-The source of truth is layered:
+- [agentic-method-kit/METHOD_VERSION.json](./agentic-method-kit/METHOD_VERSION.json)
+- [SHELL_VERSION.json](./SHELL_VERSION.json)
+- [WORKSPACE_MANIFEST.json](./WORKSPACE_MANIFEST.json)
 
-- `agentic-method-kit/*` is the portable method source of truth
-- `docs/harness/*` is the current workspace's repo-local contract and landing layer
-- `.agents/adapters/*` provides tool-specific mappings
-- repository-local `AGENTS.md` / `CLAUDE.md` provides project-specific behavior
+## Boundaries
 
-No critical architecture, permission, i18n, audit, review, or inheritance rule should exist only inside one tool's private prompt or adapter.
+What belongs here:
 
-## Archive
+- method contracts
+- schemas and templates
+- tool adapters
+- bootstrap scripts
+- release and migration guides
 
-`archive/` is optional and should remain small in the public distribution repository.
+What does not belong here:
 
-If historical rollout material is kept at all, it should stay clearly separated from the publishable copy set.
+- application business code
+- foundation product code
+- large project-specific archives
+- active runtime evidence from consumer repositories
