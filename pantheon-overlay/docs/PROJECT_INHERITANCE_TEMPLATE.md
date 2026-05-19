@@ -1,5 +1,7 @@
 # Project Inheritance Template
 
+Chinese version: [PROJECT_INHERITANCE_TEMPLATE.zh.md](./PROJECT_INHERITANCE_TEMPLATE.zh.md)
+
 Copy this file into a derived Pantheon business repository as `docs/PROJECT_INHERITANCE.md`.
 
 ```md

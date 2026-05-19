@@ -1,5 +1,7 @@
 # Agent Adapters
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This directory contains tool-specific adapters for the repository Harness protocol.
 
 The source of truth is not any single adapter. Read:

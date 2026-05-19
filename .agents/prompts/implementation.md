@@ -1,5 +1,7 @@
 # Harness Implementation Prompt
 
+Chinese version: [implementation.zh.md](./implementation.zh.md)
+
 You are implementing a Pantheon task using the tool-agnostic Harness process.
 
 ## Required Inputs

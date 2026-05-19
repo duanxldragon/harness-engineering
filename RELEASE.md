@@ -1,5 +1,7 @@
 # Release Guide
 
+Chinese version: [RELEASE.zh.md](./RELEASE.zh.md)
+
 This workspace releases method assets, not a monolithic starter repository.
 
 ## Release Units

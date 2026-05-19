@@ -1,5 +1,7 @@
 # OpenSpec Skeleton
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This starter includes only the minimum OpenSpec directory skeleton:
 
 - `openspec/changes/`

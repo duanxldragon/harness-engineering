@@ -1,5 +1,7 @@
 # Harness Method Playbook
 
+English version: [HARNESS_METHOD_PLAYBOOK.en.md](./HARNESS_METHOD_PLAYBOOK.en.md)
+
 类型：Playbook
 归属层：platform
 状态：Active

@@ -1,5 +1,7 @@
 # Install Agentic Method Kit
 
+Chinese version: [INSTALL.zh.md](./INSTALL.zh.md)
+
 This kit is designed to be copied as a single folder into a repository root.
 
 ## 0. Prerequisites

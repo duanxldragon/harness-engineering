@@ -1,5 +1,7 @@
 # Harness Engineering Contract
 
+English version: [HARNESS_ENGINEERING_CONTRACT.en.md](./HARNESS_ENGINEERING_CONTRACT.en.md)
+
 类型：Contract
 归属层：platform
 状态：Active

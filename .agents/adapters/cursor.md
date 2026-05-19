@@ -1,5 +1,7 @@
 # Cursor Adapter
 
+Chinese version: [cursor.zh.md](./cursor.zh.md)
+
 Cursor is an implementation adapter for the Pantheon Harness Engineering protocol.
 
 ## Required Reading
@@ -19,4 +21,3 @@ Cursor is an implementation adapter for the Pantheon Harness Engineering protoco
 ## Review
 
 Cursor can implement or review, but review output must follow `docs/harness/REVIEW_LOOP_SPEC.md`.
-

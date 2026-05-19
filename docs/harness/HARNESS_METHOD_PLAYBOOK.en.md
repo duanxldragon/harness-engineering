@@ -1,0 +1,38 @@
+# Harness Method Playbook
+
+Chinese version: [HARNESS_METHOD_PLAYBOOK.md](./HARNESS_METHOD_PLAYBOOK.md)
+
+Type: Playbook
+Layer: platform
+Status: Active
+
+This file no longer carries the full method definition.
+
+## Current Relationship
+
+- `agentic-method-kit/`: the single method source, responsible for method orchestration, templates, schema, and portable checks
+- `docs/harness/*`: the repo-local contract and landing layer for this repository
+- `scripts/harness/*`: the mechanical gates for this repository
+
+## Reading Order
+
+1. First read `agentic-method-kit/README.md`
+2. Then read `agentic-method-kit/METHOD_PLAYBOOK.md`
+3. Then read the contracts this repository executes locally:
+   - `HARNESS_ENGINEERING_CONTRACT.md`
+   - `TASK_PACKET_SPEC.md`
+   - `VERIFICATION_EVIDENCE_SPEC.md`
+   - `REVIEW_LOOP_SPEC.md`
+   - `VISUAL_QUALITY_PROTOCOL.md`
+   - `INHERITANCE_HARNESS_PROTOCOL.md`
+
+## Responsibilities In This Repository
+
+This repository keeps the following because they directly serve local execution:
+
+- `docs/harness/*`: contracts, formats, governance rules
+- `scripts/harness/*`: validators and CI gates
+- `.agents/*` / `.codex/skills/*`: tool adaptation layers
+
+If the method layer conflicts with the repository landing layer, the method definition in `agentic-method-kit/` wins, and the repository landing layer should then be synchronized.
+

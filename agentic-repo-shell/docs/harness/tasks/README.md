@@ -1,5 +1,7 @@
 # Task Packets
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This directory starts empty on purpose.
 
 Create task packets here for non-trivial work:

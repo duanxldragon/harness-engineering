@@ -1,5 +1,7 @@
 # Document Frontmatter Spec
 
+English version: [DOCUMENT_FRONTMATTER_SPEC.en.md](./DOCUMENT_FRONTMATTER_SPEC.en.md)
+
 Type: Contract
 Layer: platform
 Status: Active

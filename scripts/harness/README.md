@@ -1,5 +1,7 @@
 # Harness Scripts
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This directory contains repo-local Harness Engineering checks.
 
 The portable method source of truth now lives in `agentic-method-kit/`.
@@ -221,7 +223,7 @@ JSON output:
 node scripts/harness/check-visual-evidence.mjs --json
 ```
 
-Strict mode (观察期已启动):
+Strict mode (observation period enabled):
 
 ```powershell
 node scripts/harness/check-visual-evidence.mjs --strict

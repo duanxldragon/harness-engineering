@@ -1,5 +1,7 @@
 # Pantheon Overlay
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This directory is an optional overlay for repositories that use:
 
 - `agentic-method-kit/`
@@ -23,6 +25,15 @@ Use this overlay only when the repository follows the Pantheon base/business inh
 2. bootstrap `agentic-repo-shell/`
 3. apply `pantheon-overlay/`
 4. include `pantheon-base/` when the repository uses the Pantheon foundation
+
+## Recommended Reading Order
+
+For Chinese-first onboarding, read:
+
+1. [README.zh.md](./README.zh.md)
+2. [docs/WORKSPACE_INHERITANCE.zh.md](./docs/WORKSPACE_INHERITANCE.zh.md)
+3. [docs/PROJECT_INHERITANCE_TEMPLATE.zh.md](./docs/PROJECT_INHERITANCE_TEMPLATE.zh.md)
+4. [docs/BASE_UPGRADE_WORKFLOW.zh.md](./docs/BASE_UPGRADE_WORKFLOW.zh.md)
 
 ## When To Use
 

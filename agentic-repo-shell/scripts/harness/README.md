@@ -1,5 +1,7 @@
 # Harness Scripts
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This directory contains repo-local Harness Engineering checks.
 
 The portable method source of truth now lives in `agentic-method-kit/`.
@@ -81,7 +83,7 @@ JSON output:
 node scripts/harness/check-visual-evidence.mjs --json
 ```
 
-Strict mode (观察期已启动):
+Strict mode (observation period enabled):
 
 ```powershell
 node scripts/harness/check-visual-evidence.mjs --strict
@@ -182,7 +184,7 @@ Current checks include:
 - retained doc rules for `docs/superpowers/specs/*` and `docs/archive/*`
 - `linked_contracts` existence
 - `Superseded -> superseded_by`
-- contract body `关联设计 / 关联评估 / 关联整改 / 关联验收` vs frontmatter relation fields
+- contract body related sections vs frontmatter relation fields
 - `docs/README.md` link existence
 - `docs/README.md` main-entry links target only `Active` docs
 

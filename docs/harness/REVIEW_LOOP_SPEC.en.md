@@ -1,0 +1,129 @@
+# Review Loop Spec
+
+Chinese version: [REVIEW_LOOP_SPEC.md](./REVIEW_LOOP_SPEC.md)
+
+Type: Contract
+Layer: platform
+Status: Active
+
+This document defines the tool-agnostic review loop used by Pantheon. Implementers and reviewers may use different tools or be human, but the output format must remain consistent.
+
+## 1. Review Goal
+
+Review is not a change summary. It is for finding:
+
+- behavioral regressions
+- security risks
+- architecture-boundary drift
+- permission, menu, i18n, and audit gaps
+- insufficient tests or evidence
+- base/business inheritance risk
+
+## 2. Review Roles
+
+At minimum, the following roles must be supported:
+
+- Architect Reviewer: layer, boundary, contract, inheritance, drift
+- Security Reviewer: auth, permissions, audit, sensitive data, dependency safety
+- UX / QA Reviewer: page states, i18n, menus, browser evidence, responsiveness
+- Mechanical Gate: CI, lint, test, smoke, static checks
+
+One tool may play multiple roles, but high-risk work should preferably separate implementer and reviewer.
+
+## 3. Review Inputs
+
+The reviewer must read:
+
+- the task packet or user request
+- the diff
+- relevant contracts and acceptance docs
+- verification evidence
+- CI or local verification results
+
+## 4. Findings Format
+
+Findings must be output first and ordered by severity:
+
+```text
+[P0|P1|P2] (confidence: N/10) file:line - issue description
+Impact:
+Fix:
+Verification:
+```
+
+Severity:
+
+- P0: security issue, data corruption, build failure, or a broken critical path
+- P1: unreachable module, broken permission/i18n/menu contract, or clear behavioral regression
+- P2: governance, documentation, test coverage, or maintainability gap
+
+## 5. No-Findings Format
+
+If no issues are found, the reviewer must write:
+
+```text
+No P0/P1/P2 findings found.
+Residual risk:
+Verification checked:
+```
+
+## 6. Approval States
+
+The review verdict may only be:
+
+- `approved`
+- `changes requested`
+- `blocked`
+- `approved with documented P2 follow-up`
+
+If unresolved P0/P1 issues remain, the review cannot be approved.
+
+## 7. Multi-Tool Collaboration
+
+Allowed combinations include:
+
+- Codex implementation, Claude Code review
+- Cursor implementation, Codex review
+- human implementation, agent review
+- agent implementation, human final approval
+
+But every review must reference the same task packet and verification evidence.
+
+## 8. Review Artifact Linkage
+
+If the review result is retained as an in-repository artifact, the default location is:
+
+```text
+.harness/evidence/<task-id>/review.md
+```
+
+Recommended minimum template:
+
+```md
+# Review Summary: <task-id>
+
+## Linkage
+
+- Task Packet: `docs/harness/tasks/<task-id>.task.md`
+- Evidence: `.harness/evidence/<task-id>/commands.json`
+- OpenSpec Change: `openspec/changes/<name>/` | none
+
+## Verdict
+
+approved | changes requested | blocked | approved with documented P2 follow-up
+
+## Findings
+
+No P0/P1/P2 findings found.
+
+## Residual Risk
+
+- none
+
+## Verification Checked
+
+- `command`
+```
+
+Even if the review is not saved as a file, the PR or review comment must still reference the same task packet and evidence paths.
+

@@ -1,5 +1,7 @@
 # Inheritance Harness Protocol
 
+English version: [INHERITANCE_HARNESS_PROTOCOL.en.md](./INHERITANCE_HARNESS_PROTOCOL.en.md)
+
 类型：Contract
 归属层：platform
 状态：Active
@@ -61,4 +63,3 @@ If base-owned, why is the change happening here?
 If business-owned, which business contract anchors it?
 Does this create or resolve drift?
 ```
-

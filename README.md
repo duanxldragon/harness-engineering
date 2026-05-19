@@ -1,8 +1,9 @@
 # Agentic Method Workspace
 
-This repository is the standalone maintenance and distribution workspace for a reusable agentic development method.
+Chinese version: [README.zh.md](./README.zh.md)
 
-Chinese documentation is available in [README.zh.md](./README.zh.md).
+This repository is the standalone maintenance and distribution workspace for a reusable agentic development method.
+Documentation index and bilingual policy live in [docs/README.md](./docs/README.md) and [docs/DOCUMENTATION_I18N_POLICY.md](./docs/DOCUMENTATION_I18N_POLICY.md).
 
 It is intentionally product-agnostic. Pantheon is supported through an optional overlay, but the repository itself is meant to serve any team that wants a portable Harness Engineering workflow across Codex, Claude Code, Cursor, GitHub Copilot, OpenHands, or human-driven execution.
 
@@ -27,10 +28,10 @@ This root repository is the canonical maintenance workspace for those layers. A 
 
 ## Recommended Reading Order
 
-Start here if you want to understand the method itself:
+For Chinese-first reading, start here if you want to understand the method itself:
 
-1. [agentic-method-kit/README.md](./agentic-method-kit/README.md)
-2. [agentic-method-kit/METHOD_PLAYBOOK.md](./agentic-method-kit/METHOD_PLAYBOOK.md)
+1. [agentic-method-kit/README.zh.md](./agentic-method-kit/README.zh.md)
+2. [agentic-method-kit/METHOD_PLAYBOOK.zh.md](./agentic-method-kit/METHOD_PLAYBOOK.zh.md)
 3. [docs/harness/HARNESS_ENGINEERING_CONTRACT.md](./docs/harness/HARNESS_ENGINEERING_CONTRACT.md)
 4. [docs/harness/AGENT_INTERFACE_CONTRACT.md](./docs/harness/AGENT_INTERFACE_CONTRACT.md)
 5. [docs/harness/TASK_PACKET_SPEC.md](./docs/harness/TASK_PACKET_SPEC.md)
@@ -41,12 +42,12 @@ Start here if you want to understand the method itself:
 
 Then continue with repository distribution and release mechanics:
 
-1. [DISTRIBUTION.md](./DISTRIBUTION.md)
-2. [RELEASE.md](./RELEASE.md)
-3. [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
-4. [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md)
-5. [PANTHEON_CONSUMER_SYNC_POLICY.md](./PANTHEON_CONSUMER_SYNC_POLICY.md)
-6. [docs/SKILLS.md](./docs/SKILLS.md)
+1. [DISTRIBUTION.zh.md](./DISTRIBUTION.zh.md)
+2. [RELEASE.zh.md](./RELEASE.zh.md)
+3. [MIGRATION_TO_STANDALONE_REPO.zh.md](./MIGRATION_TO_STANDALONE_REPO.zh.md)
+4. [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.zh.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.zh.md)
+5. [PANTHEON_CONSUMER_SYNC_POLICY.zh.md](./PANTHEON_CONSUMER_SYNC_POLICY.zh.md)
+6. [docs/SKILLS.zh.md](./docs/SKILLS.zh.md)
 
 ## How To Use It In A New Project
 

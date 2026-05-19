@@ -1,5 +1,7 @@
 # Migration Plan: Standalone Method Repository
 
+Chinese version: [MIGRATION_TO_STANDALONE_REPO.zh.md](./MIGRATION_TO_STANDALONE_REPO.zh.md)
+
 This document defines how to migrate the reusable method stack out of the current workspace into a dedicated standalone repository.
 
 ## Goal

@@ -1,5 +1,7 @@
 # Review Loop Spec
 
+English version: [REVIEW_LOOP_SPEC.en.md](./REVIEW_LOOP_SPEC.en.md)
+
 类型：Contract
 归属层：platform
 状态：Active

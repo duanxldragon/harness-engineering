@@ -1,5 +1,7 @@
 # Codex Adapter
 
+Chinese version: [codex.zh.md](./codex.zh.md)
+
 Codex is an execution adapter for the Pantheon Harness Engineering protocol.
 
 ## Required Reading
@@ -29,4 +31,3 @@ Final responses must include:
 - verification result
 - evidence path or summary
 - known gaps
-

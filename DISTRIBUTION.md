@@ -1,5 +1,7 @@
 # Distribution Guide
 
+Chinese version: [DISTRIBUTION.zh.md](./DISTRIBUTION.zh.md)
+
 This workspace publishes a reusable method stack in three layers.
 
 ## Primary Copy Set

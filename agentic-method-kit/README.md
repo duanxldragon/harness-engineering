@@ -1,5 +1,7 @@
 # Agentic Method Kit
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 Portable method kit for:
 
 - `OpenSpec`
@@ -81,12 +83,14 @@ Then wire these paths in the target repo:
 
 ## Quick Start
 
-1. Read [METHOD_PLAYBOOK.md](./METHOD_PLAYBOOK.md)
-2. Read [CONCEPT_MAP.md](./CONCEPT_MAP.md)
-3. Read [INSTALL.md](./INSTALL.md)
-4. Copy the templates you need
-5. Adjust [config/method.config.json](./config/method.config.json) if your repo uses different paths
-6. Run the portable checks under [scripts/](./scripts/)
+1. Read [README.zh.md](./README.zh.md) if your team prefers Chinese-first onboarding
+2. Read [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
+3. Read [INSTALL.zh.md](./INSTALL.zh.md)
+4. Read [CONCEPT_MAP.md](./CONCEPT_MAP.md)
+5. Review [UPGRADE.zh.md](./UPGRADE.zh.md) when you need version rollout context
+6. Copy the templates you need
+7. Adjust [config/method.config.json](./config/method.config.json) if your repo uses different paths
+8. Run the portable checks under [scripts/](./scripts/)
 
 ## Daily Use
 

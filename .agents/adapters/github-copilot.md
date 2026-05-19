@@ -1,5 +1,7 @@
 # GitHub Copilot Adapter
 
+Chinese version: [github-copilot.zh.md](./github-copilot.zh.md)
+
 GitHub Copilot is a local assist and PR assist adapter for the Pantheon Harness Engineering protocol.
 
 ## Required Reading
@@ -15,4 +17,3 @@ GitHub Copilot is a local assist and PR assist adapter for the Pantheon Harness 
 - PR summaries must include layer, verification, evidence, and known gaps.
 - Copilot-generated code is not accepted unless repository checks pass.
 - Copilot review comments should use P0/P1/P2 severity where applicable.
-

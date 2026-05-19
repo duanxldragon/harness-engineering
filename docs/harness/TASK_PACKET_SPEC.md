@@ -1,5 +1,7 @@
 # Task Packet Spec
 
+English version: [TASK_PACKET_SPEC.en.md](./TASK_PACKET_SPEC.en.md)
+
 类型：Contract
 归属层：platform
 状态：Active

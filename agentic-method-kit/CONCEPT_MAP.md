@@ -1,5 +1,7 @@
 # Claude Best-Practice To Codex Concept Map
 
+Chinese version: [CONCEPT_MAP.zh.md](./CONCEPT_MAP.zh.md)
+
 This kit borrows the core architectural ideas from the Claude Code best-practice repository and translates them into Codex-usable patterns.
 
 Primary source consulted:

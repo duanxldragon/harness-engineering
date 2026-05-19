@@ -1,5 +1,7 @@
 # Agent Interface Contract
 
+English version: [AGENT_INTERFACE_CONTRACT.en.md](./AGENT_INTERFACE_CONTRACT.en.md)
+
 类型：Contract
 归属层：platform
 状态：Active
@@ -144,4 +146,3 @@ Verification checked:
 - 在业务仓库重写 base 合同。
 - 把权限、菜单、i18n、审计视为后续补丁。
 - 为了让测试通过而降低测试覆盖或删除检查。
-

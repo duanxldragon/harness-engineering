@@ -1,5 +1,7 @@
 # Human Adapter
 
+Chinese version: [human.zh.md](./human.zh.md)
+
 Human engineers are first-class participants in the Pantheon Harness Engineering protocol.
 
 ## Required Reading
@@ -22,4 +24,3 @@ For non-trivial work:
 7. Request review.
 
 Human work is held to the same completion definition as agent work.
-

@@ -2,6 +2,9 @@
 
 这是一个独立的、可发布的 agentic 开发方法仓库。
 
+英文入口见 [README.md](./README.md)。
+文档总览与双语维护策略见 [docs/README.zh.md](./docs/README.zh.md) 和 [docs/DOCUMENTATION_I18N_POLICY.zh.md](./docs/DOCUMENTATION_I18N_POLICY.zh.md)。
+
 它的职责不是承载某个具体业务项目，而是维护、版本化、验证并发布一套可复用的方法层资产。Pantheon 只是其中一个可选 overlay 场景，不是这个仓库的唯一目标。
 
 ## 仓库发布什么
@@ -27,8 +30,8 @@
 
 如果你要先理解方法本身，建议按下面顺序阅读：
 
-1. [agentic-method-kit/README.md](./agentic-method-kit/README.md)
-2. [agentic-method-kit/METHOD_PLAYBOOK.md](./agentic-method-kit/METHOD_PLAYBOOK.md)
+1. [agentic-method-kit/README.zh.md](./agentic-method-kit/README.zh.md)
+2. [agentic-method-kit/METHOD_PLAYBOOK.zh.md](./agentic-method-kit/METHOD_PLAYBOOK.zh.md)
 3. [docs/harness/HARNESS_ENGINEERING_CONTRACT.md](./docs/harness/HARNESS_ENGINEERING_CONTRACT.md)
 4. [docs/harness/AGENT_INTERFACE_CONTRACT.md](./docs/harness/AGENT_INTERFACE_CONTRACT.md)
 5. [docs/harness/TASK_PACKET_SPEC.md](./docs/harness/TASK_PACKET_SPEC.md)
@@ -39,12 +42,12 @@
 
 如果你要做仓库发布或方法迁移，再继续看：
 
-1. [DISTRIBUTION.md](./DISTRIBUTION.md)
-2. [RELEASE.md](./RELEASE.md)
-3. [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
-4. [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md)
-5. [PANTHEON_CONSUMER_SYNC_POLICY.md](./PANTHEON_CONSUMER_SYNC_POLICY.md)
-6. [docs/SKILLS.md](./docs/SKILLS.md)
+1. [DISTRIBUTION.zh.md](./DISTRIBUTION.zh.md)
+2. [RELEASE.zh.md](./RELEASE.zh.md)
+3. [MIGRATION_TO_STANDALONE_REPO.zh.md](./MIGRATION_TO_STANDALONE_REPO.zh.md)
+4. [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.zh.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.zh.md)
+5. [PANTHEON_CONSUMER_SYNC_POLICY.zh.md](./PANTHEON_CONSUMER_SYNC_POLICY.zh.md)
+6. [docs/SKILLS.zh.md](./docs/SKILLS.zh.md)
 
 ## 新项目怎么用
 

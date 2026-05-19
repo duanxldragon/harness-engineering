@@ -1,5 +1,7 @@
 # Agentic Repo Shell
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This directory is the copyable repo shell for a new project.
 
 Use it together with:
@@ -72,6 +74,16 @@ Notes:
 
 - `-IncludePantheonBase` may take noticeably longer because it copies the foundation repository
 - `-Force` allows overlay into an existing target directory; it does not delete existing files first
+
+## Recommended Reading Order
+
+For Chinese-first onboarding, read:
+
+1. [README.zh.md](./README.zh.md)
+2. [scripts/harness/README.zh.md](./scripts/harness/README.zh.md)
+3. [.agents/README.md](./.agents/README.md)
+4. [docs/harness/tasks/README.md](./docs/harness/tasks/README.md)
+5. [openspec/README.md](./openspec/README.md)
 
 ## How To Use After Bootstrap
 

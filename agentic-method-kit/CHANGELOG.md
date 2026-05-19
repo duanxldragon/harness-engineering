@@ -1,5 +1,7 @@
 # Agentic Method Kit Changelog
 
+Chinese version: [CHANGELOG.zh.md](./CHANGELOG.zh.md)
+
 ## 1.0.0 - 2026-05-18
 
 Initial portable release.

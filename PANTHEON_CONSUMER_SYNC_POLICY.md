@@ -1,5 +1,7 @@
 # Pantheon Consumer Sync Policy
 
+Chinese version: [PANTHEON_CONSUMER_SYNC_POLICY.zh.md](./PANTHEON_CONSUMER_SYNC_POLICY.zh.md)
+
 This document defines how the Pantheon workspace should consume the standalone method repository after cutover.
 
 ## Goal

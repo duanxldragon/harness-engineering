@@ -1,5 +1,7 @@
 # OpenHands Adapter
 
+Chinese version: [openhands.zh.md](./openhands.zh.md)
+
 OpenHands is an execution adapter for the Pantheon Harness Engineering protocol.
 
 ## Required Reading
@@ -16,4 +18,3 @@ OpenHands is an execution adapter for the Pantheon Harness Engineering protocol.
 - Run verification commands inside the workspace when possible.
 - Persist command summaries and artifacts using the evidence spec.
 - Do not bypass human gates for deletion, schema, base contract, permission, i18n, audit, or inheritance changes.
-

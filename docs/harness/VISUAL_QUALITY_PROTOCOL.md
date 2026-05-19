@@ -1,5 +1,7 @@
 # Visual Quality Protocol
 
+English version: [VISUAL_QUALITY_PROTOCOL.en.md](./VISUAL_QUALITY_PROTOCOL.en.md)
+
 类型：Contract
 归属层：platform
 状态：Active

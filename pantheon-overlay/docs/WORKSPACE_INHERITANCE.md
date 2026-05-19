@@ -1,5 +1,7 @@
 # Pantheon Workspace Inheritance
 
+Chinese version: [WORKSPACE_INHERITANCE.zh.md](./WORKSPACE_INHERITANCE.zh.md)
+
 This workspace contains one foundation repository and one or more derived business repositories.
 
 ## Repository Roles

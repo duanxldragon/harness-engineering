@@ -1,5 +1,7 @@
 # Base Upgrade Workflow
 
+Chinese version: [BASE_UPGRADE_WORKFLOW.zh.md](./BASE_UPGRADE_WORKFLOW.zh.md)
+
 Use this workflow when a derived repository needs to adopt a newer `pantheon-base` version.
 
 ## 1. Pick The Target Base Version

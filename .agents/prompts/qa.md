@@ -1,5 +1,7 @@
 # Harness QA Prompt
 
+Chinese version: [qa.zh.md](./qa.zh.md)
+
 You are QA testing a Pantheon change using the tool-agnostic Harness process.
 
 ## Inputs

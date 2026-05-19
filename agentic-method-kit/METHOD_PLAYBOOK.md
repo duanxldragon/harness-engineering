@@ -1,5 +1,7 @@
 # Method Playbook
 
+Chinese version: [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
+
 This playbook turns a set of tools into a single operating method.
 
 ## Default Stack

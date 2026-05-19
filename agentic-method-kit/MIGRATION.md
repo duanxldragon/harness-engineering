@@ -1,5 +1,7 @@
 # Migration Notes
 
+Chinese version: [MIGRATION.zh.md](./MIGRATION.zh.md)
+
 This kit is intended to survive repo moves and tool swaps.
 
 ## Portable Source Of Truth

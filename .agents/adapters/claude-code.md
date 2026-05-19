@@ -1,5 +1,7 @@
 # Claude Code Adapter
 
+Chinese version: [claude-code.zh.md](./claude-code.zh.md)
+
 Claude Code is an execution and review adapter for the Pantheon Harness Engineering protocol.
 
 ## Required Reading
@@ -22,4 +24,3 @@ Claude Code is an execution and review adapter for the Pantheon Harness Engineer
 ## Guardrail
 
 Claude-specific prompt files must not become the only source for architecture, permission, i18n, audit, or inheritance rules.
-

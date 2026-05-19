@@ -1,5 +1,7 @@
 # Archive
 
+Chinese version: [README.zh.md](./README.zh.md)
+
 This directory stores optional historical workspace artifacts that are not part of the active publishable surface.
 
 Use it sparingly for:

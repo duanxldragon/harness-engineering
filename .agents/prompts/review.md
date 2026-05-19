@@ -1,5 +1,7 @@
 # Harness Review Prompt
 
+Chinese version: [review.zh.md](./review.zh.md)
+
 You are reviewing a Pantheon change using the tool-agnostic Harness process.
 
 ## Inputs

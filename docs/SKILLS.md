@@ -1,5 +1,7 @@
 # Skills Policy
 
+Chinese version: [SKILLS.zh.md](./SKILLS.zh.md)
+
 This repository keeps a project-local `.codex/skills` tree so the method can travel with the repository during migration.
 
 ## Default Source

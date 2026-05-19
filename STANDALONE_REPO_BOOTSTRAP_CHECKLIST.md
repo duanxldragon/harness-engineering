@@ -1,5 +1,7 @@
 # Standalone Repo Bootstrap Checklist
 
+Chinese version: [STANDALONE_REPO_BOOTSTRAP_CHECKLIST.zh.md](./STANDALONE_REPO_BOOTSTRAP_CHECKLIST.zh.md)
+
 This checklist is for the day you create the standalone method repository.
 
 ## Objective
