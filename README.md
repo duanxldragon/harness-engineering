@@ -2,26 +2,38 @@
 
 Chinese version: [README.zh.md](./README.zh.md)
 
-Harness Engineering is a portable, tool-agnostic method for running non-trivial software delivery with coding agents and human reviewers.
+Portable, tool-agnostic Harness Engineering for non-trivial software delivery with coding agents and human review.
 
-It is built around one idea: good agent output is not just a prompt problem. It is a harness problem. You need explicit contracts, scoped task packets, verification evidence, review gates, and method health checks so work can be repeated, audited, and upgraded across repositories.
+Good agent output is not only a prompt problem. It is a harness problem. If you want repeatable delivery, you need explicit contracts, scoped task packets, verification evidence, review closure, and upgradeable checks.
+
+## Why This Exists
+
+Most teams adopting coding agents eventually hit the same wall:
+
+- prompts are inconsistent
+- task boundaries drift
+- verification is ad hoc
+- review lives in chat instead of durable artifacts
+- switching tools means rebuilding the workflow
+
+This repository packages the missing method layer.
 
 ## What You Get
 
-- `agentic-method-kit/`: the portable method source of truth
-- `agentic-repo-shell/`: the copyable repo-local shell for new projects
-- `pantheon-overlay/`: optional Pantheon-specific overlay
-- `docs/harness/`: reference contracts and method docs
-- `scripts/`: bootstrap and validation helpers
+- `agentic-method-kit/`, the portable method source of truth
+- `agentic-repo-shell/`, the copyable repo-local shell for new projects
+- `pantheon-overlay/`, the optional Pantheon-specific overlay
+- `docs/harness/`, the reference contracts and method docs
+- `scripts/`, the bootstrap and validation helpers
 
-## What Makes This Different
+## Core Ideas
 
-- The method is tool-agnostic. Codex, Claude Code, Cursor, Copilot, OpenHands, or human-led execution can all use the same repo contracts.
-- The method separates control layers clearly: guides, sensors, state, gates, templates, and adapters.
-- The method treats verification and review artifacts as first-class deliverables, not optional afterthoughts.
-- The method can travel. You copy the kit and shell into another repository instead of rebuilding the workflow from scratch.
+- Tool-agnostic. Codex, Claude Code, Cursor, Copilot, OpenHands, or human-led execution can use the same repo contracts.
+- Explicit control layers. Guides, sensors, state, gates, templates, and adapters are separated on purpose.
+- Durable closure. Task packets, evidence, review artifacts, and failure registry updates are part of delivery, not cleanup.
+- Portable adoption. You copy the method into a repo instead of reinventing the workflow for each project.
 
-## Start Here
+## Quick Start
 
 If you want to understand the method:
 
@@ -39,9 +51,13 @@ If you want to adopt it in a new repository:
 3. Optionally apply `pantheon-overlay/`
 4. Run the harness checks
 
-For a fuller map of the repository, see [docs/README.md](./docs/README.md).
+## Start Reading
 
-## Release Status
+- Method release note: [docs/METHOD_RELEASE_1_0.zh.md](./docs/METHOD_RELEASE_1_0.zh.md)
+- Social and community copy pack: [docs/METHOD_RELEASE_1_0_SOCIAL.zh.md](./docs/METHOD_RELEASE_1_0_SOCIAL.zh.md)
+- Full documentation map: [docs/README.md](./docs/README.md)
+
+## Status
 
 Current release line:
 
@@ -54,13 +70,7 @@ Release metadata:
 - [SHELL_VERSION.json](./SHELL_VERSION.json)
 - [WORKSPACE_MANIFEST.json](./WORKSPACE_MANIFEST.json)
 
-Public release note:
-
-- [docs/METHOD_RELEASE_1_0.zh.md](./docs/METHOD_RELEASE_1_0.zh.md)
-
 ## Validation
-
-Core checks:
 
 ```powershell
 node scripts/harness/check-adoption.mjs --strict
@@ -72,6 +82,6 @@ node --test pantheon-overlay/scripts/harness/*.test.mjs
 
 ## Boundaries
 
-This repository is for maintaining and releasing the method itself.
+This repository maintains and releases the method itself.
 
-It is not where application business code, product runtime evidence, or project-specific archives should accumulate.
+It is not where application business code, downstream runtime evidence, or project-specific archives should accumulate.
