@@ -29,6 +29,8 @@ English version: [README.md](./README.md)
 
 - [../README.zh.md](../README.zh.md)：中文仓库入口
 - [../README.md](../README.md)：英文仓库入口
+- [./METHOD_RELEASE_1_0.zh.md](./METHOD_RELEASE_1_0.zh.md)：对外发布说明
+- [./METHOD_RELEASE_1_0.md](./METHOD_RELEASE_1_0.md)：英文发布说明
 - [../DISTRIBUTION.md](../DISTRIBUTION.md)：发布面与分发边界
 - [../RELEASE.md](../RELEASE.md)：发布流程
 - [../MIGRATION_TO_STANDALONE_REPO.md](../MIGRATION_TO_STANDALONE_REPO.md)：迁移为独立仓库

@@ -29,6 +29,8 @@ Additional convention:
 
 - [../README.zh.md](../README.zh.md)
 - [../README.md](../README.md)
+- [./METHOD_RELEASE_1_0.zh.md](./METHOD_RELEASE_1_0.zh.md)
+- [./METHOD_RELEASE_1_0.md](./METHOD_RELEASE_1_0.md)
 - [../DISTRIBUTION.zh.md](../DISTRIBUTION.zh.md)
 - [../RELEASE.zh.md](../RELEASE.zh.md)
 - [../MIGRATION_TO_STANDALONE_REPO.zh.md](../MIGRATION_TO_STANDALONE_REPO.zh.md)
