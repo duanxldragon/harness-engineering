@@ -4,11 +4,11 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve('.');
-const SCRIPT = fs.existsSync(path.join(ROOT, 'scripts', 'harness', 'triage-base-drift.mjs'))
-  ? path.join(ROOT, 'scripts', 'harness', 'triage-base-drift.mjs')
-  : path.join(ROOT, 'pantheon-overlay', 'scripts', 'harness', 'triage-base-drift.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const WORKDIR = path.resolve(TEST_DIR, '..', '..');
+const SCRIPT = path.resolve(TEST_DIR, 'triage-base-drift.mjs');
 
 function writeFile(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -27,7 +27,7 @@ test('drift triage classifies module-name-only backend drift as pseudo-drift', (
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--root', dir, '--json'], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
   const report = JSON.parse(output);
@@ -43,7 +43,7 @@ test('drift triage classifies generated files as noise and business modules as b
   writeFile(path.join(dir, 'pantheon-ops', 'backend', 'modules', 'business', 'business.go'), 'package business\n\nfunc MountOps() {}\n');
 
   const output = execFileSync(process.execPath, [SCRIPT, '--root', dir, '--json'], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
   const report = JSON.parse(output);
@@ -58,7 +58,7 @@ test('drift triage treats derived repository entrypoints as business-specific dr
   writeFile(path.join(dir, 'pantheon-ops', 'CLAUDE.md'), 'ops derived business entry\n');
 
   const output = execFileSync(process.execPath, [SCRIPT, '--root', dir, '--json'], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
   const report = JSON.parse(output);

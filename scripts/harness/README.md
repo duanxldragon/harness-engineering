@@ -95,6 +95,74 @@ Exit behavior:
 - exits `1` in `--strict` mode when evidence schema errors exist
 - warnings are informational
 
+### `check-review.mjs`
+
+Validates machine-readable review artifacts under `.harness/evidence/**/review.md`.
+
+Default report-only mode:
+
+```powershell
+node scripts/harness/check-review.mjs
+```
+
+Strict mode:
+
+```powershell
+node scripts/harness/check-review.mjs --strict
+```
+
+Current checks include:
+
+- `## Machine Readable` JSON block presence
+- verdict enum validation
+- linkage to task packet, evidence, review file, OpenSpec change, and plan refs
+- task id consistency with evidence directory
+
+### `check-template-health.mjs`
+
+Checks whether the repository carries the minimum generic template-governance surface.
+
+```powershell
+node scripts/harness/check-template-health.mjs
+node scripts/harness/check-template-health.mjs --strict
+```
+
+### `check-runtime-evidence.mjs`
+
+Reports runtime-sensitive tasks whose evidence lacks runtime logs, metrics, traces, performance references, or an explicit runtime gap.
+
+```powershell
+node scripts/harness/check-runtime-evidence.mjs
+node scripts/harness/check-runtime-evidence.mjs --strict
+```
+
+### `check-doc-links.mjs`
+
+Checks internal Markdown links across generic method and harness docs.
+
+```powershell
+node scripts/harness/check-doc-links.mjs
+node scripts/harness/check-doc-links.mjs --strict
+```
+
+### `check-doc-inventory.mjs`
+
+Checks whether key documentation and script inventory READMEs list the files they claim to govern.
+
+```powershell
+node scripts/harness/check-doc-inventory.mjs
+node scripts/harness/check-doc-inventory.mjs --strict
+```
+
+### `check-sync-drift.mjs`
+
+Checks whether key root scripts and repo-shell mirrors are still synchronized.
+
+```powershell
+node scripts/harness/check-sync-drift.mjs
+node scripts/harness/check-sync-drift.mjs --strict
+```
+
 ### `check-backend-response-contract.mjs`
 
 Reports direct Gin JSON responses outside the shared `backend/pkg/common/response.go` wrapper.
@@ -237,6 +305,7 @@ Exit behavior:
 - warnings identify UI evidence missing screenshots/browser evidence or an explicit visual evidence gap
 
 Strict-mode promotion plan: see [`docs/harness/HARNESS_OPEN_TASKS.md`](../../docs/harness/HARNESS_OPEN_TASKS.md) for the conditions and threshold under which the CI job will stop using `continue-on-error`.
+See [`docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md`](../../docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md) for the quantitative promotion and rollback policy.
 
 ### `check-adoption.mjs`
 
@@ -343,6 +412,15 @@ Exit behavior:
 - exits `1` when a registry file has errors
 - reports missing default registry files as warnings so new repositories can adopt the registry gradually
 
+### `check-doc-frontmatter.mjs`
+
+Validates governed Markdown docs against the portable frontmatter convention in `docs/harness/DOCUMENT_FRONTMATTER_SPEC.md`.
+
+```powershell
+node scripts/harness/check-doc-frontmatter.mjs
+node scripts/harness/check-doc-frontmatter.mjs --report-legacy
+```
+
 ### `check-inheritance-contract.mjs`
 
 Checks that `pantheon-ops` stays a derived business repository of `pantheon-base`.
@@ -429,6 +507,12 @@ Test coverage by script:
 | :--- | :--- |
 | `check-task-packet.mjs` | `check-task-packet.test.mjs` |
 | `check-evidence.mjs` | `check-evidence.test.mjs` |
+| `check-review.mjs` | `check-review.test.mjs` |
+| `check-template-health.mjs` | `check-template-health.test.mjs` |
+| `check-runtime-evidence.mjs` | `check-runtime-evidence.test.mjs` |
+| `check-doc-links.mjs` | `check-doc-links.test.mjs` |
+| `check-doc-inventory.mjs` | `check-doc-inventory.test.mjs` |
+| `check-sync-drift.mjs` | `check-sync-drift.test.mjs` |
 | `check-visual-evidence.mjs` | `check-visual-evidence.test.mjs` |
 | `check-adoption.mjs` | `check-adoption.test.mjs` |
 | `check-method-health.mjs` | `check-method-health.test.mjs` |

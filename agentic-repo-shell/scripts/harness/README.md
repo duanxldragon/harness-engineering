@@ -67,6 +67,30 @@ Exit behavior:
 - exits `1` in `--strict` mode when evidence schema errors exist
 - warnings are informational
 
+### `check-review.mjs`
+
+Validates machine-readable review artifacts under `.harness/evidence/**/review.md`.
+
+### `check-template-health.mjs`
+
+Checks whether the repository carries the minimum generic template-governance surface.
+
+### `check-runtime-evidence.mjs`
+
+Reports runtime-sensitive tasks missing runtime logs, metrics, traces, performance references, or an explicit runtime gap.
+
+### `check-doc-links.mjs`
+
+Checks internal Markdown link integrity across generic method and harness docs.
+
+### `check-doc-inventory.mjs`
+
+Checks whether key documentation and script inventory READMEs list the files they claim to govern.
+
+### `check-sync-drift.mjs`
+
+Checks whether key root scripts and repo-shell mirrors remain synchronized.
+
 ### `check-visual-evidence.mjs`
 
 Reports UI task packet and evidence gaps for the visual quality protocol.
@@ -236,6 +260,12 @@ Test coverage by script:
 | :--- | :--- |
 | `check-task-packet.mjs` | `check-task-packet.test.mjs` |
 | `check-evidence.mjs` | `check-evidence.test.mjs` |
+| `check-review.mjs` | `check-review.test.mjs` |
+| `check-template-health.mjs` | `check-template-health.test.mjs` |
+| `check-runtime-evidence.mjs` | `check-runtime-evidence.test.mjs` |
+| `check-doc-links.mjs` | `check-doc-links.test.mjs` |
+| `check-doc-inventory.mjs` | `check-doc-inventory.test.mjs` |
+| `check-sync-drift.mjs` | `check-sync-drift.test.mjs` |
 | `check-visual-evidence.mjs` | `check-visual-evidence.test.mjs` |
 | `check-adoption.mjs` | `check-adoption.test.mjs` |
 | `check-method-health.mjs` | `check-method-health.test.mjs` |

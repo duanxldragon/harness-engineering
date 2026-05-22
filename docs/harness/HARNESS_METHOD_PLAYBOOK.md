@@ -24,10 +24,13 @@ English version: [HARNESS_METHOD_PLAYBOOK.en.md](./HARNESS_METHOD_PLAYBOOK.en.md
 6. 再读 `agentic-method-kit/METHOD_PLAYBOOK.md`
 7. 再读当前仓库需要落地执行的合同：
    - `HARNESS_ENGINEERING_CONTRACT.md`
+   - `TRIVIALITY_CLASSIFICATION_POLICY.md`
    - `TASK_PACKET_SPEC.md`
    - `VERIFICATION_EVIDENCE_SPEC.md`
    - `REVIEW_LOOP_SPEC.md`
    - `VISUAL_QUALITY_PROTOCOL.md`
+   - `VISUAL_EVIDENCE_PROMOTION_POLICY.md`
+   - `FAILURE_REGISTRY_PROMOTION_POLICY.md`
    - `INHERITANCE_HARNESS_PROTOCOL.md`
 
 ## 当前仓库职责
@@ -36,6 +39,7 @@ English version: [HARNESS_METHOD_PLAYBOOK.en.md](./HARNESS_METHOD_PLAYBOOK.en.md
 
 - `docs/harness/*`：合同、格式、治理规则
 - `scripts/harness/*`：校验器和 CI 门禁
+- 新增 generic gates：review、template health、runtime evidence、docs links、sync drift
 - `.agents/*` / `.codex/skills/*`：工具适配层
 
 如果方法层与仓库落地层出现冲突，以 `agentic-method-kit/` 的方法定义为先，再同步仓库落地层。

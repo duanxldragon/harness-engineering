@@ -43,8 +43,9 @@ English version: [BASE_UPGRADE_WORKFLOW.md](./BASE_UPGRADE_WORKFLOW.md)
 如果目标业务仓库已经本地 vendoring 了相关检查脚本，也可以直接在本地运行副本。
 
 ```powershell
-node scripts/harness/check-inheritance-contract.mjs --strict
-node scripts/harness/triage-base-drift.mjs --business pantheon-ops --json
+node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node harness-engineering/pantheon-overlay/scripts/harness/check-inheritance-contract.mjs --strict --root <workspace>
+node harness-engineering/pantheon-overlay/scripts/harness/triage-base-drift.mjs --business pantheon-ops --json --root <workspace>
 ```
 
 按以下方式理解 drift categories：
@@ -57,6 +58,8 @@ node scripts/harness/triage-base-drift.mjs --business pantheon-ops --json
 | `business-specific drift` | 本地产品行为 | 仅在有业务文档和 evidence 支撑时保留在 ops |
 | `business-only` | ops 独有业务文件 | 如果属于业务范围则保留 |
 | `base-only` | base 中有、ops 中没有的文件 | 判断是已经间接继承，还是确实需要升级引入 |
+
+如果升级后仍然存在 `generic drift`，在接受任何本地 override 之前，必须遵循 [`docs/harness/BASE_DRIFT_BACKPORT_POLICY.md`](./harness/BASE_DRIFT_BACKPORT_POLICY.md)。
 
 ## 4. 应用本地调整
 
@@ -79,4 +82,3 @@ node scripts/harness/triage-base-drift.mjs --business pantheon-ops --json
 - 新的 base version
 - 受影响的业务模块
 - 已知后续缺口
-

@@ -18,6 +18,8 @@ English version: [README.md](./README.md)
 - Pantheon 专用架构与后端契约检查
 - inheritance contract checks
 - base drift triage checks
+- 一个可供 CI 和工作区验证使用的 overlay health 统一入口
+- 显式的 base drift backport policy
 
 ## 应用顺序
 
@@ -34,6 +36,7 @@ English version: [README.md](./README.md)
 2. [docs/WORKSPACE_INHERITANCE.zh.md](./docs/WORKSPACE_INHERITANCE.zh.md)
 3. [docs/PROJECT_INHERITANCE_TEMPLATE.zh.md](./docs/PROJECT_INHERITANCE_TEMPLATE.zh.md)
 4. [docs/BASE_UPGRADE_WORKFLOW.zh.md](./docs/BASE_UPGRADE_WORKFLOW.zh.md)
+5. [docs/harness/BASE_DRIFT_BACKPORT_POLICY.md](./docs/harness/BASE_DRIFT_BACKPORT_POLICY.md)
 
 ## 什么时候使用
 
@@ -60,3 +63,32 @@ English version: [README.md](./README.md)
 - `docs/WORKSPACE_INHERITANCE.md`
 - `docs/PROJECT_INHERITANCE_TEMPLATE.md`
 - `docs/BASE_UPGRADE_WORKFLOW.md`
+- `docs/harness/INHERITANCE_HARNESS_PROTOCOL.md`
+- `docs/harness/BASE_DRIFT_BACKPORT_POLICY.md`
+
+## 可执行入口
+
+当目标工作区同时包含 `pantheon-base` 和类似 `pantheon-ops` 的派生业务仓库时，应该使用 overlay 自带的 health 入口。
+
+从 `harness-engineering/` 仓库根目录执行：
+
+```powershell
+node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node --test harness-engineering/pantheon-overlay/scripts/harness/*.test.mjs
+```
+
+如果目标仓库已经本地 vendoring 了 `pantheon-overlay/`，就在该本地 overlay 路径下执行对应脚本。
+
+## Overlay Health 契约
+
+`check-overlay-health.mjs` 可以视为 Pantheon 专用层对应的 method health gate。它会验证：
+
+- 必需的 overlay 文档和中英文治理文档是否存在
+- `OVERLAY_MANIFEST.json` 是否纳入了 health 入口和 drift policy
+- 以下 strict overlay checks 是否能从一个统一入口执行：
+  - `check-inheritance-contract.mjs`
+  - `check-boundaries.mjs`
+  - `check-backend-response-contract.mjs`
+  - `check-backend-dto-contract.mjs`
+  - `check-permission-contract.mjs`
+  - `check-audit-coverage.mjs`

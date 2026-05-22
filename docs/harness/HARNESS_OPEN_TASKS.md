@@ -6,8 +6,8 @@ This file tracks method-level tasks that are intentionally not blocking the curr
 
 | Task ID | Area | Trigger | Promotion Rule | Status |
 |---|---|---|---|---|
-| `HOT-001` | visual evidence | `check-visual-evidence.mjs --strict` currently supports observation mode before becoming a hard CI gate. | Promote from observed warning gate to blocking CI gate after two consecutive UI-related tasks include viewport/state plans and browser or screenshot evidence. | open |
-| `HOT-002` | failure registry | `check-failure-registry.mjs` currently treats a missing default registry as a warning. | Promote registry presence to a required landing file after downstream repositories have seeded `docs/harness/failure-registry.md`. | open |
+| `HOT-001` | visual evidence | `check-visual-evidence.mjs --strict` currently supports observation mode before becoming a hard CI gate. | Follow `VISUAL_EVIDENCE_PROMOTION_POLICY.md` for the promotion window, rollback conditions, and recording requirements. | open |
+| `HOT-002` | failure registry | `check-failure-registry.mjs` currently treats a missing default registry as a warning. | Follow `FAILURE_REGISTRY_PROMOTION_POLICY.md` for downstream adoption thresholds, upgrade actions, and rollback conditions. | open |
 
 ## Recently Closed
 

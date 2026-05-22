@@ -4,9 +4,11 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve('.');
-const SCRIPT = path.join(ROOT, 'scripts', 'harness', 'check-backend-response-contract.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const WORKDIR = path.resolve(TEST_DIR, '..', '..');
+const SCRIPT = path.resolve(TEST_DIR, 'check-backend-response-contract.mjs');
 
 function makeFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'check-backend-response-contract-'));
@@ -26,7 +28,7 @@ test('check-backend-response-contract.mjs: pass with no findings', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 
@@ -45,7 +47,7 @@ test('check-backend-response-contract.mjs: detect direct c.JSON', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 
@@ -65,7 +67,7 @@ test('check-backend-response-contract.mjs: allow wrapper itself', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 

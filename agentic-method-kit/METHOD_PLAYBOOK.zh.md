@@ -24,6 +24,7 @@ English version: [METHOD_PLAYBOOK.md](./METHOD_PLAYBOOK.md)
 ### 1. Intake
 
 - 判断当前工作是 `trivial` 还是 `non-trivial`
+- 如果仓库提供 triviality policy，按该策略判断；否则默认按 `non-trivial`
 - 如果是 non-trivial，先创建或选择一个变更身份，例如 OpenSpec change
 - 选择最小适用的 harness template 或 overlay
 
@@ -69,7 +70,13 @@ English version: [METHOD_PLAYBOOK.md](./METHOD_PLAYBOOK.md)
 - 运行：
   - `check-task-packet`
   - `check-evidence`
+  - `check-review`
   - `check-adoption`
+  - `check-template-health`
+  - `check-runtime-evidence`
+  - `check-doc-links`
+  - `check-doc-inventory`
+  - `check-sync-drift`
 - 方法维护时，定期按 [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md) 做 harness coverage review
 
 ### 9. Review

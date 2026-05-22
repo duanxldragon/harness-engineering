@@ -23,7 +23,7 @@ agent 交付质量不只是 prompt 问题，更是 harness 问题。如果你想
 - `agentic-method-kit/`，可移植的方法事实源
 - `agentic-repo-shell/`，给新项目复制的仓库壳层
 - `pantheon-overlay/`，可选的 Pantheon 专用 overlay
-- `docs/harness/`，方法契约和参考文档
+- `docs/harness/`，仓库本地的合同投影层与 policy 文档
 - `scripts/`，bootstrap 与校验脚本
 
 ## 这套方法的核心点
@@ -75,10 +75,23 @@ agent 交付质量不只是 prompt 问题，更是 harness 问题。如果你想
 ```powershell
 node scripts/harness/check-adoption.mjs --strict
 node scripts/harness/check-method-health.mjs --strict
+node scripts/harness/check-review.mjs --strict
+node scripts/harness/check-template-health.mjs
+node scripts/harness/check-runtime-evidence.mjs
+node scripts/harness/check-doc-links.mjs --strict
+node scripts/harness/check-doc-inventory.mjs --strict
+node scripts/harness/check-sync-drift.mjs --strict
 node scripts/harness/check-doc-frontmatter.mjs --report-legacy
 node --test agentic-repo-shell/scripts/harness/*.test.mjs
 node --test pantheon-overlay/scripts/harness/*.test.mjs
 ```
+
+## Canonical Source 约定
+
+- `agentic-method-kit/` 是方法事实源
+- `docs/harness/` 是当前仓库的合同与 policy 投影层
+- 根 `.agents/` 服务于当前分发工作区自身
+- `agentic-repo-shell/.agents/` 服务于下游 bootstrap 后的仓库
 
 ## 边界
 

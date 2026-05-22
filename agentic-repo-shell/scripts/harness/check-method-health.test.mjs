@@ -42,9 +42,18 @@ function createFixture() {
   fs.writeFileSync(path.join(root, 'docs', 'harness', 'TOOL_ADAPTER_MATRIX.md'), '# Tool Adapter Matrix\n');
   fs.writeFileSync(path.join(root, 'docs', 'harness', 'HARNESS_ENGINEERING_CONTRACT.md'), '# Contract\n');
   fs.writeFileSync(path.join(root, 'docs', 'harness', 'DOCUMENT_FRONTMATTER_SPEC.md'), '# Frontmatter\n');
+  fs.writeFileSync(path.join(root, 'docs', 'harness', 'TRIVIALITY_CLASSIFICATION_POLICY.md'), '# Triviality\n');
+  fs.writeFileSync(path.join(root, 'docs', 'harness', 'VISUAL_EVIDENCE_PROMOTION_POLICY.md'), '# Visual Policy\n');
+  fs.writeFileSync(path.join(root, 'docs', 'harness', 'FAILURE_REGISTRY_PROMOTION_POLICY.md'), '# Failure Policy\n');
   fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-adoption.mjs'), '#!/usr/bin/env node\n');
+  fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-review.mjs'), '#!/usr/bin/env node\n');
   fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-doc-frontmatter.mjs'), '#!/usr/bin/env node\n');
+  fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-doc-links.mjs'), '#!/usr/bin/env node\n');
+  fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-doc-inventory.mjs'), '#!/usr/bin/env node\n');
   fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-failure-registry.mjs'), '#!/usr/bin/env node\n');
+  fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-template-health.mjs'), '#!/usr/bin/env node\n');
+  fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-runtime-evidence.mjs'), '#!/usr/bin/env node\n');
+  fs.writeFileSync(path.join(root, 'scripts', 'harness', 'check-sync-drift.mjs'), '#!/usr/bin/env node\n');
   return root;
 }
 

@@ -23,6 +23,7 @@ Optional overlay:
 - A default playbook for change selection, task packets, implementation, evidence, and review
 - Portable schemas and templates for task packets, evidence, review closure, and failure registry entries
 - Portable checks for method health, adoption, task packet structure, and governance drift
+- Portable closure for review artifacts, plus generic template/runtime/docs-integrity governance
 
 ## What This Kit Does Not Require
 
@@ -57,6 +58,12 @@ For non-trivial work, the portable loop is:
 - governed docs when the repository adopts doc governance
 
 This kit exists to make that loop explicit and portable.
+
+## Canonical Role
+
+`agentic-method-kit/` is the canonical method source.
+
+Repository-local `docs/harness/*` files may project or summarize the method for local execution, but if drift appears, the method definition here wins and downstream projections should be synchronized.
 
 ## Versioning
 

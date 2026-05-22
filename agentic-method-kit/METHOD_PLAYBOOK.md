@@ -24,6 +24,7 @@ Read these method foundations first:
 ### 1. Intake
 
 - Decide whether the work is `trivial` or `non-trivial`
+- Use the repository's triviality policy when one exists; otherwise default to `non-trivial`
 - If non-trivial, create or select a change identity such as an OpenSpec change
 - Select the smallest applicable harness template or overlay
 
@@ -69,7 +70,13 @@ Read these method foundations first:
 - Run:
   - `check-task-packet`
   - `check-evidence`
+  - `check-review`
   - `check-adoption`
+  - `check-template-health`
+  - `check-runtime-evidence`
+  - `check-doc-links`
+  - `check-doc-inventory`
+  - `check-sync-drift`
 - For method upkeep, periodically run a harness coverage review using [HARNESS_COVERAGE_MODEL.md](./HARNESS_COVERAGE_MODEL.md)
 
 ### 9. Review

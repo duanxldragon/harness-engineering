@@ -43,6 +43,30 @@ node scripts/harness/check-task-packet.mjs --json
 
 校验 `.harness/evidence/**/commands.json` 下的 Harness verification evidence 命令文件。
 
+### `check-review.mjs`
+
+校验 `.harness/evidence/**/review.md` 下的 machine-readable review artifacts。
+
+### `check-template-health.mjs`
+
+检查仓库是否具备最小通用 template-governance 面。
+
+### `check-runtime-evidence.mjs`
+
+报告 runtime-sensitive 任务在 evidence 中缺少 runtime logs / metrics / traces / performance 信号或显式 runtime gap 的情况。
+
+### `check-doc-links.mjs`
+
+检查方法与 harness 文档中的内部 Markdown 链接完整性。
+
+### `check-doc-inventory.mjs`
+
+检查关键文档与脚本清单 README 是否列出了它们声明治理的文件。
+
+### `check-sync-drift.mjs`
+
+检查根脚本与 repo-shell 镜像脚本是否仍保持同步。
+
 默认 report-only 模式：
 
 ```powershell

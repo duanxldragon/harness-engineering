@@ -42,8 +42,9 @@ Run before and after every base upgrade.
 If these checks are maintained in the standalone method repository, execute them from that repository against the target workspace. If the target business repository vendors the relevant check scripts locally, run the local copies there instead.
 
 ```powershell
-node scripts/harness/check-inheritance-contract.mjs --strict
-node scripts/harness/triage-base-drift.mjs --business pantheon-ops --json
+node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node harness-engineering/pantheon-overlay/scripts/harness/check-inheritance-contract.mjs --strict --root <workspace>
+node harness-engineering/pantheon-overlay/scripts/harness/triage-base-drift.mjs --business pantheon-ops --json --root <workspace>
 ```
 
 Use the drift categories this way:
@@ -56,6 +57,8 @@ Use the drift categories this way:
 | `business-specific drift` | local product behavior | keep in ops only with business docs/evidence |
 | `business-only` | ops-only business file | keep if under business scope |
 | `base-only` | base file missing from ops | decide if inherited indirectly or needs upgrade |
+
+When `generic drift` remains after an upgrade attempt, follow [`docs/harness/BASE_DRIFT_BACKPORT_POLICY.md`](./harness/BASE_DRIFT_BACKPORT_POLICY.md) before accepting any local override.
 
 ## 4. Apply Local Adjustments
 

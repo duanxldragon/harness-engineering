@@ -130,6 +130,8 @@ For `pantheon-ops`, the default reading order is:
 
 Non-trivial tasks must have a minimum plan. Cross-layer tasks, new features, refactors, drift governance, and sensitive configuration changes must use a task packet.
 
+Classification between `trivial` and `non-trivial` follows `TRIVIALITY_CLASSIFICATION_POLICY.en.md`.
+
 ### 5.4 Red
 
 When behavior can be pinned down with a test or check, write the failing test or failing check first.
@@ -227,6 +229,8 @@ The following tasks may skip task-packet creation, but must still obey the relev
 
 Even exception tasks may not bypass human gates for sensitive operations.
 
+If trivial classification is disputed, use `TRIVIALITY_CLASSIFICATION_POLICY.en.md` and fall back to `non-trivial` by default.
+
 ## 9. Migration Path
 
 Harness maturity progresses in three stages:
@@ -234,4 +238,3 @@ Harness maturity progresses in three stages:
 1. protocol layer: establish `docs/harness/*` and `.agents/*` so the workflow is tool-agnostic
 2. evidence layer: establish task packet, evidence schema, and evidence directory conventions
 3. gate layer: push architecture boundaries, permission, i18n, audit, drift, and document frontmatter governance down into scripts and CI
-

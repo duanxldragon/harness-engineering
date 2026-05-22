@@ -4,9 +4,11 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve('.');
-const SCRIPT = path.join(ROOT, 'scripts', 'harness', 'check-audit-coverage.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const WORKDIR = path.resolve(TEST_DIR, '..', '..');
+const SCRIPT = path.resolve(TEST_DIR, 'check-audit-coverage.mjs');
 
 function makeFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'check-audit-coverage-'));
@@ -32,7 +34,7 @@ test('check-audit-coverage.mjs: pass with audit metadata', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 
@@ -55,7 +57,7 @@ test('check-audit-coverage.mjs: detect missing audit metadata warning', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 
@@ -69,7 +71,7 @@ test('check-audit-coverage.mjs: detect missing middleware finding', () => {
   fs.writeFileSync(path.join(root, 'pantheon-ops', 'backend', 'cmd', 'server', 'main.go'), 'package main\nfunc main() { fmt.Println("no middleware") }\n');
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 

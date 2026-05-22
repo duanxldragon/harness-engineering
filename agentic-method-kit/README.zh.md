@@ -23,6 +23,7 @@ English version: [README.md](./README.md)
 - 一套默认 playbook，覆盖 change 选择、task packet、实现、evidence 和 review
 - task packet、evidence、review closure、failure registry entry 的可移植 schema 与模板
 - 方法健康度、adoption、task packet 结构和治理漂移的可移植检查
+- review artifact 的可移植闭环，以及 template/runtime/docs-integrity 的通用治理检查
 
 ## 这个方法包不要求什么
 
@@ -57,6 +58,12 @@ English version: [README.md](./README.md)
 - 如果仓库采用文档治理，则再加 governed docs
 
 这个方法包存在的目的，就是把这条闭环显式化、可迁移化。
+
+## Canonical 角色
+
+`agentic-method-kit/` 是方法事实源。
+
+仓库本地的 `docs/harness/*` 可以为本地执行投影或摘要这些方法，但如果出现漂移，应以这里的方法定义为准，再回同步下游投影层。
 
 ## 版本管理
 

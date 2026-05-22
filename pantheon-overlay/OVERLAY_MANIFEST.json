@@ -8,8 +8,12 @@
   ],
   "includes": [
     "docs/harness/INHERITANCE_HARNESS_PROTOCOL.md",
+    "docs/harness/BASE_DRIFT_BACKPORT_POLICY.md",
+    "docs/harness/BASE_DRIFT_BACKPORT_POLICY.en.md",
     ".github/pull_request_template.md",
     ".github/workflows/harness.yml",
+    "scripts/harness/check-overlay-health.mjs",
+    "scripts/harness/check-overlay-health.test.mjs",
     "scripts/harness/check-boundaries.mjs",
     "scripts/harness/check-boundaries.test.mjs",
     "scripts/harness/check-backend-response-contract.mjs",

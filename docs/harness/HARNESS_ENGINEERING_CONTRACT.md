@@ -130,6 +130,8 @@ Intake -> Context -> Plan -> Red -> Green -> Verify -> Evidence -> Review -> Han
 
 非 trivial 任务必须有最小计划。跨层任务、新功能、重构、drift 治理和高敏配置变更必须使用 task packet。
 
+`trivial` 与 `non-trivial` 的判定，按 `TRIVIALITY_CLASSIFICATION_POLICY.md` 执行。
+
 ### 5.4 Red
 
 能用测试或检查固定行为的任务，先写失败测试或失败检查。
@@ -226,6 +228,8 @@ This rule applies equally to:
 - 不影响行为的格式化，且已有格式化命令验证。
 
 例外任务仍不能绕过敏感操作 human gate。
+
+如对 trivial 判定存在争议，以 `TRIVIALITY_CLASSIFICATION_POLICY.md` 为准，并默认回退到 `non-trivial`。
 
 ## 9. 迁移路线
 

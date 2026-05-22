@@ -42,7 +42,7 @@ Additional convention:
 
 Directory: [`./harness/`](./harness/)
 
-- `HARNESS_ENGINEERING_CONTRACT.md`
+- [./harness/HARNESS_ENGINEERING_CONTRACT.md](./harness/HARNESS_ENGINEERING_CONTRACT.md)
 - `AGENT_INTERFACE_CONTRACT.md`
 - `TASK_PACKET_SPEC.md`
 - `VERIFICATION_EVIDENCE_SPEC.md`
@@ -51,14 +51,18 @@ Directory: [`./harness/`](./harness/)
 - `TOOL_ADAPTERS.md`
 - `VISUAL_QUALITY_PROTOCOL.md`
 - `INHERITANCE_HARNESS_PROTOCOL.md`
-- `HARNESS_METHOD_PLAYBOOK.md`
+- [./harness/HARNESS_METHOD_PLAYBOOK.md](./harness/HARNESS_METHOD_PLAYBOOK.md)
 - `failure-registry.md`
 - `HARNESS_OPEN_TASKS.md`
+- `TRIVIALITY_CLASSIFICATION_POLICY.md`
+- `VISUAL_EVIDENCE_PROMOTION_POLICY.md`
+- `FAILURE_REGISTRY_PROMOTION_POLICY.md`
 
 Note:
 - most of these are already Chinese-first documents with stable existing paths
 - to preserve link stability, keep the Chinese primary files as `*.md` and add English companions as `*.en.md`
 - if a future migration to English-primary paths is needed, treat that as a separate cutover
+- policy documents follow the same mirroring rule and should be updated in CN/EN pairs
 
 ### 3. Method Kit
 
@@ -100,6 +104,8 @@ Directory: [`../pantheon-overlay/`](../pantheon-overlay/)
 - [../pantheon-overlay/docs/PROJECT_INHERITANCE_TEMPLATE.zh.md](../pantheon-overlay/docs/PROJECT_INHERITANCE_TEMPLATE.zh.md)
 - [../pantheon-overlay/docs/BASE_UPGRADE_WORKFLOW.zh.md](../pantheon-overlay/docs/BASE_UPGRADE_WORKFLOW.zh.md)
 - [../pantheon-overlay/docs/harness/INHERITANCE_HARNESS_PROTOCOL.md](../pantheon-overlay/docs/harness/INHERITANCE_HARNESS_PROTOCOL.md)
+- [../pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.md](../pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.md)
+- [../pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.en.md](../pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.en.md)
 
 ### 6. Agent and Prompt Assets
 

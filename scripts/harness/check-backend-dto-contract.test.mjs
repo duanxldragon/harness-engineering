@@ -4,9 +4,10 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve('.');
-const SCRIPT = path.join(ROOT, 'scripts', 'harness', 'check-backend-dto-contract.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT = path.resolve(TEST_DIR, 'check-backend-dto-contract.mjs');
 
 function writeFile(filePath, content) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -60,7 +61,6 @@ func (h *SampleHandler) Get(c *gin.Context) {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--root', dir, '--json'], {
-    cwd: ROOT,
     encoding: 'utf8',
   });
   const report = JSON.parse(output);
@@ -116,7 +116,6 @@ func (h *SampleHandler) Get(c *gin.Context) {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--root', dir, '--json'], {
-    cwd: ROOT,
     encoding: 'utf8',
   });
   const report = JSON.parse(output);

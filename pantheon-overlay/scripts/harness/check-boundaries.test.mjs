@@ -4,9 +4,11 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve('.');
-const SCRIPT = path.join(ROOT, 'scripts', 'harness', 'check-boundaries.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const WORKDIR = path.resolve(TEST_DIR, '..', '..');
+const SCRIPT = path.resolve(TEST_DIR, 'check-boundaries.mjs');
 
 function makeFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'check-boundaries-'));
@@ -30,7 +32,7 @@ test('check-boundaries.mjs: pass with no findings', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 
@@ -49,7 +51,7 @@ test('check-boundaries.mjs: detect forbidden Go imports', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 
@@ -68,7 +70,7 @@ test('check-boundaries.mjs: detect forbidden TS imports', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 
@@ -86,7 +88,7 @@ test('check-boundaries.mjs: strict mode fails with findings', () => {
   );
 
   const result = spawnSync(process.execPath, [SCRIPT, '--strict', '--root', root], {
-    cwd: ROOT,
+    cwd: WORKDIR,
     encoding: 'utf8',
   });
 

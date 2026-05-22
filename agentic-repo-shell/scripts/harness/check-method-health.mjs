@@ -27,9 +27,18 @@ const REQUIRED_REPO_SHELL_FILES = [
   'docs/harness/TOOL_ADAPTER_MATRIX.md',
   'docs/harness/HARNESS_ENGINEERING_CONTRACT.md',
   'docs/harness/DOCUMENT_FRONTMATTER_SPEC.md',
+  'docs/harness/TRIVIALITY_CLASSIFICATION_POLICY.md',
+  'docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md',
+  'docs/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md',
   'scripts/harness/check-adoption.mjs',
+  'scripts/harness/check-review.mjs',
   'scripts/harness/check-doc-frontmatter.mjs',
+  'scripts/harness/check-doc-links.mjs',
+  'scripts/harness/check-doc-inventory.mjs',
   'scripts/harness/check-failure-registry.mjs',
+  'scripts/harness/check-template-health.mjs',
+  'scripts/harness/check-runtime-evidence.mjs',
+  'scripts/harness/check-sync-drift.mjs',
 ];
 
 function printHelp() {

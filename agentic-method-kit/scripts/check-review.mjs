@@ -4,34 +4,114 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
+const DEFAULT_ROOT = process.cwd();
+const DEFAULT_CONFIG = 'agentic-method-kit/config/method.config.json';
+const DEFAULT_EVIDENCE_DIR = '.harness/evidence';
+const VALID_VERDICTS = new Set([
+  'approved',
+  'changes requested',
+  'blocked',
+  'approved with documented P2 follow-up',
+]);
+
+function printHelp() {
+  console.log(`Usage:
+  node agentic-method-kit/scripts/check-review.mjs [--json] [--strict] [--root <path>] [--config <path>] [review-file ...]
+
+Defaults:
+  Scans <root>/.harness/evidence/**/review.md when no files are provided.
+
+Examples:
+  node agentic-method-kit/scripts/check-review.mjs
+  node agentic-method-kit/scripts/check-review.mjs --json --strict
+  node agentic-method-kit/scripts/check-review.mjs --root /tmp/fixture`);
+}
+
 function parseArgs(argv) {
-  const options = { root: process.cwd(), config: 'agentic-method-kit/config/method.config.json', strict: false };
-  for (let i = 0; i < argv.length; i += 1) {
-    const arg = argv[i];
-    if (arg === '--root') options.root = path.resolve(argv[++i]);
-    else if (arg === '--config') options.config = argv[++i];
-    else if (arg === '--strict') options.strict = true;
+  const options = {
+    json: false,
+    strict: false,
+    help: false,
+    root: DEFAULT_ROOT,
+    config: DEFAULT_CONFIG,
+    files: [],
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === '--json') {
+      options.json = true;
+    } else if (arg === '--strict') {
+      options.strict = true;
+    } else if (arg === '--help' || arg === '-h') {
+      options.help = true;
+    } else if (arg === '--root') {
+      const value = argv[index + 1];
+      if (!value) throw new Error('--root requires a path');
+      options.root = path.resolve(value);
+      index += 1;
+    } else if (arg === '--config') {
+      const value = argv[index + 1];
+      if (!value) throw new Error('--config requires a path');
+      options.config = value;
+      index += 1;
+    } else {
+      options.files.push(arg);
+    }
   }
+
   return options;
 }
 
 function loadConfig(root, configPath) {
-  return JSON.parse(fs.readFileSync(path.join(root, configPath), 'utf8'));
+  const absolute = path.isAbsolute(configPath) ? configPath : path.join(root, configPath);
+  if (!fs.existsSync(absolute)) {
+    return { evidenceDir: DEFAULT_EVIDENCE_DIR };
+  }
+
+  try {
+    const config = JSON.parse(fs.readFileSync(absolute, 'utf8'));
+    return {
+      evidenceDir:
+        typeof config.evidenceDir === 'string' && config.evidenceDir.trim() !== ''
+          ? config.evidenceDir
+          : DEFAULT_EVIDENCE_DIR,
+    };
+  } catch {
+    return { evidenceDir: DEFAULT_EVIDENCE_DIR };
+  }
 }
 
-function discoverReviewFiles(root, config) {
-  const result = [];
-  const base = path.join(root, config.evidenceDir);
-  function walk(dir) {
-    if (!fs.existsSync(dir)) return;
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      const full = path.join(dir, entry.name);
-      if (entry.isDirectory()) walk(full);
-      if (entry.isFile() && entry.name === 'review.md') result.push(full);
+function normalizeInputFile(inputPath, root) {
+  return path.isAbsolute(inputPath) ? inputPath : path.join(root, inputPath);
+}
+
+function discoverReviewFiles(root, evidenceDir) {
+  const files = [];
+  const base = path.join(root, evidenceDir);
+
+  function walk(dirPath) {
+    if (!fs.existsSync(dirPath)) return;
+    for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
+      const fullPath = path.join(dirPath, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else if (entry.isFile() && entry.name === 'review.md') {
+        files.push(fullPath);
+      }
     }
   }
+
   walk(base);
-  return result.sort();
+  return files.sort();
+}
+
+function toRepoPath(filePath, root) {
+  return path.relative(root, filePath).replaceAll(path.sep, '/');
+}
+
+function isObject(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
 
 function extractMachineReadableBlock(content) {
@@ -46,78 +126,144 @@ function extractMachineReadableBlock(content) {
   }
 }
 
+function requireNonEmptyString(object, key, errors, label) {
+  if (typeof object[key] !== 'string' || object[key].trim() === '') {
+    errors.push(`${label}.${key} must be a non-empty string.`);
+  }
+}
+
 function validateReview(filePath, root) {
-  const errors = [];
   const content = fs.readFileSync(filePath, 'utf8');
   const extracted = extractMachineReadableBlock(content);
+  const result = { file: toRepoPath(filePath, root), errors: [], warnings: [] };
+
   if (extracted.error) {
-    return { file: path.relative(root, filePath).replaceAll(path.sep, '/'), errors: [extracted.error] };
+    result.errors.push(extracted.error);
+    return result;
   }
 
   const review = extracted.value;
-  const relativeFile = path.relative(root, filePath).replaceAll(path.sep, '/');
-  const expectedTaskId = path.basename(path.dirname(filePath));
-  const validVerdicts = new Set([
-    'approved',
-    'changes requested',
-    'blocked',
-    'approved with documented P2 follow-up',
-  ]);
+  if (!isObject(review)) {
+    result.errors.push('machine-readable review artifact must be a JSON object');
+    return result;
+  }
 
-  if (review.taskId !== expectedTaskId) {
-    errors.push(`taskId must match evidence directory name "${expectedTaskId}"`);
+  requireNonEmptyString(review, 'taskId', result.errors, 'root');
+  requireNonEmptyString(review, 'verdict', result.errors, 'root');
+  if (typeof review.verdict === 'string' && !VALID_VERDICTS.has(review.verdict)) {
+    result.errors.push(`root.verdict must be one of: ${Array.from(VALID_VERDICTS).join(', ')}.`);
   }
-  if (!validVerdicts.has(review.verdict)) {
-    errors.push('verdict is invalid');
+
+  if (!isObject(review.linkage)) {
+    result.errors.push('root.linkage must be an object.');
+    return result;
   }
-  if (!review.linkage || typeof review.linkage !== 'object') {
-    errors.push('linkage is required');
+
+  requireNonEmptyString(review.linkage, 'taskPacket', result.errors, 'root.linkage');
+  requireNonEmptyString(review.linkage, 'evidence', result.errors, 'root.linkage');
+  requireNonEmptyString(review.linkage, 'reviewFile', result.errors, 'root.linkage');
+  requireNonEmptyString(review.linkage, 'changeRef', result.errors, 'root.linkage');
+
+  if (!Array.isArray(review.linkage.planRefs)) {
+    result.errors.push('root.linkage.planRefs must be an array.');
   } else {
-    const expectedTaskPacket = `docs/harness/tasks/${expectedTaskId}.task.md`;
-    const expectedEvidence = `.harness/evidence/${expectedTaskId}/commands.json`;
-    const expectedReview = `.harness/evidence/${expectedTaskId}/review.md`;
+    review.linkage.planRefs.forEach((ref, index) => {
+      if (typeof ref !== 'string' || ref.trim() === '') {
+        result.errors.push(`root.linkage.planRefs[${index}] must be a non-empty string.`);
+      } else if (!fs.existsSync(path.join(root, ref))) {
+        result.errors.push(`linked plan missing: ${ref}`);
+      }
+    });
+  }
 
-    if (review.linkage.taskPacket !== expectedTaskPacket) {
-      errors.push(`linkage.taskPacket must be "${expectedTaskPacket}"`);
-    } else if (!fs.existsSync(path.join(root, review.linkage.taskPacket))) {
-      errors.push(`linked task packet missing: ${review.linkage.taskPacket}`);
-    }
+  const expectedTaskId = path.basename(path.dirname(filePath));
+  if (review.taskId !== expectedTaskId) {
+    result.errors.push(`root.taskId must match evidence directory name "${expectedTaskId}".`);
+  }
 
-    if (review.linkage.evidence !== expectedEvidence) {
-      errors.push(`linkage.evidence must be "${expectedEvidence}"`);
-    } else if (!fs.existsSync(path.join(root, review.linkage.evidence))) {
-      errors.push(`linked evidence missing: ${review.linkage.evidence}`);
-    }
+  const expectedTaskPacket = `docs/harness/tasks/${expectedTaskId}.task.md`;
+  const expectedEvidence = `.harness/evidence/${expectedTaskId}/commands.json`;
+  const expectedReview = `.harness/evidence/${expectedTaskId}/review.md`;
 
-    if (review.linkage.reviewFile !== expectedReview) {
-      errors.push(`linkage.reviewFile must be "${expectedReview}"`);
-    }
+  if (review.linkage.taskPacket !== expectedTaskPacket) {
+    result.errors.push(`root.linkage.taskPacket must be "${expectedTaskPacket}".`);
+  } else if (!fs.existsSync(path.join(root, review.linkage.taskPacket))) {
+    result.errors.push(`linked task packet missing: ${review.linkage.taskPacket}`);
+  }
 
-    if (typeof review.linkage.changeRef !== 'string' || review.linkage.changeRef.length === 0) {
-      errors.push('linkage.changeRef must be a non-empty string');
-    } else if (review.linkage.changeRef !== 'none' && !fs.existsSync(path.join(root, review.linkage.changeRef))) {
-      errors.push(`linked OpenSpec change missing: ${review.linkage.changeRef}`);
-    }
+  if (review.linkage.evidence !== expectedEvidence) {
+    result.errors.push(`root.linkage.evidence must be "${expectedEvidence}".`);
+  } else if (!fs.existsSync(path.join(root, review.linkage.evidence))) {
+    result.errors.push(`linked evidence missing: ${review.linkage.evidence}`);
+  }
 
-    if (!Array.isArray(review.linkage.planRefs)) {
-      errors.push('linkage.planRefs must be an array');
-    } else {
-      review.linkage.planRefs.forEach((ref, index) => {
-        if (typeof ref !== 'string' || ref.length === 0) {
-          errors.push(`linkage.planRefs[${index}] must be a non-empty string`);
-        } else if (!fs.existsSync(path.join(root, ref))) {
-          errors.push(`linked plan missing: ${ref}`);
-        }
-      });
+  if (review.linkage.reviewFile !== expectedReview) {
+    result.errors.push(`root.linkage.reviewFile must be "${expectedReview}".`);
+  }
+
+  if (typeof review.linkage.changeRef === 'string') {
+    if (review.linkage.changeRef !== 'none' && !fs.existsSync(path.join(root, review.linkage.changeRef))) {
+      result.errors.push(`linked OpenSpec change missing: ${review.linkage.changeRef}`);
     }
   }
 
-  return { file: relativeFile, errors };
+  return result;
 }
 
-const options = parseArgs(process.argv.slice(2));
-const config = loadConfig(options.root, options.config);
-const results = discoverReviewFiles(options.root, config).map((file) => validateReview(file, options.root));
-const errorCount = results.reduce((n, r) => n + r.errors.length, 0);
-console.log(JSON.stringify({ errorCount, results }, null, 2));
-process.exitCode = options.strict && errorCount > 0 ? 1 : 0;
+function printTextReport(results, strict) {
+  const mode = strict ? 'strict' : 'report-only';
+  const errorCount = results.reduce((count, result) => count + result.errors.length, 0);
+  console.log(`Review check (${mode}): ${results.length} file(s), ${errorCount} error(s)`);
+
+  for (const result of results) {
+    console.log('');
+    console.log(result.errors.length === 0 ? `[PASS] ${result.file}` : `[FAIL] ${result.file}`);
+    for (const error of result.errors) {
+      console.log(`  error: ${error}`);
+    }
+  }
+}
+
+function main() {
+  let options;
+  try {
+    options = parseArgs(process.argv.slice(2));
+  } catch (error) {
+    console.error(error.message);
+    return 1;
+  }
+
+  if (options.help) {
+    printHelp();
+    return 0;
+  }
+
+  const config = loadConfig(options.root, options.config);
+  const files =
+    options.files.length > 0
+      ? options.files.map((file) => normalizeInputFile(file, options.root))
+      : discoverReviewFiles(options.root, config.evidenceDir);
+  const results = files.map((file) => validateReview(file, options.root));
+  const errorCount = results.reduce((count, result) => count + result.errors.length, 0);
+
+  if (options.json) {
+    console.log(
+      JSON.stringify(
+        {
+          mode: options.strict ? 'strict' : 'report-only',
+          fileCount: results.length,
+          errorCount,
+          results,
+        },
+        null,
+        2,
+      ),
+    );
+  } else {
+    printTextReport(results, options.strict);
+  }
+
+  return options.strict && errorCount > 0 ? 1 : 0;
+}
+
+process.exitCode = main();

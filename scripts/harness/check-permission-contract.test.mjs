@@ -4,9 +4,10 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve('.');
-const SCRIPT = path.join(ROOT, 'scripts', 'harness', 'check-permission-contract.mjs');
+const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT = path.resolve(TEST_DIR, 'check-permission-contract.mjs');
 
 function makeFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'check-permission-contract-'));
@@ -26,7 +27,6 @@ test('check-permission-contract.mjs: pass with no findings', () => {
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
     encoding: 'utf8',
   });
 
@@ -43,7 +43,6 @@ test('check-permission-contract.mjs: detect Type F with list permission', () => 
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
     encoding: 'utf8',
   });
 
@@ -61,7 +60,6 @@ test('check-permission-contract.mjs: detect action wording near list permission'
   );
 
   const output = execFileSync(process.execPath, [SCRIPT, '--json', '--root', root], {
-    cwd: ROOT,
     encoding: 'utf8',
   });
 

@@ -23,7 +23,7 @@ This repository packages the missing method layer.
 - `agentic-method-kit/`, the portable method source of truth
 - `agentic-repo-shell/`, the copyable repo-local shell for new projects
 - `pantheon-overlay/`, the optional Pantheon-specific overlay
-- `docs/harness/`, the reference contracts and method docs
+- `docs/harness/`, the repo-local contract projection and policy docs
 - `scripts/`, the bootstrap and validation helpers
 
 ## Core Ideas
@@ -75,10 +75,23 @@ Release metadata:
 ```powershell
 node scripts/harness/check-adoption.mjs --strict
 node scripts/harness/check-method-health.mjs --strict
+node scripts/harness/check-review.mjs --strict
+node scripts/harness/check-template-health.mjs
+node scripts/harness/check-runtime-evidence.mjs
+node scripts/harness/check-doc-links.mjs --strict
+node scripts/harness/check-doc-inventory.mjs --strict
+node scripts/harness/check-sync-drift.mjs --strict
 node scripts/harness/check-doc-frontmatter.mjs --report-legacy
 node --test agentic-repo-shell/scripts/harness/*.test.mjs
 node --test pantheon-overlay/scripts/harness/*.test.mjs
 ```
+
+## Canonical Sources
+
+- `agentic-method-kit/` is the method source of truth
+- `docs/harness/` is this repository's contract and policy projection layer
+- root `.agents/` serves this distribution workspace itself
+- `agentic-repo-shell/.agents/` serves downstream bootstrapped repositories
 
 ## Boundaries
 
