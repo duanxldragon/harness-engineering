@@ -29,6 +29,10 @@ English version: [README.md](./README.md)
 
 - [../README.zh.md](../README.zh.md)：中文仓库入口
 - [../README.md](../README.md)：英文仓库入口
+- [./CODEX_DEVELOPMENT_CHECKLIST.zh.md](./CODEX_DEVELOPMENT_CHECKLIST.zh.md)：Codex 最短开发检查清单
+- [./CODEX_DEVELOPMENT_CHECKLIST.md](./CODEX_DEVELOPMENT_CHECKLIST.md)：Codex 最短开发检查清单英文副本
+- [./CODEX_DEVELOPMENT_PROCESS.zh.md](./CODEX_DEVELOPMENT_PROCESS.zh.md)：Codex 默认开发流程卡
+- [./CODEX_DEVELOPMENT_PROCESS.md](./CODEX_DEVELOPMENT_PROCESS.md)：Codex 默认开发流程英文副本
 - [./METHOD_RELEASE_1_0.zh.md](./METHOD_RELEASE_1_0.zh.md)：对外发布说明
 - [./METHOD_RELEASE_1_0.md](./METHOD_RELEASE_1_0.md)：英文发布说明
 - [./METHOD_RELEASE_1_0_SOCIAL.zh.md](./METHOD_RELEASE_1_0_SOCIAL.zh.md)：公众号 / 线程 / 社区帖文案包

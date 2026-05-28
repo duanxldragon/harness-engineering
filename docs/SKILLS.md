@@ -28,3 +28,16 @@ This prevents project migration from depending on manual skill installation.
 
 Update the user-level skills when you want the change available across projects.
 Update the repository-local skills when the project needs a pinned or customized copy.
+
+## Codex Workflow Trigger
+
+Use [CODEX_DEVELOPMENT_PROCESS.md](./CODEX_DEVELOPMENT_PROCESS.md) when the task is non-trivial and you need the default Pantheon flow for:
+
+- repo selection
+- layer classification
+- UI visual gating
+- smoke / evidence selection
+- base -> ops inheritance sync
+- low-code generation closure
+
+If the task is trivial, keep using the repo-local contracts and the smallest relevant skill only.
