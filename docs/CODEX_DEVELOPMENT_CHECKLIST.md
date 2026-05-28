@@ -10,10 +10,12 @@ This checklist is not the full workflow. It is the fast preflight gate for new p
 - [ ] I classified the task layer: `platform`, `system/*`, or `business/*`
 - [ ] I read the repo-local `AGENTS.md` / `CLAUDE.md`
 - [ ] I read the relevant design / contract / acceptance docs
+- [ ] If CodeGraph is enabled for the repo, I used graph retrieval to narrow code context before opening files
 
 ## During the task
 
 - [ ] I reused existing skills, harness checks, scripts, or tests first
+- [ ] For structural questions, I prefer `codegraph context/query/callers/callees/impact`; for literal strings, logs, and copy, I use `rg`
 - [ ] If this is a UI task, I applied `impeccable`
 - [ ] If this crosses layers, I stated the boundary and dependencies
 - [ ] If this is generation, deletion, inheritance sync, or another high-risk task, I confirmed the verification matrix
@@ -28,4 +30,3 @@ This checklist is not the full workflow. It is the fast preflight gate for new p
 
 - For non-trivial tasks, switch to the full workflow card:
   - [Codex Development Process Card](./CODEX_DEVELOPMENT_PROCESS.md)
-

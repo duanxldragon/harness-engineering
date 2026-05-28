@@ -33,6 +33,17 @@ English version: [CODEX_DEVELOPMENT_PROCESS.md](./CODEX_DEVELOPMENT_PROCESS.md)
 
 如果信息不全，先从仓库里推断；推断会带来风险时，再问用户。
 
+## 2.1 CodeGraph 检索优先级
+
+如果目标仓库已初始化 CodeGraph，结构性代码探索先走图谱，再读取文件：
+
+- 用 `codegraph status <repo>` 确认索引是否可用。
+- 用 `codegraph context -p <repo> "<task>"` 获取任务相关上下文。
+- 用 `codegraph query/callers/callees/impact -p <repo> ...` 定位符号、调用和影响面。
+- 只有在找字面量、日志、文案、注释，或图谱结果已经给出具体文件后，才转用 `rg` / `Get-Content`。
+
+不要先做大范围 grep + 全文件阅读；目标是用图谱把上下文压到最小可验证范围。
+
 ## 3. 已确认的高频重复流程
 
 ### 3.1 UI 视觉门禁
@@ -111,4 +122,3 @@ English version: [CODEX_DEVELOPMENT_PROCESS.md](./CODEX_DEVELOPMENT_PROCESS.md)
 - 没做什么。
 - 用什么验证。
 - 还剩哪些风险或未验证项。
-

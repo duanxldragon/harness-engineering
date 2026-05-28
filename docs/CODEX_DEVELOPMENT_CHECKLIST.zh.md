@@ -10,10 +10,12 @@ English version: [CODEX_DEVELOPMENT_CHECKLIST.md](./CODEX_DEVELOPMENT_CHECKLIST.
 - [ ] 我已经判断任务层级：`platform`、`system/*` 或 `business/*`
 - [ ] 我已经读了仓库本地的 `AGENTS.md` / `CLAUDE.md`
 - [ ] 我已经读了这次任务对应的 design / contract / acceptance 文档
+- [ ] 如果仓库已启用 CodeGraph，我已经先用图谱检索缩小代码范围，再读取具体文件
 
 ## 任务中
 
 - [ ] 我优先复用了现有 skill、harness check、脚本或测试
+- [ ] 结构性问题优先用 `codegraph context/query/callers/callees/impact`；字面量、日志和文案再用 `rg`
 - [ ] 如果是 UI 任务，我已经启用 `impeccable`
 - [ ] 如果是跨层任务，我已经明确边界和依赖
 - [ ] 如果是生成、删除、继承同步或高风险任务，我已经确认验证矩阵
@@ -28,4 +30,3 @@ English version: [CODEX_DEVELOPMENT_CHECKLIST.md](./CODEX_DEVELOPMENT_CHECKLIST.
 
 - 任务非 trivial 时，回到完整流程卡：
   - [Codex 开发流程增强卡](./CODEX_DEVELOPMENT_PROCESS.zh.md)
-
