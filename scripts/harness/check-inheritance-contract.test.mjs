@@ -51,6 +51,9 @@ function writeValidFixture(root) {
       'business/cmdb',
       'business/deploy',
       'If a foundation rule must change, update `pantheon-base` first',
+      '这次共享改动对应的 base commit 是什么',
+      '共享路径哪些已同步，哪些故意未同步',
+      '是否分别验证了 base 和 ops 的最小启动、build 或 smoke',
     ].join('\n'),
   );
   fs.writeFileSync(

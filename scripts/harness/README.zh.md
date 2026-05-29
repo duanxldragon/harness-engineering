@@ -59,5 +59,6 @@ English version: [README.md](./README.md)
 - trivial / non-trivial 判定：`docs/harness/TRIVIALITY_CLASSIFICATION_POLICY.md`
 - visual evidence 晋升规则：`docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md`
 - failure registry 晋升规则：`docs/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md`
+- 继承关系与同步收口检查：`check-inheritance-contract.mjs`
 
 如需完整命令、参数与退出码语义，请看英文原文 [README.md](./README.md)。

@@ -22,6 +22,9 @@ const REQUIRED_PROJECT_INHERITANCE_MARKERS = [
   'business/cmdb',
   'business/deploy',
   'If a foundation rule must change, update `pantheon-base` first',
+  '这次共享改动对应的 base commit 是什么',
+  '共享路径哪些已同步，哪些故意未同步',
+  '是否分别验证了 base 和 ops 的最小启动、build 或 smoke',
 ];
 
 const REQUIRED_WORKSPACE_MARKERS = [
@@ -46,6 +49,7 @@ Checks that pantheon-ops keeps pantheon-base as the foundation source of truth:
 - workspace inheritance rules exist
 - pantheon-ops entrypoint declares derived-repo reading order
 - PROJECT_INHERITANCE pins a base version and business-only scope
+- PROJECT_INHERITANCE carries sync-closure expectations
 - PR template forces base/ops drift review`);
 }
 

@@ -449,6 +449,14 @@ Exit behavior:
 - exits `1` in `--strict` mode when required inheritance markers are missing
 - warnings are informational and do not fail strict mode
 
+Current checks include:
+
+- workspace inheritance rules exist
+- `pantheon-ops/CLAUDE.md` keeps the derived-repo reading order visible
+- `pantheon-ops/docs/PROJECT_INHERITANCE.md` pins a base version and business-only scope
+- `PROJECT_INHERITANCE` keeps sync-closure prompts visible: base commit, synced shared paths, and minimum validation expectations
+- PR templates keep base/ops drift review visible
+
 ### `triage-base-drift.mjs`
 
 Classifies file-level drift between `pantheon-base` and a business repository, defaulting to `pantheon-ops`.

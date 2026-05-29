@@ -33,6 +33,34 @@ English version: [CODEX_DEVELOPMENT_PROCESS.md](./CODEX_DEVELOPMENT_PROCESS.md)
 
 如果信息不全，先从仓库里推断；推断会带来风险时，再问用户。
 
+## 2.2 最小任务包
+
+如果任务不是 trivial，优先使用一个最小 task packet，而不是自由描述。
+
+推荐字段：
+
+- 目标仓库
+- 层级
+- 任务模式：`review`、`implement`、`ui`、`inheritance-sync`、`smoke`、`docs`
+- 必读文档
+- 实现范围
+- 同步要求：仅本仓还是 `base -> ops`
+- 验证方式
+- 是否存在阶段停点
+
+推荐模板：
+
+```text
+目标仓库：
+层级：
+任务模式：
+先读：
+实现范围：
+同步要求：
+验证方式：
+停点：
+```
+
 ## 2.1 CodeGraph 检索优先级
 
 如果目标仓库已初始化 CodeGraph，结构性代码探索先走图谱，再读取文件：
@@ -92,6 +120,16 @@ English version: [CODEX_DEVELOPMENT_PROCESS.md](./CODEX_DEVELOPMENT_PROCESS.md)
 - 通用后台能力优先回 base 修。
 - ops 只保留 `business/*` 业务差异和继承说明。
 - 同步后要分别验证 base 和 ops 的最小启动、build、smoke。
+
+### 3.4.1 默认不用再重复解释的协同规则
+
+以下规则在 Pantheon 工作区内已经足够稳定，后续应视为默认上下文：
+
+- `pantheon-base` 拥有 `platform` 和 `system/*` 的权威实现。
+- `pantheon-ops` 只保留 `business/*` 差异，不应静默 override 共享能力。
+- 共享分页、共享上传、共享表格、共享后台壳层、共享 i18n、共享 smoke helper 先改 base。
+- 代码、测试、i18n、菜单、权限、文档、evidence 只要在本次任务范围内，就按一个收口单元处理。
+- 跨仓、高风险或高不确定性任务优先走 stage 边界，不用一口气做完。
 
 ### 3.5 低代码生成闭环
 
