@@ -9,6 +9,7 @@ English version: [CHANGELOG.md](./CHANGELOG.md)
 - 增加 task-packet 回归测试，确保缺少 method readiness 的旧格式任务包不能误通过。
 - 覆盖评审模板增加 cross-agent ratchet、consumer-specific leakage、deferred code backlog、noisy sensor review。
 - 补充旧 task packet、evidence、review artifact 的升级步骤。
+- 增加可移植的设计/开发/QA/GitHub 治理闭环，并同步 task、review、PR、failure-registry 元数据。
 
 ## 1.0.0 - 2026-05-18
 

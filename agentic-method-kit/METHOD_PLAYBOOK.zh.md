@@ -10,8 +10,9 @@ English version: [METHOD_PLAYBOOK.md](./METHOD_PLAYBOOK.md)
 2. [METHOD_FIRST_DELIVERY_POLICY.zh.md](./METHOD_FIRST_DELIVERY_POLICY.zh.md)
 3. [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md)
 4. [CROSS_AGENT_RATCHET_MODEL.zh.md](./CROSS_AGENT_RATCHET_MODEL.zh.md)
-5. [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
-6. [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
+5. [DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md)
+6. [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
+7. [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
 
 ## 默认技术栈
 
@@ -38,6 +39,7 @@ English version: [METHOD_PLAYBOOK.md](./METHOD_PLAYBOOK.md)
 - 使用结构化 brainstorming 或设计工作流
 - 产出 design / spec 结果
 - 明确 scope 边界
+- 应用 [DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md) 中的 Design Gate；小任务可以只写一段边界说明，不需要大型文档
 
 ### 3. Planning
 
@@ -73,6 +75,7 @@ English version: [METHOD_PLAYBOOK.md](./METHOD_PLAYBOOK.md)
 
 - 如果触碰 UI，运行仓库定义的 UI quality gate
 - 如果浏览器路径重要，采集浏览器或运行态 evidence
+- 没有专职 QA 时，把 UI、browser、runtime 或 human acceptance evidence 作为 QA Acceptance Gate
 
 ### 7. Evidence
 
@@ -111,6 +114,7 @@ English version: [METHOD_PLAYBOOK.md](./METHOD_PLAYBOOK.md)
 ### 10. Close
 
 - 合并或发布
+- 将 PR 或 CI 失败分类为 `method-gate`、`repo-quality-gate`、`runtime-evidence-gate`、`external-flaky` 或 `not-applicable`
 - 完成后归档 OpenSpec change
 - 如果同类 failure pattern 再次出现，不要只补代码，要把它升级成 guide、template、sensor 或 gate
 - 使用 [CROSS_AGENT_RATCHET_MODEL.zh.md](./CROSS_AGENT_RATCHET_MODEL.zh.md) 判断升级应落在 portable method、consumer template、consumer repository 还是 agent adapter

@@ -46,3 +46,26 @@ Also update saved evidence and review artifacts:
 - review `review.md` machine-readable JSON should include `methodReview`
 
 Use `registry-only` when a repeated failure is recorded but no guide, template, gate, sensor, or adapter change is made yet.
+
+## Delivery Governance Metadata
+
+When upgrading task packets, add:
+
+- `## Delivery Governance`
+- `Design Gate`
+- `Development Gate`
+- `QA Acceptance Gate`
+- `GitHub Governance Gate`
+
+When upgrading review artifacts, add `deliveryGovernanceReview` to the machine-readable JSON block.
+
+When upgrading failure registries, add:
+
+- `failureClass`
+- `ownerLayer`
+- `occurrenceCount`
+- `promotionDecision`
+- `promotionDeadline`
+- `githubSignal`
+
+Use these fields to classify red CI or PR signals before starting broad code cleanup.

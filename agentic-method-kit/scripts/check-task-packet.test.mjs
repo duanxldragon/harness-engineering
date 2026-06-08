@@ -46,6 +46,13 @@ function validTask() {
     '- Ratchet Decision: template-updated',
     '- Deferred Code Issues: none',
     '',
+    '## Delivery Governance',
+    '',
+    '- Design Gate: short boundary note',
+    '- Development Gate: expected files declared',
+    '- QA Acceptance Gate: command',
+    '- GitHub Governance Gate: method-gate',
+    '',
     '## Linkage',
     '',
     '- Task ID: sample',
@@ -82,4 +89,17 @@ test('check-task-packet rejects stale packets without method readiness', () => {
   assert.equal(result.status, 1);
   assert.match(result.stdout, /missing quality profile/);
   assert.match(result.stdout, /missing method readiness section/);
+});
+
+test('check-task-packet rejects stale packets without delivery governance', () => {
+  const root = makeFixture();
+  const stale = validTask().replace(/\n## Delivery Governance[\s\S]*?\n## Linkage/, '\n## Linkage');
+  writeTask(root, stale);
+
+  const result = spawnSync(process.execPath, [SCRIPT, '--root', root], {
+    encoding: 'utf8',
+  });
+
+  assert.equal(result.status, 1);
+  assert.match(result.stdout, /missing delivery governance section/);
 });

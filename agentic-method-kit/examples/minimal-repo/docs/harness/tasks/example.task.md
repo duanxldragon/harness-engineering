@@ -63,6 +63,13 @@ platform
 - Ratchet Decision: template-updated
 - Deferred Code Issues: none
 
+## Delivery Governance
+
+- Design Gate: short boundary note
+- Development Gate: expected files declared | do-not-touch declared
+- QA Acceptance Gate: command | human review
+- GitHub Governance Gate: method-gate
+
 ## Execution Roles
 
 - Implementer Posture: `fixture-author`
@@ -110,6 +117,7 @@ platform
 - [ ] Layer and boundary declared
 - [ ] Quality profile or explicit `none` declared
 - [ ] Ratchet decision declared for repeated failures
+- [ ] Delivery governance gates declared
 - [ ] Contract anchors read
 - [ ] Verification run or exception recorded
 - [ ] Evidence saved or summarized

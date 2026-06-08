@@ -46,3 +46,26 @@ node agentic-method-kit/scripts/check-adoption.mjs --root .
 - review `review.md` 的 machine-readable JSON 应包含 `methodReview`
 
 如果重复失败已经记录，但暂时不修改 guide、template、gate、sensor 或 adapter，使用 `registry-only`。
+
+## 交付治理元数据
+
+升级 task packet 时，补齐：
+
+- `## Delivery Governance`
+- `Design Gate`
+- `Development Gate`
+- `QA Acceptance Gate`
+- `GitHub Governance Gate`
+
+升级 review artifact 时，在 machine-readable JSON block 中加入 `deliveryGovernanceReview`。
+
+升级 failure registry 时，补齐：
+
+- `failureClass`
+- `ownerLayer`
+- `occurrenceCount`
+- `promotionDecision`
+- `promotionDeadline`
+- `githubSignal`
+
+使用这些字段先分类 CI 或 PR 红灯，再决定是否进入大范围代码清理。

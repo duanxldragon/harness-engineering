@@ -26,6 +26,7 @@ Optional overlay:
 - A method-first delivery policy that keeps process design ahead of production-code fixes
 - A coverage model for guides, sensors, gates, and failure capture
 - A cross-agent ratchet model for promoting repeated failures without coupling the method to one product repository
+- A delivery governance loop from design through development, QA acceptance, GitHub PR governance, and ratchet closeout
 - A template taxonomy for different repository shapes
 - A tool adapter matrix so concrete tools remain usable without becoming prerequisites
 - A default playbook for change selection, task packets, implementation, evidence, and review
@@ -49,12 +50,13 @@ Specific tools can be recommended by a repository. They do not define the method
 3. Read [METHOD_FIRST_DELIVERY_POLICY.md](./METHOD_FIRST_DELIVERY_POLICY.md)
 4. Read [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md)
 5. Read [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md)
-6. Read [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
-7. Read [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
-8. Read [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
-9. Copy the templates you need
-10. Adjust [config/method.config.json](./config/method.config.json) if your repo uses different paths
-11. Run the portable checks under [scripts/](./scripts/)
+6. Read [DESIGN_DEV_QA_GITHUB_GOVERNANCE.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.md)
+7. Read [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
+8. Read [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
+9. Read [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
+10. Copy the templates you need
+11. Adjust [config/method.config.json](./config/method.config.json) if your repo uses different paths
+12. Run the portable checks under [scripts/](./scripts/)
 
 ## Closed Loop
 

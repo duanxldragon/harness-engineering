@@ -10,8 +10,9 @@ Read these method foundations first:
 2. [METHOD_FIRST_DELIVERY_POLICY.md](./METHOD_FIRST_DELIVERY_POLICY.md)
 3. [HARNESS_COVERAGE_MODEL.md](./HARNESS_COVERAGE_MODEL.md)
 4. [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md)
-5. [HARNESS_TEMPLATE_TAXONOMY.md](./HARNESS_TEMPLATE_TAXONOMY.md)
-6. [TOOL_ADAPTER_MATRIX.md](./TOOL_ADAPTER_MATRIX.md)
+5. [DESIGN_DEV_QA_GITHUB_GOVERNANCE.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.md)
+6. [HARNESS_TEMPLATE_TAXONOMY.md](./HARNESS_TEMPLATE_TAXONOMY.md)
+7. [TOOL_ADAPTER_MATRIX.md](./TOOL_ADAPTER_MATRIX.md)
 
 ## Default Stack
 
@@ -38,6 +39,7 @@ The default workflow is method-first. Do not start production-code changes for n
 - Use a structured brainstorming or design workflow
 - Produce design/spec output
 - Keep scope explicit
+- Apply the Design Gate in [DESIGN_DEV_QA_GITHUB_GOVERNANCE.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.md); for small tasks this can be a short written boundary, not a large document
 
 ### 3. Planning
 
@@ -73,6 +75,7 @@ The default workflow is method-first. Do not start production-code changes for n
 
 - If UI is touched, run the repository's UI quality gate
 - If browser paths matter, collect browser or runtime evidence
+- Treat UI, browser, runtime, or human acceptance evidence as the QA Acceptance Gate when no dedicated QA role exists
 
 ### 7. Evidence
 
@@ -111,6 +114,7 @@ The default workflow is method-first. Do not start production-code changes for n
 ### 10. Close
 
 - Merge or ship
+- Classify any PR or CI failure as `method-gate`, `repo-quality-gate`, `runtime-evidence-gate`, `external-flaky`, or `not-applicable`
 - Archive the OpenSpec change when complete
 - If the same failure pattern recurs, ratchet it into a guide, template, sensor, or gate instead of only patching code again
 - Use [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md) to decide whether the promotion belongs in the portable method, a consumer template, a consumer repository, or an agent adapter

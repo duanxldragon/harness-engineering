@@ -66,6 +66,13 @@ platform | system/auth | system/iam | system/org | system/config | business/* | 
 - Ratchet Decision: no-repeat-observed | guide-updated | sensor-added | gate-updated | template-updated | adapter-updated | registry-only
 - Deferred Code Issues: none | symptom plus recommended follow-up task
 
+## Delivery Governance
+
+- Design Gate: spec reference | short boundary note | none
+- Development Gate: expected files declared | do-not-touch declared | none
+- QA Acceptance Gate: command | browser | runtime | human review | none
+- GitHub Governance Gate: method-gate | repo-quality-gate | runtime-evidence-gate | external-flaky | not-applicable
+
 ## Structural Scope
 
 - Affected Subgraph: `<entry -> core path -> exit/side effect>` | `none`
@@ -101,6 +108,7 @@ platform | system/auth | system/iam | system/org | system/config | business/* | 
 - [ ] Layer and boundary declared
 - [ ] Quality profile or explicit `none` declared
 - [ ] Ratchet decision declared for repeated failures
+- [ ] Delivery governance gates declared
 - [ ] Contract anchors read
 - [ ] Verification run or exception recorded
 - [ ] Evidence saved or summarized

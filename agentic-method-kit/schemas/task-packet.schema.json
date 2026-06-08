@@ -8,6 +8,7 @@
     "primaryLayer",
     "harnessProfile",
     "methodReadiness",
+    "deliveryGovernance",
     "contractAnchors",
     "scope",
     "verificationPlan",
@@ -125,6 +126,25 @@
           "type": "array",
           "items": { "type": "string" },
           "minItems": 1
+        }
+      }
+    },
+    "deliveryGovernance": {
+      "type": "object",
+      "required": ["designGate", "developmentGate", "qaAcceptanceGate", "githubGovernanceGate"],
+      "properties": {
+        "designGate": { "type": "string" },
+        "developmentGate": { "type": "string" },
+        "qaAcceptanceGate": { "type": "string" },
+        "githubGovernanceGate": {
+          "type": "string",
+          "enum": [
+            "method-gate",
+            "repo-quality-gate",
+            "runtime-evidence-gate",
+            "external-flaky",
+            "not-applicable"
+          ]
         }
       }
     },

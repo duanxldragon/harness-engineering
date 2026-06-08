@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Portable Review Artifact",
   "type": "object",
-  "required": ["taskId", "verdict", "methodReview", "linkage"],
+  "required": ["taskId", "verdict", "methodReview", "deliveryGovernanceReview", "linkage"],
   "properties": {
     "taskId": { "type": "string" },
     "verdict": {
@@ -78,6 +78,34 @@
         "consumerSpecificLeakage": {
           "type": "string",
           "enum": ["none", "accepted", "blocked"]
+        }
+      }
+    },
+    "deliveryGovernanceReview": {
+      "type": "object",
+      "required": ["designGate", "developmentGate", "qaAcceptanceGate", "githubGovernanceGate"],
+      "properties": {
+        "designGate": {
+          "type": "string",
+          "enum": ["satisfied", "gap-recorded", "not-applicable"]
+        },
+        "developmentGate": {
+          "type": "string",
+          "enum": ["satisfied", "gap-recorded", "not-applicable"]
+        },
+        "qaAcceptanceGate": {
+          "type": "string",
+          "enum": ["satisfied", "gap-recorded", "not-applicable"]
+        },
+        "githubGovernanceGate": {
+          "type": "string",
+          "enum": [
+            "method-gate",
+            "repo-quality-gate",
+            "runtime-evidence-gate",
+            "external-flaky",
+            "not-applicable"
+          ]
         }
       }
     },

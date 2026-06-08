@@ -30,6 +30,15 @@
 - Updated:
 - Closed:
 
+## Delivery Governance Review
+
+| Gate | Current Evidence | Common Failure Signal | Next Action |
+|---|---|---|---|
+| Design | spec \| short boundary \| none | unclear scope \| missing contract anchor | keep \| improve template \| add review prompt |
+| Development | expected files \| do-not-touch \| plan | scope creep \| agent handoff loss | keep \| improve task packet \| add sensor |
+| QA acceptance | command \| browser \| runtime \| human review | missing evidence \| untested runtime path | keep \| add smoke \| require gap note |
+| GitHub governance | PR classification \| CI result \| review | unclassified red CI \| repeated cleanup churn | keep \| tune gate \| ratchet failure |
+
 ## Cross-Agent Ratchet Review
 
 | Failure Class | Owner Layer | Current Control | Promotion Latency | Next Ratchet Decision |

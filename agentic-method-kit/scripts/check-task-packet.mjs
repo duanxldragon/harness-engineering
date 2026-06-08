@@ -61,6 +61,16 @@ function validateTask(filePath, root) {
     errors,
   );
   requireMatch(content, /^- Deferred Code Issues:\s*.+$/m, 'missing deferred code issues', errors);
+  requireMatch(content, /^## Delivery Governance$/m, 'missing delivery governance section', errors);
+  requireMatch(content, /^- Design Gate:\s*.+$/m, 'missing design gate', errors);
+  requireMatch(content, /^- Development Gate:\s*.+$/m, 'missing development gate', errors);
+  requireMatch(content, /^- QA Acceptance Gate:\s*.+$/m, 'missing QA acceptance gate', errors);
+  requireMatch(
+    content,
+    /^- GitHub Governance Gate:\s*(method-gate|repo-quality-gate|runtime-evidence-gate|external-flaky|not-applicable)$/m,
+    'missing or invalid GitHub governance gate',
+    errors,
+  );
   if (/^## Structural Scope$/m.test(content)) {
     requireMatch(content, /^- Affected Subgraph:\s*.+$/m, 'missing structural affected subgraph', errors);
     requireMatch(content, /^- Boundary Crossings:\s*.+$/m, 'missing structural boundary crossings', errors);

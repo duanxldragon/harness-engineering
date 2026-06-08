@@ -25,6 +25,12 @@
     "deferredCodeIssues": [],
     "consumerSpecificLeakage": "none"
   },
+  "deliveryGovernanceReview": {
+    "designGate": "satisfied",
+    "developmentGate": "satisfied",
+    "qaAcceptanceGate": "satisfied",
+    "githubGovernanceGate": "method-gate"
+  },
   "linkage": {
     "taskPacket": "docs/harness/tasks/<task-id>.task.md",
     "evidence": ".harness/evidence/<task-id>/commands.json",
@@ -63,6 +69,13 @@ No P0/P1/P2 findings found.
 - Ratchet decision: no-repeat-observed | guide-updated | sensor-added | gate-updated | template-updated | adapter-updated | registry-only
 - Deferred code issues: none
 - Consumer-specific leakage: none | accepted | blocked
+
+## Delivery Governance Notes
+
+- Design gate: satisfied | gap-recorded | not-applicable
+- Development gate: satisfied | gap-recorded | not-applicable
+- QA acceptance gate: satisfied | gap-recorded | not-applicable
+- GitHub governance gate: method-gate | repo-quality-gate | runtime-evidence-gate | external-flaky | not-applicable
 
 ## Residual Risk
 

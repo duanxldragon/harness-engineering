@@ -9,6 +9,7 @@ Chinese version: [CHANGELOG.zh.md](./CHANGELOG.zh.md)
 - Add task-packet regression tests so stale packets without method readiness fail mechanically.
 - Extend coverage review templates with cross-agent ratchet, consumer-specific leakage, deferred code backlog, and noisy sensor review sections.
 - Document upgrade steps for older task packets, evidence, and review artifacts.
+- Add a portable design/development/QA/GitHub governance loop with task, review, PR, and failure-registry metadata.
 
 ## 1.0.0 - 2026-05-18
 

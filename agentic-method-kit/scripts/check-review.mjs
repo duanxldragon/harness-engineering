@@ -155,6 +155,7 @@ function validateReview(filePath, root) {
   }
   validateStructuralReview(review, result.errors);
   validateMethodReview(review, result.errors);
+  validateDeliveryGovernanceReview(review, result.errors);
 
   if (!isObject(review.linkage)) {
     result.errors.push('root.linkage must be an object.');
@@ -254,6 +255,35 @@ function validateMethodReview(review, errors) {
   }
   if (!validLeakage.has(methodReview.consumerSpecificLeakage)) {
     errors.push(`root.methodReview.consumerSpecificLeakage must be one of: ${Array.from(validLeakage).join(', ')}.`);
+  }
+}
+
+function validateDeliveryGovernanceReview(review, errors) {
+  if (!isObject(review.deliveryGovernanceReview)) {
+    errors.push('root.deliveryGovernanceReview must be an object.');
+    return;
+  }
+
+  const deliveryGovernanceReview = review.deliveryGovernanceReview;
+  const validGateResults = new Set(['satisfied', 'gap-recorded', 'not-applicable']);
+  const validGithubGateResults = new Set([
+    'method-gate',
+    'repo-quality-gate',
+    'runtime-evidence-gate',
+    'external-flaky',
+    'not-applicable',
+  ]);
+
+  for (const key of ['designGate', 'developmentGate', 'qaAcceptanceGate']) {
+    if (!validGateResults.has(deliveryGovernanceReview[key])) {
+      errors.push(`root.deliveryGovernanceReview.${key} must be one of: ${Array.from(validGateResults).join(', ')}.`);
+    }
+  }
+
+  if (!validGithubGateResults.has(deliveryGovernanceReview.githubGovernanceGate)) {
+    errors.push(
+      `root.deliveryGovernanceReview.githubGovernanceGate must be one of: ${Array.from(validGithubGateResults).join(', ')}.`,
+    );
   }
 }
 
