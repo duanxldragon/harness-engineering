@@ -3,10 +3,10 @@
 Chinese version: [VERIFICATION_EVIDENCE_SPEC.md](./VERIFICATION_EVIDENCE_SPEC.md)
 
 Type: Contract
-Layer: platform
+Layer: method
 Status: Active
 
-This document defines the format for Pantheon task verification evidence. The evidence format must be tool-agnostic.
+This document defines the format for task verification evidence. The evidence format must be tool-agnostic.
 
 ## 1. Evidence Directory
 
@@ -38,7 +38,7 @@ Whether `.harness/evidence/` is committed can be chosen by project policy. CI ar
 
 | Command | CWD | Result | Notes |
 |---|---|---|---|
-| `go test ./...` | `pantheon-base` | passed |  |
+| `npm test --workspace services/billing` | `services/billing` | passed |  |
 
 ## Graph Checks
 
@@ -65,15 +65,15 @@ complete | blocked | partial
 ```json
 {
   "taskId": "YYYY-MM-DD-task-name",
-  "repo": "pantheon-platform",
+  "repo": "example-repository",
   "agent": {
     "tool": "codex",
     "adapter": ".agents/adapters/codex.md"
   },
   "commands": [
     {
-      "command": "go test ./backend/...",
-      "cwd": "pantheon-base",
+      "command": "npm test --workspace services/billing",
+      "cwd": ".",
       "status": "passed",
       "durationMs": 0,
       "notes": ""
@@ -116,13 +116,13 @@ complete | blocked | partial
 - `human`
 - `other`
 
-When a task includes browser verification for UI, routes, or permission states, `browserEvidence` should include at least:
+When a task includes browser verification for UI, routes, permission states, or browser flows, `browserEvidence` should include at least:
 
 ```json
 {
   "viewport": "desktop",
-  "url": "/system/user",
-  "screenshot": "screenshots/user-desktop.png",
+  "url": "/billing/customers",
+  "screenshot": "screenshots/billing-customers-desktop.png",
   "consoleErrors": [],
   "checkedStates": ["loading", "empty", "error", "permission"]
 }

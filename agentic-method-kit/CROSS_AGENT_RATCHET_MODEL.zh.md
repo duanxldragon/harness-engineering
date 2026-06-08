@@ -4,7 +4,7 @@ English version: [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md)
 
 本文定义 Harness Engineering 如何把重复出现的 AI agent 失败，沉淀成跨工具、跨 agent、跨产品仓库复用的方法资产。
 
-这个模型不绑定任何具体 coding agent、runtime、CI 平台或业务架构。`pantheon-base` 这类产品仓库是方法消费者，不是方法事实源。
+这个模型不绑定任何具体 coding agent、runtime、CI 平台或业务架构。产品仓库是方法消费者，不是方法事实源。
 
 ## 1. 可移植边界
 

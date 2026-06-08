@@ -8,7 +8,7 @@ English version: [RELEASE.md](./RELEASE.md)
 
 - `agentic-method-kit`
 - `agentic-repo-shell`
-- `pantheon-overlay`
+- `sample-overlays`
 
 ## 发布检查清单
 
@@ -20,9 +20,9 @@ English version: [RELEASE.md](./RELEASE.md)
    - `node scripts/harness/check-method-health.mjs --strict`
 5. 运行包级测试：
    - `node --test agentic-repo-shell/scripts/harness/*.test.mjs`
-   - `node --test pantheon-overlay/scripts/harness/*.test.mjs`
+   - `node --test sample-overlays/pantheon/scripts/harness/*.test.mjs`
 6. 当 shell 或 overlay 发生变化时，运行 bootstrap smoke：
-   - `pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath .tmp/release-smoke -ApplyPantheonOverlay -Force`
+   - `pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath .tmp/release-smoke -OverlayPath sample-overlays/pantheon -Force`
    - `node .tmp/release-smoke/scripts/harness/check-method-health.mjs --strict --root .tmp/release-smoke`
    - `node --test .tmp/release-smoke/scripts/harness/*.test.mjs`
 7. 验证完成后，清理临时 smoke 目录。
@@ -39,7 +39,7 @@ English version: [RELEASE.md](./RELEASE.md)
 
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
-- `pantheon-overlay/`
+- `sample-overlays/`
 - 用来描述或校验这些包的根级方法文档、manifest 和 bootstrap scripts
 
 可选的本地 skill 同步资产不属于默认发布产物：
@@ -58,4 +58,3 @@ English version: [RELEASE.md](./RELEASE.md)
 - 一份历史记录
 
 它不是下游仓库应该整包复制的最终产物。
-

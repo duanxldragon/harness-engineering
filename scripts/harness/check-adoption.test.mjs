@@ -10,21 +10,13 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SCRIPT = path.resolve(TEST_DIR, 'check-adoption.mjs');
 
 const REQUIRED_PR_MARKERS = [
-  'Task packet',
-  'Trivial change',
-  'Verification evidence',
-  'OpenSpec change',
-  'task packet',
-  'evidence',
-  'boundaries',
-  'backend response contract',
-  'backend DTO contract',
-  'permission contract',
-  'audit coverage',
-  'visual evidence',
-  'inheritance contract',
-  'base drift',
-  'Base/ops inheritance',
+  'Task Packet',
+  'Trivial Change',
+  'Verification Evidence',
+  'Review Mode',
+  'Human Gates',
+  'Known Gaps',
+  'Method Ratchet',
 ];
 
 const REQUIRED_FILES = [
@@ -43,7 +35,6 @@ const REQUIRED_FILES = [
   'docs/harness/VERIFICATION_EVIDENCE_SPEC.md',
   'docs/harness/REVIEW_LOOP_SPEC.md',
   'docs/harness/VISUAL_QUALITY_PROTOCOL.md',
-  'scripts/harness/check-inheritance-contract.mjs',
   '.agents/README.md',
   '.agents/adapters/codex.md',
   '.agents/adapters/claude-code.md',
@@ -69,7 +60,7 @@ function makeFixture() {
   fs.writeFileSync(
     path.join(root, '.agents', 'prompts', 'implementation.md'),
     [
-      'Task packet',
+      'Task Packet',
       'Record verification results',
       'Do not claim completion without fresh verification evidence',
     ].join('\n'),
@@ -109,7 +100,7 @@ test('check-adoption fails when PR template is missing the trivial-change marker
   const root = makeFixture();
   fs.writeFileSync(
     path.join(root, '.github', 'pull_request_template.md'),
-    REQUIRED_PR_MARKERS.filter((marker) => marker !== 'Trivial change').join('\n'),
+    REQUIRED_PR_MARKERS.filter((marker) => marker !== 'Trivial Change').join('\n'),
   );
 
   const result = spawnSync(process.execPath, [SCRIPT, '--strict', '--root', root], {
@@ -117,7 +108,7 @@ test('check-adoption fails when PR template is missing the trivial-change marker
   });
 
   assert.equal(result.status, 1);
-  assert.match(result.stdout, /PR template missing adoption marker: Trivial change/);
+  assert.match(result.stdout, /PR template missing adoption marker: Trivial Change/);
 });
 
 test('check-adoption warns when implementation prompt is missing evidence rules', () => {
@@ -150,7 +141,7 @@ test('check-adoption fails when implementation files change without task packet 
       '--root',
       root,
       '--changed-file',
-      'pantheon-base/backend/modules/auth/service.go',
+      'backend/modules/auth/service.go',
     ],
     { encoding: 'utf8' },
   );
@@ -176,7 +167,7 @@ test('check-adoption passes when implementation changes include task packet and 
       '--root',
       root,
       '--changed-file',
-      'pantheon-base/frontend/src/modules/auth/Login.tsx',
+      'frontend/src/modules/auth/Login.tsx',
       '--changed-file',
       'docs/harness/tasks/sample.task.md',
       '--changed-file',
@@ -283,7 +274,7 @@ test('check-adoption requires real openspec linkage when an active change exists
     path.join(root, '.harness', 'evidence', 'sample', 'commands.json'),
     JSON.stringify({
       taskId: 'sample',
-      repo: 'pantheon-platform',
+      repo: 'example-repository',
       agent: { tool: 'codex' },
       commands: [{ command: 'echo', cwd: '.', status: 'passed' }],
       linkage: {
@@ -305,7 +296,7 @@ test('check-adoption requires real openspec linkage when an active change exists
       '--root',
       root,
       '--changed-file',
-      'pantheon-base/backend/modules/auth/service.go',
+      'backend/modules/auth/service.go',
       '--changed-file',
       'docs/harness/tasks/sample.task.md',
       '--changed-file',

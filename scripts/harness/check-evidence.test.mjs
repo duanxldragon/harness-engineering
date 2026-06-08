@@ -28,7 +28,7 @@ function writeCommands(root, taskId, payload) {
 
 const VALID_PAYLOAD = {
   taskId: 'sample',
-  repo: 'pantheon-platform',
+  repo: 'example-repository',
   agent: { tool: 'claude-code' },
   commands: [
     {

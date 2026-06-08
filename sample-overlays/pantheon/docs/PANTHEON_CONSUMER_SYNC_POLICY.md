@@ -19,7 +19,7 @@ After cutover:
 - standalone method repository owns:
   - `agentic-method-kit/`
   - `agentic-repo-shell/`
-  - `pantheon-overlay/`
+  - `sample-overlays/pantheon/`
   - method distribution root docs
 - Pantheon workspace owns:
   - `pantheon-base/`
@@ -48,7 +48,7 @@ These should match the standalone repo unless an explicit local fork is document
 
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
-- `pantheon-overlay/`
+- `sample-overlays/pantheon/`
 - `scripts/bootstrap-agentic-repo.ps1`
 - root distribution docs copied from upstream
 
@@ -94,7 +94,7 @@ Sync from upstream when:
    - `node scripts/harness/check-adoption.mjs --strict`
    - `node scripts/harness/check-method-health.mjs --strict`
    - `node --test agentic-repo-shell/scripts/harness/*.test.mjs`
-   - `node --test pantheon-overlay/scripts/harness/*.test.mjs`
+   - `node --test sample-overlays/pantheon/scripts/harness/*.test.mjs`
 5. Run bootstrap smoke if shell or overlay changed.
 6. Review downstream conflicts or local overrides.
 7. Land the upgrade with explicit upstream version notes.

@@ -3,10 +3,10 @@
 English version: [AGENT_INTERFACE_CONTRACT.en.md](./AGENT_INTERFACE_CONTRACT.en.md)
 
 类型：Contract
-归属层：platform
+归属层：method
 状态：Active
 
-本文定义任何 agent 或人工工程师进入 Pantheon 仓库时的输入、输出和行为协议。工具可以不同，协议必须一致。
+本文定义任何 agent 或人工工程师进入仓库时的输入、输出和行为协议。工具可以不同，协议必须一致。
 
 ## 1. Agent 必须提供的能力
 
@@ -14,9 +14,9 @@ English version: [AGENT_INTERFACE_CONTRACT.en.md](./AGENT_INTERFACE_CONTRACT.en.
 
 - 读取仓库文档和源码。
 - 判断任务归属层。
-- 遵守 workspace/base/business 继承边界。
+- 遵守当前仓库声明的层级、模块、依赖和上游/下游边界。
 - 修改文件时保持最小范围。
-- 运行或明确说明无法运行的验证命令。
+- 运行验证命令，或明确说明无法运行的原因。
 - 保存或摘要验证证据。
 - 用 findings-first 格式做 review 或交付说明。
 
@@ -38,19 +38,19 @@ Human gates:
 示例：
 
 ```text
-Primary layer: system/iam
-Dependency layers: platform
+Primary layer: domain/billing
+Dependency layers: service/payments, package/shared-types
 Contract anchors:
-- pantheon-base/docs/contracts/SYSTEM_IAM_CONTRACT.md
-- pantheon-base/docs/designs/PERMISSION_MODEL.md
+- docs/contracts/BILLING_API_CONTRACT.md
+- docs/designs/SUBSCRIPTION_STATE_MODEL.md
 Expected touched areas:
-- backend/modules/system/iam/role
-- frontend/src/modules/system/role
+- services/billing/
+- packages/shared-types/src/billing.ts
 Verification plan:
-- go test ./backend/modules/system/iam/...
-- cd frontend && npm run check:menu-contract && npm run build
+- npm test --workspace services/billing
+- npm run type-check --workspace packages/shared-types
 Human gates:
-- none unless permission seed changes
+- required before changing public API or payment provider semantics
 ```
 
 ## 3. 修改前检查
@@ -59,14 +59,14 @@ Human gates:
 
 - schema / migration / seed
 - API contract
-- permission
-- menu
-- i18n
-- audit
-- security
-- business/base inheritance
+- authentication / authorization / permission
+- menu / navigation / route access, if the repository has UI
+- i18n, if the repository has user-facing text
+- audit / logging / observability
+- security / trust boundary
+- upstream / downstream shared behavior
 - generated files
-- CI or deploy gates
+- CI, release, deploy, or secret-handling gates
 
 如果有影响，必须把对应文档和验证命令加入任务范围。
 
@@ -90,9 +90,9 @@ Human gates:
 - 不重排大文件以制造噪声 diff。
 - 不删除用户未要求删除的文件。
 - 不覆盖用户已有未提交改动。
-- 不把 base 规则复制到业务仓库。
+- 不把共享规则复制到派生仓库、插件或业务扩展中。
 
-业务仓库中发现 platform 或 system bug 时，默认先判断是否应在 `pantheon-base` 修复。
+如果当前仓库有 foundation、template、overlay 或 plugin host 关系，发现共享层 bug 时，默认先判断是否应在上游事实源修复。
 
 ## 6. 验证输出
 
@@ -111,11 +111,11 @@ Known gaps:
 
 如果未运行验证，必须说明具体原因：
 
-- 依赖未安装
-- 环境缺少服务
-- 需要网络或权限
-- 当前任务纯文档
-- 用户明确要求不运行
+- 依赖未安装。
+- 环境缺少服务。
+- 需要网络或权限。
+- 当前任务纯文档。
+- 用户明确要求不运行。
 
 ## 7. Review 输出
 
@@ -143,6 +143,6 @@ Verification checked:
 - 因为某个工具不支持某能力而跳过仓库协议。
 - 把聊天记录当作唯一需求来源。
 - 用“看起来没问题”替代验证证据。
-- 在业务仓库重写 base 合同。
-- 把权限、菜单、i18n、审计视为后续补丁。
+- 在下游仓库、插件或业务扩展中静默重写上游共享合同。
+- 把权限、路由、i18n、审计、安全边界视为后续补丁。
 - 为了让测试通过而降低测试覆盖或删除检查。

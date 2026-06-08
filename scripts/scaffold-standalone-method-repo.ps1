@@ -36,7 +36,11 @@ function Copy-Path {
 }
 
 $workspaceRoot = Split-Path -Parent $PSScriptRoot
-$resolvedTarget = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $TargetPath))
+$resolvedTarget = if ([System.IO.Path]::IsPathRooted($TargetPath)) {
+  [System.IO.Path]::GetFullPath($TargetPath)
+} else {
+  [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $TargetPath))
+}
 
 if ((Test-Path -LiteralPath $resolvedTarget) -and -not $Force) {
   $existingItems = Get-ChildItem -LiteralPath $resolvedTarget -Force
@@ -56,7 +60,7 @@ $copyMap = @(
   @{ Source = 'scripts/harness'; Destination = 'scripts/harness' },
   @{ Source = 'agentic-method-kit'; Destination = 'agentic-method-kit' },
   @{ Source = 'agentic-repo-shell'; Destination = 'agentic-repo-shell' },
-  @{ Source = 'pantheon-overlay'; Destination = 'pantheon-overlay' },
+  @{ Source = 'sample-overlays/pantheon'; Destination = 'sample-overlays/pantheon' },
   @{ Source = 'archive'; Destination = 'archive' },
   @{ Source = '.gitignore'; Destination = '.gitignore' },
   @{ Source = 'scripts/bootstrap-agentic-repo.ps1'; Destination = 'scripts/bootstrap-agentic-repo.ps1' },
@@ -64,9 +68,6 @@ $copyMap = @(
   @{ Source = 'README.md'; Destination = 'README.md' },
   @{ Source = 'DISTRIBUTION.md'; Destination = 'DISTRIBUTION.md' },
   @{ Source = 'RELEASE.md'; Destination = 'RELEASE.md' },
-  @{ Source = 'MIGRATION_TO_STANDALONE_REPO.md'; Destination = 'MIGRATION_TO_STANDALONE_REPO.md' },
-  @{ Source = 'PANTHEON_CONSUMER_SYNC_POLICY.md'; Destination = 'PANTHEON_CONSUMER_SYNC_POLICY.md' },
-  @{ Source = 'STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md'; Destination = 'STANDALONE_REPO_BOOTSTRAP_CHECKLIST.md' },
   @{ Source = 'WORKSPACE_MANIFEST.json'; Destination = 'WORKSPACE_MANIFEST.json' },
   @{ Source = 'SHELL_VERSION.json'; Destination = 'SHELL_VERSION.json' }
 )
@@ -89,7 +90,7 @@ $included = @(
   'scripts/harness',
   'agentic-method-kit',
   'agentic-repo-shell',
-  'pantheon-overlay',
+  'sample-overlays/pantheon',
   'archive',
   '.gitignore',
   'standalone scaffold script',

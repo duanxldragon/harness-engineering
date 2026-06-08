@@ -110,6 +110,12 @@ Examples:
 - event processor template
 - dashboard template
 - UI-heavy product template
+- CLI tool template
+- library / SDK template
+- data pipeline template
+- infrastructure change template
+- mobile app template
+- documentation governance template
 
 Rules:
 

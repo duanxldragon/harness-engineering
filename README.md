@@ -22,7 +22,7 @@ This repository packages the missing method layer.
 
 - `agentic-method-kit/`, the portable method source of truth
 - `agentic-repo-shell/`, the copyable repo-local shell for new projects
-- `pantheon-overlay/`, the optional Pantheon-specific overlay
+- `sample-overlays/pantheon/`, an optional example overlay, not part of the portable core
 - `docs/harness/`, the repo-local contract projection and policy docs
 - `scripts/`, the bootstrap and validation helpers
 
@@ -48,7 +48,7 @@ If you want to adopt it in a new repository:
 
 1. Copy `agentic-method-kit/`
 2. Copy `agentic-repo-shell/`
-3. Optionally apply `pantheon-overlay/`
+3. Optionally study or apply an example overlay such as `sample-overlays/pantheon/`
 4. Run the harness checks
 
 ## Start Reading
@@ -83,7 +83,7 @@ node scripts/harness/check-doc-inventory.mjs --strict
 node scripts/harness/check-sync-drift.mjs --strict
 node scripts/harness/check-doc-frontmatter.mjs --report-legacy
 node --test agentic-repo-shell/scripts/harness/*.test.mjs
-node --test pantheon-overlay/scripts/harness/*.test.mjs
+node --test sample-overlays/pantheon/scripts/harness/*.test.mjs
 ```
 
 ## Canonical Sources
@@ -98,3 +98,5 @@ node --test pantheon-overlay/scripts/harness/*.test.mjs
 This repository maintains and releases the method itself.
 
 It is not where application business code, downstream runtime evidence, or project-specific archives should accumulate.
+
+Project-specific overlays are examples or downstream assets. They must not be required by the portable method gate.

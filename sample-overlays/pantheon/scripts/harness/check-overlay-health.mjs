@@ -8,20 +8,21 @@ import { fileURLToPath } from 'node:url';
 
 const DEFAULT_ROOT = process.cwd();
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SAMPLE_OVERLAY_PREFIX = 'sample-overlays/pantheon';
 
 const REQUIRED_FILES = [
-  'pantheon-overlay/OVERLAY_MANIFEST.json',
-  'pantheon-overlay/README.md',
-  'pantheon-overlay/README.zh.md',
-  'pantheon-overlay/docs/WORKSPACE_INHERITANCE.md',
-  'pantheon-overlay/docs/WORKSPACE_INHERITANCE.zh.md',
-  'pantheon-overlay/docs/PROJECT_INHERITANCE_TEMPLATE.md',
-  'pantheon-overlay/docs/PROJECT_INHERITANCE_TEMPLATE.zh.md',
-  'pantheon-overlay/docs/BASE_UPGRADE_WORKFLOW.md',
-  'pantheon-overlay/docs/BASE_UPGRADE_WORKFLOW.zh.md',
-  'pantheon-overlay/docs/harness/INHERITANCE_HARNESS_PROTOCOL.md',
-  'pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.md',
-  'pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.en.md',
+  'OVERLAY_MANIFEST.json',
+  'README.md',
+  'README.zh.md',
+  'docs/WORKSPACE_INHERITANCE.md',
+  'docs/WORKSPACE_INHERITANCE.zh.md',
+  'docs/PROJECT_INHERITANCE_TEMPLATE.md',
+  'docs/PROJECT_INHERITANCE_TEMPLATE.zh.md',
+  'docs/BASE_UPGRADE_WORKFLOW.md',
+  'docs/BASE_UPGRADE_WORKFLOW.zh.md',
+  'docs/harness/INHERITANCE_HARNESS_PROTOCOL.md',
+  'docs/harness/BASE_DRIFT_BACKPORT_POLICY.md',
+  'docs/harness/BASE_DRIFT_BACKPORT_POLICY.en.md',
 ];
 
 const CHECKS = [
@@ -35,7 +36,8 @@ const CHECKS = [
 
 function printHelp() {
   console.log(`Usage:
-  node pantheon-overlay/scripts/harness/check-overlay-health.mjs [--json] [--strict] [--root <path>]
+  node sample-overlays/pantheon/scripts/harness/check-overlay-health.mjs [--json] [--strict] [--root <path>]
+  node scripts/harness/check-overlay-health.mjs [--json] [--strict] [--root <path>]
 
 Checks:
 - required Pantheon overlay files exist
@@ -79,6 +81,20 @@ function exists(root, repoPath) {
   return fs.existsSync(path.join(root, repoPath));
 }
 
+function joinRepoPath(prefix, repoPath) {
+  return prefix ? `${prefix}/${repoPath}` : repoPath;
+}
+
+function findOverlayPrefix(root) {
+  if (exists(root, 'OVERLAY_MANIFEST.json')) {
+    return '';
+  }
+  if (exists(root, `${SAMPLE_OVERLAY_PREFIX}/OVERLAY_MANIFEST.json`)) {
+    return SAMPLE_OVERLAY_PREFIX;
+  }
+  return '';
+}
+
 function readJson(root, repoPath, findings) {
   const fullPath = path.join(root, repoPath);
   if (!fs.existsSync(fullPath)) {
@@ -94,23 +110,25 @@ function readJson(root, repoPath, findings) {
   }
 }
 
-function validateRequiredFiles(root, findings) {
+function validateRequiredFiles(root, overlayPrefix, findings) {
   for (const repoPath of REQUIRED_FILES) {
-    if (!exists(root, repoPath)) {
-      findings.push({ file: repoPath, reason: 'required Pantheon overlay file is missing' });
+    const fullRepoPath = joinRepoPath(overlayPrefix, repoPath);
+    if (!exists(root, fullRepoPath)) {
+      findings.push({ file: fullRepoPath, reason: 'required Pantheon overlay file is missing' });
     }
   }
 }
 
-function validateManifest(root, findings) {
-  const manifest = readJson(root, 'pantheon-overlay/OVERLAY_MANIFEST.json', findings);
+function validateManifest(root, overlayPrefix, findings) {
+  const manifestPath = joinRepoPath(overlayPrefix, 'OVERLAY_MANIFEST.json');
+  const manifest = readJson(root, manifestPath, findings);
   if (!manifest) {
     return null;
   }
 
   if (!Array.isArray(manifest.includes)) {
     findings.push({
-      file: 'pantheon-overlay/OVERLAY_MANIFEST.json',
+      file: manifestPath,
       reason: 'includes must be an array',
     });
     return manifest;
@@ -126,7 +144,7 @@ function validateManifest(root, findings) {
   for (const includePath of requiredIncludes) {
     if (!manifest.includes.includes(includePath)) {
       findings.push({
-        file: 'pantheon-overlay/OVERLAY_MANIFEST.json',
+        file: manifestPath,
         reason: `manifest must include ${includePath}`,
       });
     }
@@ -153,7 +171,7 @@ function runStrictChecks(root, warnings) {
       parsed = JSON.parse(result.stdout || '{}');
     } catch {
       warnings.push({
-        file: `pantheon-overlay/scripts/harness/${scriptName}`,
+        file: `scripts/harness/${scriptName}`,
         reason: 'strict check did not emit valid JSON output',
       });
     }
@@ -167,7 +185,7 @@ function runStrictChecks(root, warnings) {
 
     if (result.error) {
       warnings.push({
-        file: `pantheon-overlay/scripts/harness/${scriptName}`,
+        file: `scripts/harness/${scriptName}`,
         reason: `strict check execution error: ${result.error.message}`,
       });
     }
@@ -180,7 +198,7 @@ function validateCheckStatuses(checks, findings) {
   for (const check of checks) {
     if (check.status !== 0) {
       findings.push({
-        file: `pantheon-overlay/scripts/harness/${check.script}`,
+        file: `scripts/harness/${check.script}`,
         reason: 'strict check reports findings; resolve or run against a compliant target workspace',
       });
     }
@@ -190,9 +208,10 @@ function validateCheckStatuses(checks, findings) {
 function scan(root) {
   const findings = [];
   const warnings = [];
+  const overlayPrefix = findOverlayPrefix(root);
 
-  validateRequiredFiles(root, findings);
-  validateManifest(root, findings);
+  validateRequiredFiles(root, overlayPrefix, findings);
+  validateManifest(root, overlayPrefix, findings);
   let checks = [];
 
   if (hasTargetWorkspace(root)) {
@@ -200,7 +219,7 @@ function scan(root) {
     validateCheckStatuses(checks, findings);
   } else {
     warnings.push({
-      file: 'pantheon-overlay',
+      file: overlayPrefix || '.',
       reason: 'target Pantheon workspace not detected; skipped strict overlay scans that require pantheon-base and pantheon-ops',
     });
   }

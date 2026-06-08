@@ -3,10 +3,10 @@
 Chinese version: [REVIEW_LOOP_SPEC.md](./REVIEW_LOOP_SPEC.md)
 
 Type: Contract
-Layer: platform
+Layer: method
 Status: Active
 
-This document defines the tool-agnostic review loop used by Pantheon. Implementers and reviewers may use different tools or be human, but the output format must remain consistent.
+This document defines the tool-agnostic review loop. Implementers and reviewers may use different tools or be human, but the output format must remain consistent.
 
 ## 1. Review Goal
 
@@ -15,17 +15,17 @@ Review is not a change summary. It is for finding:
 - behavioral regressions
 - security risks
 - architecture-boundary drift
-- permission, menu, i18n, and audit gaps
+- permission, routing, i18n, audit, and observability gaps when the repository has those surfaces
 - insufficient tests or evidence
-- base/business inheritance risk
+- upstream/downstream shared-behavior risk
 
 ## 2. Review Roles
 
 At minimum, the following roles must be supported:
 
-- Architect Reviewer: layer, boundary, contract, inheritance, drift
+- Architect Reviewer: layer, boundary, contract, dependency direction, drift
 - Security Reviewer: auth, permissions, audit, sensitive data, dependency safety
-- UX / QA Reviewer: page states, i18n, menus, browser evidence, responsiveness
+- UX / QA Reviewer: page states, i18n, navigation, browser evidence, responsiveness when the repository has UI
 - Mechanical Gate: CI, lint, test, smoke, static checks
 
 One tool may play multiple roles, but high-risk work should preferably separate implementer and reviewer.
@@ -43,7 +43,7 @@ Self-review is acceptable for:
 The following should default to an independent reviewer or explicit review gate:
 
 - any task that crosses a human gate
-- security, permission, audit, schema, or inheritance-boundary work
+- security, permission, audit, schema, or trust-boundary work
 - release, CI, secrets, deletion, or other high-impact operational changes
 
 ## 3. Review Inputs
@@ -60,13 +60,13 @@ The reviewer must read:
 
 ### 3.1 Minimum CodeGraph Structural Review
 
-For `non-trivial`, cross-layer, runtime-sensitive, permission/menu/i18n/audit/generator/dynamic-module work, review should answer at least:
+For `non-trivial`, cross-layer, runtime-sensitive, permission/navigation/i18n/audit/generator/dynamic-module work, review should answer at least:
 
 - what affected subgraph actually changed, rather than only naming a broad module
 - whether the change introduced a new cycle, expanded an existing cycle cluster, or blurred dependency direction
 - whether a handler, service, registry, or orchestrator is turning into a new hub node
 - whether a critical call chain became meaningfully deeper and harder to verify, debug, or roll back
-- whether unvalidated input can now cross a key boundary and reach permission checks, external side effects, audit gaps, or other sensitive actions
+- whether unvalidated input can now cross a key boundary and reach permission checks, external side effects, audit gaps, data writes, or other sensitive actions
 
 These structural checks are part of the review gate. They normally surface as P1/P2 findings rather than as context-free global metrics.
 
@@ -84,7 +84,7 @@ Verification:
 Severity:
 
 - P0: security issue, data corruption, build failure, or a broken critical path
-- P1: unreachable module, broken permission/i18n/menu contract, or clear behavioral regression
+- P1: unreachable module, broken permission/i18n/navigation/API contract, or clear behavioral regression
 - P2: governance, documentation, test coverage, or maintainability gap
 
 ## 5. No-Findings Format

@@ -4,7 +4,7 @@ Chinese version: [METHOD_RELEASE_1_0.zh.md](./METHOD_RELEASE_1_0.zh.md)
 
 Harness Engineering 1.0 packages a portable method for non-trivial software delivery with coding agents and human review.
 
-This release is not a Claude Code preset, a Codex preset, or a Pantheon-only workflow. It is a repository-level method built from contracts, templates, checks, and upgradeable control loops.
+This release is not a Claude Code preset, a Codex preset, or a single-product workflow. It is a repository-level method built from contracts, templates, checks, and upgradeable control loops.
 
 ## What Is In 1.0
 
@@ -32,7 +32,7 @@ This release is not a Claude Code preset, a Codex preset, or a Pantheon-only wor
 
 1. Copy `agentic-method-kit/`
 2. Copy `agentic-repo-shell/`
-3. Optionally apply `pantheon-overlay/`
+3. Optionally adapt examples from `sample-overlays/`
 4. Run the harness checks
 5. Start using task packets, evidence, review closure, and failure registry updates
 

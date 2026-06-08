@@ -3,10 +3,10 @@
 English version: [VISUAL_QUALITY_PROTOCOL.en.md](./VISUAL_QUALITY_PROTOCOL.en.md)
 
 类型：Contract
-归属层：platform
+归属层：method
 状态：Active
 
-本文定义 Pantheon UI 任务的视觉质量门。它是工具无关 Harness 协议的一部分。
+本文定义 UI 任务的视觉质量门。它是工具无关 Harness 协议的一部分，不绑定任何具体产品、组件库或后台风格。
 
 ## 1. 适用范围
 
@@ -14,14 +14,14 @@ English version: [VISUAL_QUALITY_PROTOCOL.en.md](./VISUAL_QUALITY_PROTOCOL.en.md
 
 - 页面布局
 - 前端组件
-- dashboard/admin/workbench
+- dashboard / admin / workbench / mobile / embedded UI
 - 表格、表单、图表
 - 导航、弹窗、抽屉、工具栏
-- 交互状态、loading、empty、error、permission denied
-- responsive/mobile viewport
+- 交互状态：loading、empty、error、permission denied、disabled、success
+- responsive / mobile viewport
 - 视觉设计系统、颜色、字体、间距、图标、动效
 
-## 2. 默认 Skill
+## 2. 默认质量门
 
 首选视觉质量 skill：
 
@@ -29,74 +29,59 @@ English version: [VISUAL_QUALITY_PROTOCOL.en.md](./VISUAL_QUALITY_PROTOCOL.en.md
 impeccable
 ```
 
-Codex 全局位置：
-
-```text
-C:\Users\xiaolong\.codex\skills\impeccable\SKILL.md
-```
-
 如果当前工具没有 Codex skill 能力，也必须按同一协议执行：
 
-1. 先读取本文。
-2. 使用 `.agents/prompts/implementation.md`、`.agents/prompts/review.md`、`.agents/prompts/qa.md`。
-3. 将视觉证据写入 `.harness/evidence/<task-id>/`。
+1. 先读取本文和当前仓库的设计系统文档。
+2. 使用 `.agents/prompts/implementation.md`、`.agents/prompts/review.md`、`.agents/prompts/qa.md` 或等价提示。
+3. 将视觉证据写入 `.harness/evidence/<task-id>/`，或在 PR / CI artifact 中使用同样结构。
 
 ## 3. 与其他设计工具关系
 
-- `impeccable` 是视觉质量门。
-- `ui-ux-pro-max` 可用于颜色、字体、布局、可访问性、设计系统细化。
-- gstack/browser/Playwright/人工截图可用于视觉证据。
-- Figma 或其他设计工具只能作为输入或证据，不是唯一事实源。
+- `impeccable` 或等价流程是视觉质量门。
+- 设计系统、Figma、storybook、screenshot diff、Playwright、浏览器手测和人工截图都可以作为输入或证据。
+- 任何具体品牌风格、组件名单、token 名称和禁用样式都应由下游仓库的设计系统或 overlay 定义。
+- 方法核心不沉淀产品专属视觉规则。
 
 ## 4. UI Task Packet 要求
 
-UI 任务必须在 task packet 中补充：
+UI 任务必须在 task packet 或等价计划中补充：
 
 - UI surface 类型。
-- 目标视觉感受。
-- desktop/mobile viewport 验证计划。
-- empty/loading/error/permission state 验证计划。
-- 是否需要截图或浏览器证据。
+- 目标视觉感受或设计系统引用。
+- desktop / mobile / relevant viewport 验证计划。
+- loading / empty / error / permission / disabled 等状态验证计划。
+- 截图、浏览器证据或明确 visual gap。
 
 ## 5. Review Gate
 
 UI review 必须检查：
 
-- 是否使用 `impeccable` 或同等视觉质量门。
-- 是否保留 rendered evidence 或记录未运行原因。
+- 是否使用视觉质量门，或记录无法运行的原因。
+- 是否保留 rendered evidence 或明确 visual gap。
 - 是否存在文本溢出、重叠、错位、弱对比、状态缺失。
-- 是否符合 Pantheon admin/workbench 的克制、清晰、高密度但可扫描风格。
-- 是否有平台级 keyboard focus：可交互元素必须有 `:focus-visible` 或等效可见焦点，不允许只依赖 hover。
-- 是否尊重 `prefers-reduced-motion: reduce`，并避免对后台工作台使用装饰性大面积动效。
-- 是否使用稳定控制尺寸：按钮、图标按钮、输入、选择器、日期选择器等必须通过 Pantheon shell token 固定 `min-height`/`line-height`，hover/loading/focus 不能造成布局跳动。
-- 是否避免后台装饰污染：不得在 platform/system shell 中引入 radial-gradient、宽幅 decorative linear-gradient、非标准 font-weight（如 620/650），Arco 原始颜色 token 必须收敛到 Pantheon 语义 token。
-- 是否只存在一种页面模式：platform/system 页面必须复用 base 的 `PageHeader`、`GovernanceSummaryBar`、`FilterPanel`、`ListHeaderActions`、`TableBatchActionBar`、`AppTable`、`FormSection`、`SubmitBar`、`AppModal` 等标准组件；不得在页面内新增第二套 hero、overview、metric、toolbar、dialog、table card 样式。
-- 治理摘要位置必须统一：治理信息放在主工作区顶部、表格或表单卡片之前；不得沉到 tab 底部，也不得嵌入 table card 形成卡片套卡片。
-- 如果页面已由 shell 面包屑、页签或治理摘要承担定位信息，页面内不得再重复渲染 `PageHeader` 标题；治理摘要应成为首个视觉模块，避免额外上下留白。
-- 对话框和抽屉必须走标准入口：新增 modal/drawer 必须使用 `AppModal` / `AppDrawer` 或 base 明确批准的封装，不能直接混用多套尺寸、footer、padding、关闭行为。
+- 是否符合当前项目定义的 UI 风格，不引入无理由的第二套视觉语言。
+- 可交互元素是否有 `:focus-visible` 或等效可见焦点。
+- 是否尊重 `prefers-reduced-motion: reduce`。
+- hover / loading / focus 是否不会造成布局跳动。
+- 颜色、字体、gradient、阴影、圆角是否收敛到项目设计 token 或明确视觉系统。
+- 同类页面是否复用项目标准结构，而不是混入多套 hero、overview、metric、toolbar、dialog、table-card 视觉模式。
+- 对话框、抽屉、toast、tooltip 等浮层是否走项目标准入口。
 
 P0/P1 视觉问题不能 approved。
 
 ## 5.1 Mechanical Contract
 
-`pantheon-base/frontend/scripts/check-shell-visual-contract.mjs` 是 platform/system 后台视觉合同的机械检查入口。派生业务仓库必须继承并运行同等检查；业务仓库只能在 `business/*` 范围内扩展视觉规则，不能弱化 base 的 focus、motion、control stability、semantic token 约束。
+如果项目已经定义视觉合同脚本，应把它纳入验证计划并在 evidence 中记录结果。
 
-该检查至少覆盖：
+通用机械检查推荐覆盖：
 
-- shell/header/tab/breadcrumb 不裁剪文本。
-- FilterPanel、ListHeaderActions、TableBatchActionBar、AppTable 的 spacing、radius、控制高度保持一致。
-- platform/system 不允许装饰性 gradient、非标准 font-weight、Arco 原始颜色 token 外泄。
-- 系统设置必须使用 `GovernanceSummaryBar`，不能保留 `setting-page__overview*` 旧样式。
-- 字典管理必须把治理摘要放在 table card 之前，不能在 tab 底部渲染重复治理卡。
-- 字典管理和系统设置不渲染页面级 `PageHeader` 标题，避免和 shell 标题/治理摘要重复。
-- system setting/dict 等系统页不得同时存在多套 hero/overview/table-card 视觉模式。
+- header / tab / breadcrumb / nav 文本不裁剪。
+- 标准筛选区、列表区、批量操作区、表格区、表单区的 spacing、radius、控制高度保持一致。
+- 不允许未批准的原始颜色、阴影、字号或 font-weight 泄漏到产品界面。
+- 同类页面不得同时存在多套竞争性视觉模式。
+- 关键页面状态可截图或可由 smoke/assertion 覆盖。
 
-推荐命令：
-
-```text
-cd pantheon-base/frontend && npm run check:shell-visual-contract
-cd pantheon-ops/frontend && npm run check:shell-visual-contract
-```
+项目 overlay 可以提供更严格的规则，但不能弱化 rendered evidence、状态覆盖、focus、motion 和布局稳定这些底线。
 
 ## 6. Evidence
 

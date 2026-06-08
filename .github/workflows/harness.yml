@@ -35,6 +35,9 @@ jobs:
           node --check scripts/harness/check-sync-drift.mjs
           node --check scripts/harness/check-visual-evidence.mjs
           node --check scripts/harness/check-adoption.mjs
+          node --check scripts/harness/check-method-health.mjs
+          node --check scripts/harness/check-failure-registry.mjs
+          node --check scripts/harness/check-doc-frontmatter.mjs
 
       - name: Test harness scripts
         run: node --test scripts/harness/*.test.mjs
@@ -64,74 +67,20 @@ jobs:
           node scripts/harness/check-doc-links.mjs --json --strict --root . > .harness/reports/doc-links.json
           node scripts/harness/check-doc-inventory.mjs --json --strict --root . > .harness/reports/doc-inventory.json
           node scripts/harness/check-sync-drift.mjs --json --strict --root . > .harness/reports/sync-drift.json
+          node scripts/harness/check-method-health.mjs --json --strict --root . > .harness/reports/method-health.json
+          node scripts/harness/check-failure-registry.mjs --json --strict --root . > .harness/reports/failure-registry.json
 
       - name: Run generic report-first checks
         run: |
           node scripts/harness/check-visual-evidence.mjs --json --root . > .harness/reports/visual-evidence.json
           node scripts/harness/check-adoption.mjs --json --root . > .harness/reports/adoption.json
+          node scripts/harness/check-doc-frontmatter.mjs --json --root . > .harness/reports/doc-frontmatter.json
 
       - name: Upload harness reports
         uses: actions/upload-artifact@v6
         if: always()
         with:
           name: harness-reports
-          path: .harness/reports/
-
-  pantheon-overlay-report:
-    name: Pantheon Overlay Report (Non-blocking)
-    runs-on: ubuntu-latest
-    continue-on-error: true
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-        with:
-          submodules: true
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '20'
-
-      - name: Prepare report directory
-        run: mkdir -p .harness/reports
-
-      - name: Syntax check Pantheon overlay scripts
-        run: |
-          node --check scripts/harness/check-boundaries.mjs
-          node --check scripts/harness/check-backend-response-contract.mjs
-          node --check scripts/harness/check-backend-dto-contract.mjs
-          node --check scripts/harness/check-permission-contract.mjs
-          node --check scripts/harness/check-audit-coverage.mjs
-          node --check scripts/harness/check-inheritance-contract.mjs
-          node --check scripts/harness/triage-base-drift.mjs
-
-      - name: Run Pantheon overlay report checks
-        if: ${{ hashFiles('pantheon-base/**', 'pantheon-ops/**') != '' }}
-        run: |
-          node scripts/harness/check-boundaries.mjs --json --root . > .harness/reports/boundaries.json
-          node scripts/harness/check-backend-response-contract.mjs --json --root . > .harness/reports/backend-response-contract.json
-          node scripts/harness/check-backend-dto-contract.mjs --json --root . > .harness/reports/backend-dto-contract.json
-          node scripts/harness/check-permission-contract.mjs --json --root . > .harness/reports/permission-contract.json
-          node scripts/harness/check-audit-coverage.mjs --json --root . > .harness/reports/audit-coverage.json
-          node scripts/harness/check-inheritance-contract.mjs --json --root . > .harness/reports/inheritance-contract.json
-          node scripts/harness/triage-base-drift.mjs --json --root . > .harness/reports/base-drift.json
-
-      - name: Record skipped Pantheon overlay report
-        if: ${{ hashFiles('pantheon-base/**', 'pantheon-ops/**') == '' }}
-        run: |
-          cat > .harness/reports/pantheon-overlay-skipped.json <<'JSON'
-          {
-            "skipped": true,
-            "reason": "pantheon-base or pantheon-ops directories are not present in this checkout"
-          }
-          JSON
-
-      - name: Upload Pantheon overlay reports
-        uses: actions/upload-artifact@v6
-        if: always()
-        with:
-          name: pantheon-overlay-reports
           path: .harness/reports/
 
   visual-evidence-blocking:

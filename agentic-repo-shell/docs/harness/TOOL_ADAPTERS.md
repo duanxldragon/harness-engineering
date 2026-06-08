@@ -1,5 +1,7 @@
 # Tool Adapters
 
+English version: [TOOL_ADAPTERS.en.md](./TOOL_ADAPTERS.en.md)
+
 类型：Design
 归属层：method
 状态：Active
@@ -28,6 +30,7 @@ Adapter 只负责把通用协议映射到具体工具。
 - `.agents/adapters/cursor.md`
 - `.agents/adapters/github-copilot.md`
 - `.agents/adapters/openhands.md`
+- `.agents/adapters/opencode.md`（如项目采用）
 - `.agents/adapters/human.md`
 
 ## 2. 不允许的锁定
@@ -49,6 +52,7 @@ Adapter 只负责把通用协议映射到具体工具。
 - Cursor 可以使用 rules 和 composer。
 - Copilot 可以使用 issue/PR instructions。
 - OpenHands 可以使用 repo instructions 和 runtime scripts。
+- opencode 或其他 agent 可以使用自身的计划、补丁和命令执行能力。
 - 人工可以按 task packet 和命令执行。
 
 但它们必须共享：
@@ -58,3 +62,9 @@ Adapter 只负责把通用协议映射到具体工具。
 - evidence format
 - review findings format
 - human gate 规则
+
+## 4. 与 Agent 工具的关系
+
+Harness Engineering 不是 Codex、Claude Code、Cursor、opencode 或未来 agent 的替代品。它是这些工具共同遵守的仓库级控制系统。
+
+Agent 决定如何计划、编辑、执行命令和总结；Harness 决定开工前必须知道什么、什么证据证明完成、哪些变更必须交给人判断，以及重复失败如何升级为 guide、template、sensor 或 gate。

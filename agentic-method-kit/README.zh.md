@@ -16,9 +16,9 @@ English version: [README.md](./README.md)
 
 - `agentic-repo-shell/`
 
-可选 overlay：
+可选示例 overlay：
 
-- `pantheon-overlay/`
+- `sample-overlays/pantheon/`
 
 ## 这个方法包定义什么
 
@@ -27,6 +27,7 @@ English version: [README.md](./README.md)
 - 面向 guides、sensors、gates 和 failure capture 的覆盖模型
 - 跨 agent ratchet 模型，把重复失败升级成可复用方法资产，同时避免绑定单一业务仓库
 - 从设计、开发、QA 验收到 GitHub PR 治理和 ratchet closeout 的交付治理闭环
+- 平台化评估，用来判断什么时候应该做轻量人机协同 companion，而不是过早平台化
 - 面向不同仓库形态的模板分类
 - 工具适配矩阵，让具体工具可用，但不把它们变成方法前提
 - 一套默认 playbook，覆盖 change 选择、task packet、实现、evidence 和 review
@@ -51,12 +52,13 @@ English version: [README.md](./README.md)
 4. 阅读 [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md)
 5. 阅读 [CROSS_AGENT_RATCHET_MODEL.zh.md](./CROSS_AGENT_RATCHET_MODEL.zh.md)
 6. 阅读 [DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md)
-7. 阅读 [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
-8. 阅读 [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
-9. 阅读 [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
-10. 复制你需要的模板
-11. 如果你的仓库路径约定不同，调整 [config/method.config.json](./config/method.config.json)
-12. 运行 [scripts/](./scripts/) 下的可移植检查脚本
+7. 阅读 [HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md](./HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md)
+8. 阅读 [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
+9. 阅读 [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
+10. 阅读 [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
+11. 复制你需要的模板
+12. 如果你的仓库路径约定不同，调整 [config/method.config.json](./config/method.config.json)
+13. 运行 [scripts/](./scripts/) 下的可移植检查脚本
 
 ## 闭环
 

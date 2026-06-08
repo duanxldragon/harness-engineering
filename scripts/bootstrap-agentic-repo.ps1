@@ -1,8 +1,7 @@
 param(
   [Parameter(Mandatory = $true)]
   [string]$TargetPath,
-  [switch]$ApplyPantheonOverlay,
-  [switch]$IncludePantheonBase,
+  [string]$OverlayPath,
   [switch]$Force
 )
 
@@ -27,7 +26,11 @@ function Copy-DirectoryContents {
 }
 
 $workspaceRoot = Split-Path -Parent $PSScriptRoot
-$resolvedTarget = [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $TargetPath))
+$resolvedTarget = if ([System.IO.Path]::IsPathRooted($TargetPath)) {
+  [System.IO.Path]::GetFullPath($TargetPath)
+} else {
+  [System.IO.Path]::GetFullPath((Join-Path (Get-Location) $TargetPath))
+}
 
 if ((Test-Path -LiteralPath $resolvedTarget) -and -not $Force) {
   $existingItems = Get-ChildItem -LiteralPath $resolvedTarget -Force
@@ -40,26 +43,22 @@ New-Item -ItemType Directory -Force -Path $resolvedTarget | Out-Null
 
 $methodKitSource = Join-Path $workspaceRoot 'agentic-method-kit'
 $repoShellSource = Join-Path $workspaceRoot 'agentic-repo-shell'
-$pantheonOverlaySource = Join-Path $workspaceRoot 'pantheon-overlay'
-$pantheonBaseSource = Join-Path $workspaceRoot 'pantheon-base'
 
 Copy-DirectoryContents -SourceDir $methodKitSource -DestinationDir (Join-Path $resolvedTarget 'agentic-method-kit')
 Copy-DirectoryContents -SourceDir $repoShellSource -DestinationDir $resolvedTarget
 
-if ($ApplyPantheonOverlay) {
-  Copy-DirectoryContents -SourceDir $pantheonOverlaySource -DestinationDir $resolvedTarget
-}
-
-if ($IncludePantheonBase) {
-  Copy-DirectoryContents -SourceDir $pantheonBaseSource -DestinationDir (Join-Path $resolvedTarget 'pantheon-base')
+if ($OverlayPath) {
+  $overlaySource = if ([System.IO.Path]::IsPathRooted($OverlayPath)) {
+    $OverlayPath
+  } else {
+    Join-Path $workspaceRoot $OverlayPath
+  }
+  Copy-DirectoryContents -SourceDir $overlaySource -DestinationDir $resolvedTarget
 }
 
 Write-Host "Bootstrap complete: $resolvedTarget"
 $included = 'agentic-method-kit, agentic-repo-shell contents'
-if ($ApplyPantheonOverlay) {
-  $included = "$included, pantheon-overlay"
-}
-if ($IncludePantheonBase) {
-  $included = "$included, pantheon-base"
+if ($OverlayPath) {
+  $included = "$included, overlay applied from $OverlayPath"
 }
 Write-Host "Included: $included"

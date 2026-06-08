@@ -19,6 +19,6 @@
     "repo-specific Codex local skills"
   ],
   "optionalOverlays": [
-    "pantheon-overlay"
+    "sample-overlays/pantheon"
   ]
 }

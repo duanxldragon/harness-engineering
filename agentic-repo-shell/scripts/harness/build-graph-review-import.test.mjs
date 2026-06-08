@@ -56,7 +56,7 @@ process.exit(1);
     [
       SCRIPT,
       '--codegraph-path',
-      'D:\\repo\\pantheon-base',
+      'D:\\repo\\example-app',
       '--codegraph-bin',
       path.join(root, 'codegraph.cmd'),
       '--live-callers',

@@ -147,7 +147,7 @@ test('build-graph-review-import supports live codegraph callers and callees', ()
     [
       SCRIPT,
       '--codegraph-path',
-      'D:\\repo\\pantheon-base',
+      'D:\\repo\\example-app',
       '--codegraph-bin',
       path.join(root, 'codegraph.cmd'),
       '--live-callers',
@@ -191,7 +191,7 @@ test('build-graph-review-import supports sync and live impact/context sources', 
       SCRIPT,
       '--sync',
       '--codegraph-path',
-      'D:\\repo\\pantheon-base',
+      'D:\\repo\\example-app',
       '--codegraph-bin',
       path.join(root, 'codegraph.cmd'),
       '--live-impact',
@@ -231,7 +231,7 @@ test('build-graph-review-import resolves PowerShell codegraph wrappers from PATH
 
   const output = execFileSync(
     process.execPath,
-    [SCRIPT, '--codegraph-path', 'D:\\repo\\pantheon-base', '--live-callers', 'Authenticate'],
+    [SCRIPT, '--codegraph-path', 'D:\\repo\\example-app', '--live-callers', 'Authenticate'],
     {
       encoding: 'utf8',
       env: { ...process.env, PATH: `${root};${process.env.PATH ?? ''}` },

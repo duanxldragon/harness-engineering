@@ -3,10 +3,10 @@
 English version: [VERIFICATION_EVIDENCE_SPEC.en.md](./VERIFICATION_EVIDENCE_SPEC.en.md)
 
 类型：Contract
-归属层：platform
+归属层：method
 状态：Active
 
-本文定义 Pantheon 任务验证证据的格式。证据格式必须工具无关。
+本文定义任务验证证据的格式。证据格式必须工具无关。
 
 ## 1. 证据目录
 
@@ -38,7 +38,7 @@ English version: [VERIFICATION_EVIDENCE_SPEC.en.md](./VERIFICATION_EVIDENCE_SPEC
 
 | Command | CWD | Result | Notes |
 |---|---|---|---|
-| `go test ./...` | `pantheon-base` | passed |  |
+| `npm test --workspace services/billing` | `services/billing` | passed |  |
 
 ## Graph Checks
 
@@ -65,15 +65,15 @@ complete | blocked | partial
 ```json
 {
   "taskId": "YYYY-MM-DD-task-name",
-  "repo": "pantheon-platform",
+  "repo": "example-repository",
   "agent": {
     "tool": "codex",
     "adapter": ".agents/adapters/codex.md"
   },
   "commands": [
     {
-      "command": "go test ./backend/...",
-      "cwd": "pantheon-base",
+      "command": "npm test --workspace services/billing",
+      "cwd": ".",
       "status": "passed",
       "durationMs": 0,
       "notes": ""
@@ -116,13 +116,13 @@ complete | blocked | partial
 - `human`
 - `other`
 
-当任务包含 UI/路由/权限态浏览器验证时，`browserEvidence` 条目至少应包含：
+当任务包含 UI、路由、权限态或浏览器验证时，`browserEvidence` 条目至少应包含：
 
 ```json
 {
   "viewport": "desktop",
-  "url": "/system/user",
-  "screenshot": "screenshots/user-desktop.png",
+  "url": "/billing/customers",
+  "screenshot": "screenshots/billing-customers-desktop.png",
   "consoleErrors": [],
   "checkedStates": ["loading", "empty", "error", "permission"]
 }

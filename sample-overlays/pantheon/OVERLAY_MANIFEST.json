@@ -1,5 +1,5 @@
 {
-  "name": "pantheon-overlay",
+  "name": "sample-pantheon-overlay",
   "purpose": "Optional Pantheon-specific overlay for base/business inheritance governance",
   "requires": [
     "agentic-method-kit",

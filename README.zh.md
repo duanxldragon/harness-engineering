@@ -22,7 +22,7 @@ agent 交付质量不只是 prompt 问题，更是 harness 问题。如果你想
 
 - `agentic-method-kit/`，可移植的方法事实源
 - `agentic-repo-shell/`，给新项目复制的仓库壳层
-- `pantheon-overlay/`，可选的 Pantheon 专用 overlay
+- `sample-overlays/pantheon/`，可选示例 overlay，不属于可移植核心
 - `docs/harness/`，仓库本地的合同投影层与 policy 文档
 - `scripts/`，bootstrap 与校验脚本
 
@@ -48,7 +48,7 @@ agent 交付质量不只是 prompt 问题，更是 harness 问题。如果你想
 
 1. 复制 `agentic-method-kit/`
 2. 复制 `agentic-repo-shell/`
-3. 按需叠加 `pantheon-overlay/`
+3. 按需参考或应用 `sample-overlays/pantheon/` 这类示例 overlay
 4. 运行 harness 检查
 
 ## 推荐入口
@@ -83,7 +83,7 @@ node scripts/harness/check-doc-inventory.mjs --strict
 node scripts/harness/check-sync-drift.mjs --strict
 node scripts/harness/check-doc-frontmatter.mjs --report-legacy
 node --test agentic-repo-shell/scripts/harness/*.test.mjs
-node --test pantheon-overlay/scripts/harness/*.test.mjs
+node --test sample-overlays/pantheon/scripts/harness/*.test.mjs
 ```
 
 ## Canonical Source 约定
@@ -98,3 +98,5 @@ node --test pantheon-overlay/scripts/harness/*.test.mjs
 这个仓库维护和发布的是方法本身。
 
 它不应该继续承载业务应用代码、下游运行时 evidence，或项目私有归档。
+
+项目专属 overlay 只能作为示例或下游资产存在，不能成为可移植方法门禁的必选依赖。

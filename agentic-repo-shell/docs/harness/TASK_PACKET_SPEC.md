@@ -3,7 +3,7 @@
 English version: [TASK_PACKET_SPEC.en.md](./TASK_PACKET_SPEC.en.md)
 
 类型：Contract
-归属层：platform
+归属层：method
 状态：Active
 
 Task packet 是非 trivial 任务的工具无关输入格式。它让 Codex、Claude Code、Cursor、Copilot、OpenHands、Aider 和人工工程师共享同一份任务边界。
@@ -29,7 +29,7 @@ docs/harness/tasks/YYYY-MM-DD-<task-name>.task.md
 
 ## Primary Layer
 
-platform | system/auth | system/iam | system/org | system/config | business/*
+app | domain/<name> | service/<name> | package/<name> | infra | docs | method | repository-defined layer
 
 ## Dependency Layers
 
@@ -37,7 +37,7 @@ platform | system/auth | system/iam | system/org | system/config | business/*
 
 ## Harness Profile
 
-- Template: admin-platform | api-service | event-processor | dashboard | ui-heavy-product | custom
+- Template: admin-platform | api-service | backend-service | event-processor | cli-tool | library | data-pipeline | infra-change | mobile-app | dashboard | ui-heavy-product | docs-governance | custom
 - Overlay: none
 - Coverage Dimensions:
   - behaviour
@@ -65,8 +65,8 @@ platform | system/auth | system/iam | system/org | system/config | business/*
 ## Structural Scope
 
 - Affected Subgraph: `<entry -> core path -> exit/side effect>` | `none`
-- Boundary Crossings: `none | platform -> system/auth | system/* -> pkg/* | base -> ops`
-- Risk Nodes: `none | auth handler | permission service | menu registry | generator orchestrator`
+- Boundary Crossings: `none | ui -> api | service -> datastore | package -> external-service | plugin -> host | downstream -> upstream`
+- Risk Nodes: `none | auth handler | payment service | permission service | job scheduler | generator orchestrator | deployment workflow`
 - Graph Focus: `none | cycle-check | hub-check | call-depth | sensitive-input-flow`
 
 ## Expected Files
@@ -160,7 +160,7 @@ platform | system/auth | system/iam | system/org | system/config | business/*
 - 只读诊断
 - 单文件小范围格式修复
 
-但如果 trivial 任务触碰权限、菜单、schema、i18n、审计、base/ops 继承关系，必须升级为 task packet。
+但如果 trivial 任务触碰权限、菜单、schema、i18n、审计、安全边界、发布流程或上游/下游合同关系，必须升级为 task packet。
 
 ## 4. Human Gate 规则
 
@@ -170,8 +170,8 @@ platform | system/auth | system/iam | system/org | system/config | business/*
 
 - schema 或迁移变更
 - 删除文件或目录
-- base 合同变更
-- 业务仓库 override base 行为
+- 核心合同、公共 API 或上游合同变更
+- 下游仓库、插件或扩展 override 上游共享行为
 - 新依赖或新外部服务
 - 影响权限、菜单、审计、i18n 的模型变更
 

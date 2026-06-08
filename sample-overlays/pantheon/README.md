@@ -25,7 +25,7 @@ Use this overlay only when the repository follows the Pantheon base/business inh
 
 1. bootstrap `agentic-method-kit/`
 2. bootstrap `agentic-repo-shell/`
-3. apply `pantheon-overlay/`
+3. apply `sample-overlays/pantheon/` or adapt it into a project-owned overlay
 4. include `pantheon-base/` when the repository uses the Pantheon foundation
 
 ## Recommended Reading Order
@@ -73,11 +73,11 @@ Use the overlay-owned health entrypoint when the target workspace includes `pant
 From the `harness-engineering/` repository root:
 
 ```powershell
-node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
-node --test harness-engineering/pantheon-overlay/scripts/harness/*.test.mjs
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node --test harness-engineering/sample-overlays/pantheon/scripts/harness/*.test.mjs
 ```
 
-If the target repository vendors `pantheon-overlay/` locally, run the same scripts from that local overlay path instead.
+If the target repository vendors or adapts the overlay locally, run the same scripts from that local overlay path instead.
 
 ## Overlay Health Contract
 

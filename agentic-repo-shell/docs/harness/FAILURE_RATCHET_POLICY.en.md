@@ -24,7 +24,7 @@ Treat the following as repeated failures by default:
 
 1. the same root cause or control gap appears again across different tasks, PRs, or sessions
 2. review repeatedly reports the same issue class, but the repository still lacks a guide, template, checker, or smoke path for it
-3. the same gap recurs in both `pantheon-base` and a business repository
+3. the same gap recurs in an upstream template, shared library, overlay, or multiple downstream repositories
 4. the same class of issue reappears after handoff because context was lost
 
 Do not force the label for:

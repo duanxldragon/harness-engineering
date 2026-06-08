@@ -275,7 +275,7 @@ test('check-adoption requires real openspec linkage when an active change exists
     path.join(root, '.harness', 'evidence', 'sample', 'commands.json'),
     JSON.stringify({
       taskId: 'sample',
-      repo: 'pantheon-platform',
+      repo: 'example-repository',
       agent: { tool: 'codex' },
       commands: [{ command: 'echo', cwd: '.', status: 'passed' }],
       linkage: {

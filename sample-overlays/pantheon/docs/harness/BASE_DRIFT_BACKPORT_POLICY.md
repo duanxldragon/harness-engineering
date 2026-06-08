@@ -79,8 +79,8 @@ Human approval is required before:
 The overlay health entrypoint should be used to keep this policy executable:
 
 ```powershell
-node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
-node harness-engineering/pantheon-overlay/scripts/harness/triage-base-drift.mjs --json --root <workspace> --business pantheon-ops
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/triage-base-drift.mjs --json --root <workspace> --business pantheon-ops
 ```
 
 If the target repository vendors the overlay locally, run the local copies instead.

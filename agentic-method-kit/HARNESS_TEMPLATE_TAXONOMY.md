@@ -175,13 +175,178 @@ High-risk gaps:
 - evaluator judgment must be calibrated
 - screenshot-only review can miss interaction quality
 
+### 3.6 CLI Tool Template
+
+Use for:
+
+- command-line tools
+- developer utilities
+- automation scripts with stable flags and output
+
+Default guides:
+
+- command contract
+- flag and exit-code semantics
+- input/output fixture policy
+- compatibility and deprecation rules
+
+Default sensors:
+
+- golden output tests
+- exit-code tests
+- shell transcript fixtures
+- help text checks
+
+High-risk gaps:
+
+- tests can overfit exact text when semantic behavior matters more
+- platform differences need explicit fixtures
+
+### 3.7 Library / SDK Template
+
+Use for:
+
+- shared libraries
+- SDKs
+- packages consumed by other repositories
+
+Default guides:
+
+- public API contract
+- versioning and compatibility policy
+- example usage requirements
+- benchmark or performance expectations when relevant
+
+Default sensors:
+
+- unit tests
+- type tests
+- compatibility fixtures
+- example compilation or execution
+- benchmark smoke checks when relevant
+
+High-risk gaps:
+
+- internal tests can miss real consumer usage
+- public API drift needs explicit fixtures
+
+### 3.8 Data Pipeline Template
+
+Use for:
+
+- ETL/ELT pipelines
+- batch jobs
+- data quality workflows
+- analytics transformations
+
+Default guides:
+
+- input/output schema contracts
+- data freshness and retention rules
+- idempotency and rerun policy
+- quality thresholds
+
+Default sensors:
+
+- schema checks
+- sample run fixtures
+- row-count and anomaly checks
+- lineage or dependency checks
+
+High-risk gaps:
+
+- sample data may not represent production skew
+- correctness often needs domain-owned acceptance examples
+
+### 3.9 Infrastructure Change Template
+
+Use for:
+
+- infrastructure-as-code repositories
+- deployment and environment changes
+- policy-as-code workflows
+
+Default guides:
+
+- environment ownership map
+- plan/apply policy
+- rollback expectations
+- secret-handling rules
+
+Default sensors:
+
+- plan or diff checks
+- policy-as-code checks
+- dry-run validation
+- drift detection
+
+High-risk gaps:
+
+- dry-runs can miss provider-side runtime behavior
+- human gates are mandatory for destructive changes
+
+### 3.10 Mobile App Template
+
+Use for:
+
+- iOS, Android, React Native, Flutter, or similar apps
+- user flows that depend on device state
+
+Default guides:
+
+- supported device and OS matrix
+- navigation and permission-state contracts
+- offline and error-state expectations
+- accessibility baseline
+
+Default sensors:
+
+- unit tests
+- simulator or device smoke tests
+- screenshots
+- crash log checks
+- accessibility checks
+
+High-risk gaps:
+
+- simulator coverage can miss device-specific failures
+- screenshots do not replace interaction testing
+
+### 3.11 Documentation Governance Template
+
+Use for:
+
+- documentation-first repositories
+- API docs
+- developer guides
+- method or policy repositories
+
+Default guides:
+
+- document ownership
+- frontmatter and lifecycle rules
+- link and example verification rules
+- archive and retirement policy
+
+Default sensors:
+
+- link checks
+- frontmatter checks
+- snippet/example execution
+- docs build checks
+
+High-risk gaps:
+
+- docs can be internally consistent but still fail user tasks
+- examples need runtime verification when they describe executable workflows
+
 ## 4. Overlays
 
 An overlay adds domain-specific constraints to a base template.
 
 Examples:
 
-- Pantheon overlay: base/business inheritance, platform/system/business boundaries, drift checks
+- example overlay: upstream/downstream inheritance, project-specific boundaries, drift checks
 - regulated-domain overlay: audit retention, approval gates, evidence retention
 - security-sensitive overlay: stricter secrets, dependency, and permission gates
 
@@ -204,6 +369,12 @@ Decision guide:
 | Worker or stream processor | Event Processor |
 | Data product or reporting UI | Dashboard |
 | Rich interaction frontend | UI-Heavy Product |
+| CLI or developer utility | CLI Tool |
+| Shared package or SDK | Library / SDK |
+| ETL, ELT, or data quality workflow | Data Pipeline |
+| Infrastructure-as-code or deployment repo | Infrastructure Change |
+| Mobile app | Mobile App |
+| Documentation or method repository | Documentation Governance |
 | Mixed system | choose primary template and add overlays |
 
 Do not start with the strictest template unless the risk justifies it.

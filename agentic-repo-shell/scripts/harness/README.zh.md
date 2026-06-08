@@ -64,7 +64,7 @@ node scripts/harness/check-task-packet.mjs --json
 也支持直接读取实时 `codegraph` CLI 结果并转换成同一导入结构。
 
 ```powershell
-node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-callers Authenticate --live-callees Authenticate --write graph-review.json
+node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\workspace\example-app --live-callers CreateInvoice --live-callees CreateInvoice --write graph-review.json
 node scripts/harness/scaffold-graph-review.mjs --write --import graph-review.json sample
 ```
 
@@ -73,14 +73,14 @@ node scripts/harness/scaffold-graph-review.mjs --write --import graph-review.jso
 实时直写 task evidence：
 
 ```powershell
-node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-context "permission service" sample
+node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\example-app --live-context "billing service" sample
 ```
 
-常用 `pantheon-base` 查询模板：
+常用查询模板：
 
 ```powershell
-node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-callers Authenticate --live-callees Authenticate iam-auth
-node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-impact AuthService iam-auth
+node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\example-app --live-callers CreateInvoice --live-callees CreateInvoice billing-flow
+node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\example-app --live-impact BillingService billing-flow
 ```
 
 ### `check-template-health.mjs`
@@ -219,7 +219,7 @@ Strict 模式：
 node scripts/harness/check-method-health.mjs --strict
 ```
 
-Pantheon 专用的 inheritance、drift、architecture 和 backend contract checks 位于 `pantheon-overlay/`。
+项目专属的 inheritance、drift、architecture 和 backend contract checks 应放在 `sample-overlays/pantheon/` 这类可选 overlay 中，而不是放进可移植 repo shell。
 
 ### `check-failure-registry.mjs`
 

@@ -12,7 +12,7 @@ English version: [README.md](./README.md)
 
 - `agentic-method-kit/`：可移植的方法事实源
 - `agentic-repo-shell/`：仓库本地 shell 与执行层
-- `pantheon-overlay/`：可选的 Pantheon 专用 overlay
+- `sample-overlays/pantheon/`：项目专属继承治理示例 overlay，不属于可移植核心
 
 ## 这个启动壳层包含什么
 
@@ -57,22 +57,19 @@ English version: [README.md](./README.md)
 
 1. 把 `agentic-method-kit/` 复制到新仓库根目录
 2. 把 `agentic-repo-shell/` 的内容复制到新仓库根目录
-3. 如果项目采用 Pantheon 继承模型，可选地应用 `pantheon-overlay/`
-4. 如果项目依赖该基础层，可选地加入 `pantheon-base/`
-5. 加入你自己的项目级 `AGENTS.md` 或 `CLAUDE.md`
-6. 在开始 non-trivial 实现前，先创建第一个 OpenSpec change 或第一个 task packet
+3. 可选地应用项目 overlay，`sample-overlays/pantheon/` 只作为可改造示例
+4. 加入你自己的项目级 `AGENTS.md` 或 `CLAUDE.md`
+5. 在开始 non-trivial 实现前，先创建第一个 OpenSpec change 或第一个 task packet
 
 如果你是直接从当前工作区引导新仓库，也可以使用：
 
 ```powershell
 pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo>
-pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo> -ApplyPantheonOverlay
-pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo> -ApplyPantheonOverlay -IncludePantheonBase
+pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo> -OverlayPath sample-overlays/pantheon
 ```
 
 说明：
 
-- `-IncludePantheonBase` 可能明显更慢，因为它会复制 foundation 仓库
 - `-Force` 允许覆盖到现有目录，但不会先删除已有文件
 
 ## 推荐阅读顺序
@@ -128,12 +125,12 @@ node scripts/harness/check-doc-frontmatter.mjs --report-legacy
 
 默认 shell 是通用的。
 
-只有当仓库需要以下能力时才应用 `pantheon-overlay/`：
+只有当仓库需要设计类似项目专属控制项时，才参考 `sample-overlays/pantheon/`：
 
-- base / business 继承治理
-- Pantheon 风格的 drift checks
-- Pantheon 专用的 PR 与 CI review gates
-- Pantheon 专用的架构与后端契约检查
+- 上游 / 下游继承治理
+- drift checks
+- 项目专属 PR 与 CI review gates
+- 项目专属架构或合同检查
 
 ## 推荐结果
 

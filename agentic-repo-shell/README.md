@@ -12,7 +12,7 @@ Use it together with:
 
 - `agentic-method-kit/`: portable method source of truth
 - `agentic-repo-shell/`: repo-local shell and execution layer
-- `pantheon-overlay/`: optional Pantheon-specific overlay
+- `sample-overlays/pantheon/`: optional example overlay for project-specific inheritance governance, not part of the portable core
 
 ## What This Starter Contains
 
@@ -57,22 +57,19 @@ Version metadata:
 
 1. Copy `agentic-method-kit/` into the new repo root.
 2. Copy the contents of `agentic-repo-shell/` into the new repo root.
-3. Optionally apply `pantheon-overlay/` if the project uses the Pantheon inheritance model.
-4. Optionally add `pantheon-base/` if your project depends on that foundation.
-5. Add your project-specific `AGENTS.md` or `CLAUDE.md`.
-6. Create the first OpenSpec change or first task packet before non-trivial implementation.
+3. Optionally apply a project overlay, using `sample-overlays/pantheon/` only as an example to adapt.
+4. Add your project-specific `AGENTS.md` or `CLAUDE.md`.
+5. Create the first OpenSpec change or first task packet before non-trivial implementation.
 
 If you are bootstrapping from this workspace directly, you can also use:
 
 ```powershell
 pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo>
-pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo> -ApplyPantheonOverlay
-pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo> -ApplyPantheonOverlay -IncludePantheonBase
+pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath <new-repo> -OverlayPath sample-overlays/pantheon
 ```
 
 Notes:
 
-- `-IncludePantheonBase` may take noticeably longer because it copies the foundation repository
 - `-Force` allows overlay into an existing target directory; it does not delete existing files first
 
 ## Recommended Reading Order
@@ -128,12 +125,12 @@ The gate verifies frontmatter presence, required metadata, contract linkage, con
 
 The default shell is generic.
 
-Apply `pantheon-overlay/` only when the repository needs:
+Use `sample-overlays/pantheon/` as an example only when the repository needs to design similar project-specific controls:
 
-- base/business inheritance governance
-- Pantheon-style drift checks
-- Pantheon-specific PR and CI review gates
-- Pantheon-specific architecture and backend contract checks
+- upstream/downstream inheritance governance
+- drift checks
+- project-specific PR and CI review gates
+- project-specific architecture or contract checks
 
 ## Recommended Result
 

@@ -19,7 +19,7 @@ cutover 之后：
 - 独立方法仓库拥有：
   - `agentic-method-kit/`
   - `agentic-repo-shell/`
-  - `pantheon-overlay/`
+  - `sample-overlays/pantheon/`
   - 方法分发相关的根级文档
 - Pantheon 工作区拥有：
   - `pantheon-base/`
@@ -48,7 +48,7 @@ cutover 之后：
 
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
-- `pantheon-overlay/`
+- `sample-overlays/pantheon/`
 - `scripts/bootstrap-agentic-repo.ps1`
 - 从 upstream 复制下来的根级 distribution docs
 
@@ -94,7 +94,7 @@ Pantheon 本地只应修改：
    - `node scripts/harness/check-adoption.mjs --strict`
    - `node scripts/harness/check-method-health.mjs --strict`
    - `node --test agentic-repo-shell/scripts/harness/*.test.mjs`
-   - `node --test pantheon-overlay/scripts/harness/*.test.mjs`
+   - `node --test sample-overlays/pantheon/scripts/harness/*.test.mjs`
 5. 如果 shell 或 overlay 有变化，运行 bootstrap smoke。
 6. 审查下游冲突或本地 overrides。
 7. 带上明确的 upstream version notes 落地这次升级。
@@ -153,4 +153,3 @@ docs/METHOD_UPGRADE_LOG.md
 - Pantheon second
 
 consumer workspace 不应该变成这套方法的隐藏事实源。
-

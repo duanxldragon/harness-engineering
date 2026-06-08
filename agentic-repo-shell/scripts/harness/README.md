@@ -86,7 +86,7 @@ It also accepts `--import <file>` to merge reviewed graph results into those str
 Normalizes saved CodeGraph-style JSON, or live `codegraph` CLI results, into the import shape consumed by `scaffold-graph-review --import`.
 
 ```powershell
-node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-callers Authenticate --live-callees Authenticate --write graph-review.json
+node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\workspace\example-app --live-callers CreateInvoice --live-callees CreateInvoice --write graph-review.json
 node scripts/harness/scaffold-graph-review.mjs --write --import graph-review.json sample
 ```
 
@@ -95,14 +95,14 @@ Use `--sync` to refresh the index first, and `--codegraph-bin` or `CODEGRAPH_BIN
 Direct live task-write shortcut:
 
 ```powershell
-node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-context "permission service" sample
+node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\example-app --live-context "billing service" sample
 ```
 
-Common `pantheon-base` query patterns:
+Common query patterns:
 
 ```powershell
-node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-callers Authenticate --live-callees Authenticate iam-auth
-node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\go\pantheon-platform\pantheon-base --live-impact AuthService iam-auth
+node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\example-app --live-callers CreateInvoice --live-callees CreateInvoice billing-flow
+node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\workspace\example-app --live-impact BillingService billing-flow
 ```
 
 ### `check-template-health.mjs`
@@ -217,7 +217,7 @@ Strict mode:
 node scripts/harness/check-method-health.mjs --strict
 ```
 
-Pantheon-specific inheritance, drift, architecture, and backend contract checks live in `pantheon-overlay/`.
+Project-specific inheritance, drift, architecture, and backend contract checks should live in optional overlays such as `sample-overlays/pantheon/`, not in the portable repo shell.
 
 ### `check-failure-registry.mjs`
 

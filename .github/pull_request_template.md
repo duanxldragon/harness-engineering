@@ -4,37 +4,29 @@
 
 ## Harness
 
-- OpenSpec change:
-- Task packet:
-- Trivial change: no | yes, reason:
-- Verification evidence:
-- [ ] Task packet linked, or trivial-change justification recorded
-- [ ] Verification evidence linked or committed under `.harness/evidence/`
+- OpenSpec Change:
+- Task Packet:
+- Trivial Change: no | yes, reason:
+- Verification Evidence:
+- Review Mode: independent reviewer | self-review with reason | not required because trivial
+- Human Gates: none | listed below
+- Known Gaps: none | listed below
+- Method Ratchet: no-repeat-observed | guide-updated | sensor-added | gate-updated | template-updated | adapter-updated | registry-only | not-applicable
+- [ ] Task Packet linked, or Trivial Change justification recorded
+- [ ] Verification Evidence linked or committed under `.harness/evidence/`
 - [ ] UI changes include screenshots or an explicit visual gap record
-- Harness reports reviewed:
+- [ ] Review Mode and Known Gaps are explicit
+- Method reports reviewed:
   - [ ] task packet
   - [ ] evidence
-  - [ ] boundaries
-  - [ ] backend response contract
-  - [ ] backend DTO contract
-  - [ ] permission contract
-  - [ ] audit coverage
   - [ ] visual evidence
-  - [ ] inheritance contract
-  - [ ] base drift
+  - [ ] adoption
+  - [ ] method health
 
 ## Layer
 
-- Primary layer: platform | system/auth | system/iam | system/org | system/config | business/*
+- Primary Layer: repository-defined layer key, for example `app`, `domain/auth`, `service/api`, `platform`, or `method`
 - Dependency layers:
-
-## Base/ops inheritance
-
-- [ ] Base version checked in `pantheon-ops/docs/PROJECT_INHERITANCE.md`
-- [ ] If this touches `platform` or `system/*`, the change belongs in `pantheon-base` or includes a reason it cannot
-- [ ] `generic drift` reviewed for base backport
-- [ ] `pseudo-drift` not expanded with local ops-only edits
-- [ ] `business-only` changes are limited to `business/*`, business docs, or explicit local integration points
 
 ## Verification
 

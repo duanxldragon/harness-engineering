@@ -54,9 +54,9 @@ Run before and after every base upgrade.
 If these checks are maintained in the standalone method repository, execute them from that repository against the target workspace. If the target business repository vendors the relevant check scripts locally, run the local copies there instead.
 
 ```powershell
-node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
-node harness-engineering/pantheon-overlay/scripts/harness/check-inheritance-contract.mjs --strict --root <workspace>
-node harness-engineering/pantheon-overlay/scripts/harness/triage-base-drift.mjs --business pantheon-ops --json --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-inheritance-contract.mjs --strict --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/triage-base-drift.mjs --business pantheon-ops --json --root <workspace>
 ```
 
 Use the drift categories this way:

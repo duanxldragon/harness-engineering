@@ -3,7 +3,7 @@
 Chinese version: [TASK_PACKET_SPEC.md](./TASK_PACKET_SPEC.md)
 
 Type: Contract
-Layer: platform
+Layer: method
 Status: Active
 
 A task packet is the tool-agnostic input format for non-trivial work. It lets Codex, Claude Code, Cursor, Copilot, OpenHands, Aider, and human engineers share the same task boundary.
@@ -29,7 +29,7 @@ If the task comes from an existing superpowers plan, the task packet may referen
 
 ## Primary Layer
 
-platform | system/auth | system/iam | system/org | system/config | business/*
+app | domain/<name> | service/<name> | package/<name> | infra | docs | method | repository-defined layer
 
 ## Dependency Layers
 
@@ -37,7 +37,7 @@ platform | system/auth | system/iam | system/org | system/config | business/*
 
 ## Harness Profile
 
-- Template: admin-platform | api-service | event-processor | dashboard | ui-heavy-product | custom
+- Template: admin-platform | api-service | backend-service | event-processor | cli-tool | library | data-pipeline | infra-change | mobile-app | dashboard | ui-heavy-product | docs-governance | custom
 - Overlay: none
 - Coverage Dimensions:
   - behaviour
@@ -65,8 +65,8 @@ platform | system/auth | system/iam | system/org | system/config | business/*
 ## Structural Scope
 
 - Affected Subgraph: `<entry -> core path -> exit/side effect>` | `none`
-- Boundary Crossings: `none | platform -> system/auth | system/* -> pkg/* | base -> ops`
-- Risk Nodes: `none | auth handler | permission service | menu registry | generator orchestrator`
+- Boundary Crossings: `none | ui -> api | service -> datastore | package -> external-service | plugin -> host | downstream -> upstream`
+- Risk Nodes: `none | auth handler | payment service | permission service | job scheduler | generator orchestrator | deployment workflow`
 - Graph Focus: `none | cycle-check | hub-check | call-depth | sensitive-input-flow`
 
 ## Expected Files
@@ -160,7 +160,7 @@ The following tasks may skip task-packet creation:
 - read-only diagnosis
 - narrow single-file formatting fixes
 
-But if a trivial task touches permissions, menus, schema, i18n, audit, or base/ops inheritance, it must be upgraded into a task packet.
+But if a trivial task touches permissions, menus, schema, i18n, audit, security boundaries, release flow, or upstream/downstream contracts, it must be upgraded into a task packet.
 
 ## 4. Human Gate Rules
 
@@ -170,8 +170,8 @@ The following must be listed as gates:
 
 - schema or migration changes
 - deleting files or directories
-- base contract changes
-- overriding base behavior in a business repository
+- core contract, public API, or upstream contract changes
+- overriding upstream-defined shared behavior in a downstream repository, plugin, or extension
 - new dependencies or external services
 - model changes affecting permission, menu, audit, or i18n
 

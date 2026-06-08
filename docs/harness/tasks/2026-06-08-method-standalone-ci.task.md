@@ -6,7 +6,7 @@ Make the portable method repository validate its own CI, evidence, review, and r
 
 ## Primary Layer
 
-platform
+method
 
 ## Dependency Layers
 
@@ -35,12 +35,12 @@ platform
 
 - Validate standalone CI paths for the method repository.
 - Require at least one evidence and review artifact in strict method gates.
-- Keep Pantheon-specific overlay checks outside the required portable gate.
+- Keep project-specific example overlay checks outside the required portable gate.
 
 ### Out
 
 - Business-system code changes.
-- Pantheon base/ops inheritance rule changes.
+- Project-specific overlay inheritance rule changes.
 
 ## Expected Files
 
@@ -59,13 +59,13 @@ platform
 
 ### Do Not Touch
 
-- `pantheon-base/`
-- `pantheon-ops/`
+- downstream product repositories
+- project-specific foundation repositories
 
 ## Implementation Notes
 
 - The portable gate must run with `--root .` from the repository root.
-- Business overlay checks may remain as non-blocking reports when overlay directories exist.
+- Example overlay checks may remain as non-blocking reports when overlay directories exist.
 
 ## Method Readiness
 

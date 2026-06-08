@@ -79,8 +79,8 @@ Chinese version: [BASE_DRIFT_BACKPORT_POLICY.md](./BASE_DRIFT_BACKPORT_POLICY.md
 建议通过 overlay 的统一健康入口，把这份策略变成可执行检查：
 
 ```powershell
-node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
-node harness-engineering/pantheon-overlay/scripts/harness/triage-base-drift.mjs --json --root <workspace> --business pantheon-ops
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/triage-base-drift.mjs --json --root <workspace> --business pantheon-ops
 ```
 
 如果目标仓库已经本地 vendoring 了 overlay，就在目标仓库内运行本地副本。

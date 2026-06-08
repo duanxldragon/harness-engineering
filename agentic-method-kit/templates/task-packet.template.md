@@ -6,7 +6,7 @@
 
 ## Primary Layer
 
-platform | system/auth | system/iam | system/org | system/config | business/* | app
+app | domain/<name> | service/<name> | package/<name> | infra | docs | method | repository-defined layer
 
 ## Dependency Layers
 
@@ -14,7 +14,7 @@ platform | system/auth | system/iam | system/org | system/config | business/* | 
 
 ## Harness Profile
 
-- Template: admin-platform | api-service | event-processor | dashboard | ui-heavy-product | custom
+- Template: admin-platform | api-service | backend-service | event-processor | cli-tool | library | data-pipeline | infra-change | mobile-app | dashboard | ui-heavy-product | docs-governance | custom
 - Overlay: none
 - Quality Profile: repository-defined profile | none
 - Portable Failure Class: instruction-gap | task-boundary-gap | architecture-drift | test-gap | static-sensor-gap | runtime-evidence-gap | security-boundary-gap | ci-signal-noise | method-health-gap | none
@@ -76,8 +76,8 @@ platform | system/auth | system/iam | system/org | system/config | business/* | 
 ## Structural Scope
 
 - Affected Subgraph: `<entry -> core path -> exit/side effect>` | `none`
-- Boundary Crossings: `none | platform -> system/auth | system/* -> pkg/* | base -> ops`
-- Risk Nodes: `none | auth handler | permission service | menu registry | generator orchestrator`
+- Boundary Crossings: `none | ui -> api | service -> datastore | package -> external-service | plugin -> host | downstream -> upstream`
+- Risk Nodes: `none | auth handler | payment service | permission service | job scheduler | generator orchestrator | deployment workflow`
 - Graph Focus: `none | cycle-check | hub-check | call-depth | sensitive-input-flow`
 
 ## Verification Plan

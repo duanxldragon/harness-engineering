@@ -27,7 +27,7 @@ Examples:
   node scripts/harness/scaffold-graph-review.mjs docs/harness/tasks/sample.task.md --json
   node scripts/harness/scaffold-graph-review.mjs --write sample
   node scripts/harness/scaffold-graph-review.mjs --write --import graph-review.json sample
-  node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\\repo\\pantheon-base --live-context "permission service" sample`);
+  node scripts/harness/scaffold-graph-review.mjs --write --codegraph-path D:\\repo\\example-app --live-context "billing service" sample`);
 }
 
 function parseArgs(argv) {

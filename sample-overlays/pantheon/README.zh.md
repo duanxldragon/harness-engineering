@@ -25,7 +25,7 @@ English version: [README.md](./README.md)
 
 1. 先引导 `agentic-method-kit/`
 2. 再引导 `agentic-repo-shell/`
-3. 然后应用 `pantheon-overlay/`
+3. 然后应用 `sample-overlays/pantheon/`，或改造成项目自有 overlay
 4. 如果仓库使用 Pantheon foundation，再加入 `pantheon-base/`
 
 ## 推荐阅读顺序
@@ -73,11 +73,11 @@ English version: [README.md](./README.md)
 从 `harness-engineering/` 仓库根目录执行：
 
 ```powershell
-node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
-node --test harness-engineering/pantheon-overlay/scripts/harness/*.test.mjs
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node --test harness-engineering/sample-overlays/pantheon/scripts/harness/*.test.mjs
 ```
 
-如果目标仓库已经本地 vendoring 了 `pantheon-overlay/`，就在该本地 overlay 路径下执行对应脚本。
+如果目标仓库已经本地 vendoring 或改造了该 overlay，就在该本地 overlay 路径下执行对应脚本。
 
 ## Overlay Health 契约
 

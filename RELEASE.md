@@ -8,7 +8,7 @@ This workspace releases method assets, not a monolithic starter repository.
 
 - `agentic-method-kit`
 - `agentic-repo-shell`
-- `pantheon-overlay`
+- `sample-overlays`
 
 ## Release Checklist
 
@@ -20,9 +20,9 @@ This workspace releases method assets, not a monolithic starter repository.
    - `node scripts/harness/check-method-health.mjs --strict`
 5. Run package tests:
    - `node --test agentic-repo-shell/scripts/harness/*.test.mjs`
-   - `node --test pantheon-overlay/scripts/harness/*.test.mjs`
+   - `node --test sample-overlays/pantheon/scripts/harness/*.test.mjs`
 6. Run bootstrap smoke when shell or overlay changes:
-   - `pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath .tmp/release-smoke -ApplyPantheonOverlay -Force`
+   - `pwsh ./scripts/bootstrap-agentic-repo.ps1 -TargetPath .tmp/release-smoke -OverlayPath sample-overlays/pantheon -Force`
    - `node .tmp/release-smoke/scripts/harness/check-method-health.mjs --strict --root .tmp/release-smoke`
    - `node --test .tmp/release-smoke/scripts/harness/*.test.mjs`
 7. Remove temporary smoke directories after verification.
@@ -39,7 +39,7 @@ Default release scope includes:
 
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
-- `pantheon-overlay/`
+- `sample-overlays/`
 - root-level method docs, manifests, and bootstrap scripts that describe or validate those packages
 
 Optional local skill sync assets are not part of the default release artifact:

@@ -2,7 +2,7 @@
 
 This document defines how Harness Engineering turns repeated AI-agent failures into reusable method assets across tools, agents, and product repositories.
 
-The model is intentionally independent of any specific coding agent, runtime, CI provider, or business architecture. Product repositories such as `pantheon-base` are consumers of this method, not the method source of truth.
+The model is intentionally independent of any specific coding agent, runtime, CI provider, or business architecture. Product repositories are consumers of this method, not the method source of truth.
 
 ## 1. Portability Boundary
 

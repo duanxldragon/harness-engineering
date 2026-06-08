@@ -13,7 +13,7 @@ For a normal new repository, copy:
 
 Add this only when needed:
 
-3. `pantheon-overlay/`
+3. `sample-overlays/`
 
 Use this helper when bootstrapping directly from this workspace:
 
@@ -23,7 +23,7 @@ Use this helper when bootstrapping directly from this workspace:
 
 - `agentic-method-kit/`: method source of truth, schemas, templates, playbook, version metadata
 - `agentic-repo-shell/`: repo-local shell, adapters, CI entrypoints, runtime skeleton
-- `pantheon-overlay/`: Pantheon-specific inheritance, drift, architecture, and backend governance
+- `sample-overlays/`: optional examples that demonstrate how a downstream repository can package project-specific controls
 
 ## Do Not Copy By Default
 
@@ -35,10 +35,10 @@ Do not treat these as part of the default copy set:
 - root `docs/`
 - root `.harness/`
 - root `openspec/`
-- `pantheon-base/`
-- `pantheon-ops/`
+- consumer product repositories
+- project-specific foundations, generated application code, or business implementations
 
-Those paths exist for maintenance, reference, historical traceability, or Pantheon-specific workspace operation.
+Those paths belong to downstream consumers or local maintenance workspaces, not to the portable method distribution.
 
 ## Target Outcomes
 
@@ -49,14 +49,13 @@ Use:
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
 
-### Pantheon-Derived Repository
+### Repository With Project Overlay
 
 Use:
 
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
-- `pantheon-overlay/`
-- optionally `pantheon-base/` when the repository depends on that foundation
+- a project-owned overlay, or `sample-overlays/pantheon/` only as an example to adapt
 
 ## Verification After Copy
 
@@ -67,8 +66,8 @@ node scripts/harness/check-adoption.mjs --strict
 node scripts/harness/check-method-health.mjs --strict
 ```
 
-If `pantheon-overlay/` is applied, also run the overlay-owned tests and checks required by that repo's CI.
+If an example overlay is applied, also run the overlay-owned tests and checks required by that downstream repository's CI.
 
-If you plan to fully separate the method from the current workspace, continue with:
+Historical extraction notes are archived at:
 
-- [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
+- [archive/pantheon-workspace-process/MIGRATION_TO_STANDALONE_REPO.md](./archive/pantheon-workspace-process/MIGRATION_TO_STANDALONE_REPO.md)

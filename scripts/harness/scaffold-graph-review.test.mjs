@@ -410,7 +410,7 @@ test('scaffold-graph-review can query live codegraph data and write evidence dir
       '--root',
       root,
       '--codegraph-path',
-      'D:\\repo\\pantheon-base',
+      'D:\\repo\\example-app',
       '--codegraph-bin',
       codegraphBin,
       '--live-callers',

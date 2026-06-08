@@ -3,10 +3,10 @@
 English version: [REVIEW_LOOP_SPEC.en.md](./REVIEW_LOOP_SPEC.en.md)
 
 类型：Contract
-归属层：platform
+归属层：method
 状态：Active
 
-本文定义 Pantheon 的工具无关 review loop。实现者和 reviewer 可以是不同工具或人工，但输出格式必须一致。
+本文定义工具无关 review loop。实现者和 reviewer 可以是不同工具或人工，但输出格式必须一致。
 
 ## 1. Review 目标
 
@@ -15,17 +15,17 @@ Review 不是总结变更，而是发现：
 - 行为回归
 - 安全风险
 - 架构边界漂移
-- 权限、菜单、i18n、审计缺口
+- 权限、路由、i18n、审计、可观测性缺口（如项目具备这些能力）
 - 测试和证据不足
-- base/business 继承风险
+- 上游/下游共享行为风险
 
 ## 2. Review 角色
 
 至少支持以下角色：
 
-- Architect Reviewer：层级、边界、合同、继承、drift。
+- Architect Reviewer：层级、边界、合同、依赖方向、drift。
 - Security Reviewer：认证、权限、审计、敏感数据、依赖安全。
-- UX / QA Reviewer：页面状态、i18n、菜单、浏览器证据、响应式。
+- UX / QA Reviewer：页面状态、i18n、导航、浏览器证据、响应式（如项目有 UI）。
 - Mechanical Gate：CI、lint、test、smoke、静态检查。
 
 同一工具可以扮演多个角色，但高风险任务建议实现者和 reviewer 分离。
@@ -43,7 +43,7 @@ Review 不是总结变更，而是发现：
 以下情况默认需要独立 reviewer 或显式 review gate：
 
 - 触发 human gate 的任务
-- security / permission / audit / schema / inheritance 边界任务
+- security / permission / audit / schema / trust-boundary 任务
 - release、CI、secrets、删除或高影响运维流程变更
 
 ## 3. Review 输入
@@ -60,13 +60,13 @@ Reviewer 必须读取：
 
 ### 3.1 CodeGraph 结构性审查最小要求
 
-对 `non-trivial`、跨层、runtime-sensitive、权限/菜单/i18n/审计/生成器/动态模块相关任务，review 默认至少回答：
+对 `non-trivial`、跨层、runtime-sensitive、权限/导航/i18n/审计/生成器/动态模块相关任务，review 默认至少回答：
 
 - 本轮实际修改的是哪条受影响子图，而不是泛泛而谈“改了某模块”。
 - 是否引入新的循环依赖、扩大已有循环簇，或让关键依赖方向变得更模糊。
 - 是否把单个 handler、service、registry 或 orchestrator 推成新的 hub 节点。
 - 是否让关键调用链显著变深，导致验证点、失败点或回滚点更难定位。
-- 是否存在未验证输入穿过关键边界后直达权限判断、外部 side effect、审计缺口或敏感操作。
+- 是否存在未验证输入穿过关键边界后直达权限判断、外部 side effect、审计缺口、数据写入或敏感操作。
 
 这些结构性检查是 review gate 的一部分。它们通常以 P1/P2 findings 体现，而不是作为脱离上下文的全局 KPI。
 
@@ -84,7 +84,7 @@ Verification:
 严重程度：
 
 - P0：安全、数据损坏、构建失败、核心链路不可用。
-- P1：模块不可达、权限/i18n/菜单契约失效、明显行为回归。
+- P1：模块不可达、权限/i18n/导航/API 契约失效、明显行为回归。
 - P2：治理、文档、测试覆盖、可维护性缺口。
 
 ## 5. 无发现格式

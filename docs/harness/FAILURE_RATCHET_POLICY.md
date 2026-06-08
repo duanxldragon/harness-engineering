@@ -24,7 +24,7 @@ ratchet loop 的目标是：
 
 1. 同一类根因或控制缺口，在不同任务、不同 PR、不同 session 中再次出现
 2. review 多次指出同一类问题，但仓库里还没有对应 guide、template、checker 或 smoke
-3. 同一缺口在 `pantheon-base` 和业务仓重复出现
+3. 同一缺口在上游模板、共享库、overlay 或多个下游仓库中重复出现
 4. 同一类错误在 handoff 后又因为上下文丢失而复发
 
 以下情况不必强行计为 repeated failure：

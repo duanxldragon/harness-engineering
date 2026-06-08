@@ -7,8 +7,13 @@ import { execFileSync } from 'node:child_process';
 
 const DEFAULT_ROOT = process.cwd();
 const IMPLEMENTATION_ROOTS = [
-  'pantheon-base/backend/',
-  'pantheon-base/frontend/',
+  'src/',
+  'app/',
+  'lib/',
+  'packages/',
+  'services/',
+  'backend/',
+  'frontend/',
   'docs/contracts/',
   'docs/designs/',
   'docs/acceptances/',
@@ -33,7 +38,6 @@ const REQUIRED_FILES = [
   'docs/harness/VERIFICATION_EVIDENCE_SPEC.md',
   'docs/harness/REVIEW_LOOP_SPEC.md',
   'docs/harness/VISUAL_QUALITY_PROTOCOL.md',
-  'scripts/harness/check-inheritance-contract.mjs',
   '.agents/README.md',
   '.agents/adapters/codex.md',
   '.agents/adapters/claude-code.md',
@@ -45,25 +49,17 @@ const REQUIRED_FILES = [
 ];
 
 const REQUIRED_PR_MARKERS = [
-  'Task packet',
-  'Trivial change',
-  'Verification evidence',
-  'OpenSpec change',
-  'task packet',
-  'evidence',
-  'boundaries',
-  'backend response contract',
-  'backend DTO contract',
-  'permission contract',
-  'audit coverage',
-  'visual evidence',
-  'inheritance contract',
-  'base drift',
-  'Base/ops inheritance',
+  'Task Packet',
+  'Trivial Change',
+  'Verification Evidence',
+  'Review Mode',
+  'Human Gates',
+  'Known Gaps',
+  'Method Ratchet',
 ];
 
 const REQUIRED_AGENT_PROMPT_MARKERS = [
-  'Task packet',
+  'Task Packet',
   'Record verification results',
   'Do not claim completion without fresh verification evidence',
 ];

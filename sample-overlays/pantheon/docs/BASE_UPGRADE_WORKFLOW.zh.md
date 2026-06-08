@@ -55,9 +55,9 @@ English version: [BASE_UPGRADE_WORKFLOW.md](./BASE_UPGRADE_WORKFLOW.md)
 如果目标业务仓库已经本地 vendoring 了相关检查脚本，也可以直接在本地运行副本。
 
 ```powershell
-node harness-engineering/pantheon-overlay/scripts/harness/check-overlay-health.mjs --json --root <workspace>
-node harness-engineering/pantheon-overlay/scripts/harness/check-inheritance-contract.mjs --strict --root <workspace>
-node harness-engineering/pantheon-overlay/scripts/harness/triage-base-drift.mjs --business pantheon-ops --json --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-overlay-health.mjs --json --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/check-inheritance-contract.mjs --strict --root <workspace>
+node harness-engineering/sample-overlays/pantheon/scripts/harness/triage-base-drift.mjs --business pantheon-ops --json --root <workspace>
 ```
 
 按以下方式理解 drift categories：

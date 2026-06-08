@@ -162,7 +162,7 @@ test('check-task-packet warns when contract anchor file does not exist', () => {
 
 test('check-task-packet rejects an invalid primary layer value', () => {
   const root = makeFixture();
-  const packet = VALID_PACKET.replace(/^platform$/m, 'made-up/layer');
+  const packet = VALID_PACKET.replace(/^platform$/m, 'platform | domain/auth');
   fs.writeFileSync(path.join(root, 'docs', 'harness', 'tasks', 'sample.task.md'), packet);
 
   const result = spawnSync(process.execPath, [SCRIPT, '--root', root], { encoding: 'utf8' });

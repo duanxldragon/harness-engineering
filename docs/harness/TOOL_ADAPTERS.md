@@ -3,10 +3,10 @@
 English version: [TOOL_ADAPTERS.en.md](./TOOL_ADAPTERS.en.md)
 
 类型：Design
-归属层：platform
+归属层：method
 状态：Active
 
-本文说明 Pantheon 如何支持多种 agent 工具而不被某个工具锁死。
+本文说明方法层如何支持多种 agent 工具而不被某个工具锁死。
 
 ## 1. Adapter 原则
 
@@ -30,6 +30,7 @@ Adapter 只负责把通用协议映射到具体工具。
 - `.agents/adapters/cursor.md`
 - `.agents/adapters/github-copilot.md`
 - `.agents/adapters/openhands.md`
+- `.agents/adapters/opencode.md`（如项目采用）
 - `.agents/adapters/human.md`
 
 ## 2. 不允许的锁定
@@ -51,6 +52,7 @@ Adapter 只负责把通用协议映射到具体工具。
 - Cursor 可以使用 rules 和 composer。
 - Copilot 可以使用 issue/PR instructions。
 - OpenHands 可以使用 repo instructions 和 runtime scripts。
+- opencode 或其他 agent 可以使用自身的计划、补丁和命令执行能力。
 - 人工可以按 task packet 和命令执行。
 
 但它们必须共享：

@@ -9,10 +9,11 @@ const DEFAULT_ROOT = process.cwd();
 const IMPLEMENTATION_ROOTS = [
   'src/',
   'app/',
+  'lib/',
+  'packages/',
+  'services/',
   'backend/',
   'frontend/',
-  'services/',
-  'packages/',
   'docs/contracts/',
   'docs/designs/',
   'docs/acceptances/',
@@ -59,7 +60,7 @@ const REQUIRED_PR_MARKERS = [
 ];
 
 const REQUIRED_AGENT_PROMPT_MARKERS = [
-  'Task packet',
+  'Task Packet',
   'Record verification results',
   'Do not claim completion without fresh verification evidence',
 ];

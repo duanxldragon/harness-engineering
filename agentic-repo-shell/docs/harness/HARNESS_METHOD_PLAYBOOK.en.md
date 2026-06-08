@@ -3,7 +3,7 @@
 Chinese version: [HARNESS_METHOD_PLAYBOOK.md](./HARNESS_METHOD_PLAYBOOK.md)
 
 Type: Playbook
-Layer: platform
+Layer: method
 Status: Active
 
 This file no longer carries the full method definition.
@@ -18,11 +18,15 @@ This file no longer carries the full method definition.
 
 1. First read `agentic-method-kit/README.md`
 2. Then read `agentic-method-kit/HARNESS_CORE_MODEL.md`
-3. Then read `agentic-method-kit/HARNESS_COVERAGE_MODEL.md`
-4. Then read `agentic-method-kit/HARNESS_TEMPLATE_TAXONOMY.md`
-5. Then read `agentic-method-kit/TOOL_ADAPTER_MATRIX.md`
-6. Then read `agentic-method-kit/METHOD_PLAYBOOK.md`
-7. Then read the contracts this repository executes locally:
+3. Then read `agentic-method-kit/METHOD_FIRST_DELIVERY_POLICY.md`
+4. Then read `agentic-method-kit/HARNESS_COVERAGE_MODEL.md`
+5. Then read `agentic-method-kit/CROSS_AGENT_RATCHET_MODEL.md`
+6. Then read `agentic-method-kit/DESIGN_DEV_QA_GITHUB_GOVERNANCE.md`
+7. Then read `agentic-method-kit/HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.md`
+8. Then read `agentic-method-kit/HARNESS_TEMPLATE_TAXONOMY.md`
+9. Then read `agentic-method-kit/TOOL_ADAPTER_MATRIX.md`
+10. Then read `agentic-method-kit/METHOD_PLAYBOOK.md`
+11. Then read the contracts this repository executes locally:
    - `HARNESS_ENGINEERING_CONTRACT.md`
    - `TRIVIALITY_CLASSIFICATION_POLICY.en.md`
    - `TASK_PACKET_SPEC.md`
@@ -33,7 +37,7 @@ This file no longer carries the full method definition.
    - `FAILURE_RATCHET_POLICY.en.md`
    - `FAILURE_REGISTRY_PROMOTION_POLICY.en.md`
    - `HARNESS_RETIREMENT_REVIEW.en.md`
-   - `INHERITANCE_HARNESS_PROTOCOL.md`
+12. If the current repository adopts a project-specific overlay, then read the overlay-owned protocols, checkers, and upgrade rules.
 
 ## Responsibilities In This Repository
 

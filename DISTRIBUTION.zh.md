@@ -13,7 +13,7 @@ English version: [DISTRIBUTION.md](./DISTRIBUTION.md)
 
 只有在需要时再加：
 
-3. `pantheon-overlay/`
+3. `sample-overlays/`
 
 如果你是直接从当前工作区引导新仓库，可使用这个辅助脚本：
 
@@ -23,7 +23,7 @@ English version: [DISTRIBUTION.md](./DISTRIBUTION.md)
 
 - `agentic-method-kit/`：方法事实源、schemas、templates、playbook、版本元数据
 - `agentic-repo-shell/`：仓库本地 shell、adapters、CI 入口、运行时骨架
-- `pantheon-overlay/`：Pantheon 专用的 inheritance、drift、architecture 和 backend governance
+- `sample-overlays/`：可选示例，用来说明下游仓库如何打包项目专属控制项
 
 ## 默认不要复制
 
@@ -35,10 +35,10 @@ English version: [DISTRIBUTION.md](./DISTRIBUTION.md)
 - 根目录 `docs/`
 - 根目录 `.harness/`
 - 根目录 `openspec/`
-- `pantheon-base/`
-- `pantheon-ops/`
+- consumer 产品仓库
+- 项目专属 foundation、生成出的应用代码或业务实现
 
-这些路径存在的目的是维护、参考、历史追踪，或者 Pantheon 专用的工作区运作。
+这些路径属于下游消费者或本地维护工作区，不属于可移植方法分发。
 
 ## 目标结果
 
@@ -49,14 +49,13 @@ English version: [DISTRIBUTION.md](./DISTRIBUTION.md)
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
 
-### Pantheon 派生仓库
+### 带项目 Overlay 的仓库
 
 使用：
 
 - `agentic-method-kit/`
 - `agentic-repo-shell/`
-- `pantheon-overlay/`
-- 如果仓库依赖该 foundation，可选加入 `pantheon-base/`
+- 项目自有 overlay，或仅把 `sample-overlays/pantheon/` 当示例改造
 
 ## 复制后的验证
 
@@ -67,9 +66,8 @@ node scripts/harness/check-adoption.mjs --strict
 node scripts/harness/check-method-health.mjs --strict
 ```
 
-如果应用了 `pantheon-overlay/`，还需要运行该仓库 CI 所要求的 overlay 自有 tests 和 checks。
+如果应用了某个示例 overlay，还需要运行该下游仓库 CI 所要求的 overlay 自有 tests 和 checks。
 
-如果你计划把这套方法彻底从当前工作区拆出来，请继续阅读：
+历史拆分笔记已归档到：
 
-- [MIGRATION_TO_STANDALONE_REPO.md](./MIGRATION_TO_STANDALONE_REPO.md)
-
+- [archive/pantheon-workspace-process/MIGRATION_TO_STANDALONE_REPO.zh.md](./archive/pantheon-workspace-process/MIGRATION_TO_STANDALONE_REPO.zh.md)

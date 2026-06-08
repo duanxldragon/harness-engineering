@@ -19,7 +19,7 @@ function makeFixture() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'overlay-health-'));
 
   writeFile(
-    path.join(root, 'pantheon-overlay', 'OVERLAY_MANIFEST.json'),
+    path.join(root, 'sample-overlays', 'pantheon', 'OVERLAY_MANIFEST.json'),
     JSON.stringify(
       {
         includes: [
@@ -35,17 +35,17 @@ function makeFixture() {
   );
 
   for (const repoPath of [
-    'pantheon-overlay/README.md',
-    'pantheon-overlay/README.zh.md',
-    'pantheon-overlay/docs/WORKSPACE_INHERITANCE.md',
-    'pantheon-overlay/docs/WORKSPACE_INHERITANCE.zh.md',
-    'pantheon-overlay/docs/PROJECT_INHERITANCE_TEMPLATE.md',
-    'pantheon-overlay/docs/PROJECT_INHERITANCE_TEMPLATE.zh.md',
-    'pantheon-overlay/docs/BASE_UPGRADE_WORKFLOW.md',
-    'pantheon-overlay/docs/BASE_UPGRADE_WORKFLOW.zh.md',
-    'pantheon-overlay/docs/harness/INHERITANCE_HARNESS_PROTOCOL.md',
-    'pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.md',
-    'pantheon-overlay/docs/harness/BASE_DRIFT_BACKPORT_POLICY.en.md',
+    'sample-overlays/pantheon/README.md',
+    'sample-overlays/pantheon/README.zh.md',
+    'sample-overlays/pantheon/docs/WORKSPACE_INHERITANCE.md',
+    'sample-overlays/pantheon/docs/WORKSPACE_INHERITANCE.zh.md',
+    'sample-overlays/pantheon/docs/PROJECT_INHERITANCE_TEMPLATE.md',
+    'sample-overlays/pantheon/docs/PROJECT_INHERITANCE_TEMPLATE.zh.md',
+    'sample-overlays/pantheon/docs/BASE_UPGRADE_WORKFLOW.md',
+    'sample-overlays/pantheon/docs/BASE_UPGRADE_WORKFLOW.zh.md',
+    'sample-overlays/pantheon/docs/harness/INHERITANCE_HARNESS_PROTOCOL.md',
+    'sample-overlays/pantheon/docs/harness/BASE_DRIFT_BACKPORT_POLICY.md',
+    'sample-overlays/pantheon/docs/harness/BASE_DRIFT_BACKPORT_POLICY.en.md',
   ]) {
     writeFile(path.join(root, repoPath), '# doc\n');
   }
@@ -111,7 +111,7 @@ test('overlay health passes for a compliant minimal fixture', () => {
 
 test('overlay health strict mode fails when required overlay docs are missing', () => {
   const root = makeFixture();
-  fs.rmSync(path.join(root, 'pantheon-overlay', 'docs', 'harness', 'BASE_DRIFT_BACKPORT_POLICY.en.md'));
+  fs.rmSync(path.join(root, 'sample-overlays', 'pantheon', 'docs', 'harness', 'BASE_DRIFT_BACKPORT_POLICY.en.md'));
 
   const result = spawnSync(process.execPath, [SCRIPT, '--strict', '--root', root], {
     cwd: WORKDIR,

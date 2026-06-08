@@ -27,20 +27,19 @@ const REQUIRED_SUBSECTIONS = {
   'Expected Files': ['Create', 'Modify', 'Do Not Touch'],
 };
 
-const VALID_PRIMARY_LAYERS = new Set([
-  'platform',
-  'system/auth',
-  'system/iam',
-  'system/org',
-  'system/config',
-  'business/*',
-  'app',
-]);
+const PRIMARY_LAYER_PATTERN = /^[a-z][a-z0-9-]*(?:\/[a-z][a-z0-9-*]*)*$/;
 
 const VALID_HARNESS_TEMPLATES = new Set([
   'admin-platform',
   'api-service',
+  'backend-service',
+  'cli-tool',
+  'data-pipeline',
+  'docs-governance',
   'event-processor',
+  'infra-change',
+  'library',
+  'mobile-app',
   'dashboard',
   'ui-heavy-product',
   'custom',
@@ -291,9 +290,9 @@ function validatePrimaryLayer(content, headings, result) {
     return;
   }
 
-  if (!VALID_PRIMARY_LAYERS.has(value)) {
+  if (value.includes('|') || value.includes('<') || value.includes('>') || !PRIMARY_LAYER_PATTERN.test(value)) {
     result.errors.push(
-      `Invalid primary layer "${value}". Expected one of: ${Array.from(VALID_PRIMARY_LAYERS).join(', ')}.`,
+      `Invalid primary layer "${value}". Use one repository-defined layer key, for example "app", "domain/auth", "service/api", "platform", or "method".`,
     );
   }
 }

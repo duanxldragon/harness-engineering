@@ -18,8 +18,8 @@ Default behavior:
 Examples:
   node scripts/harness/build-graph-review-import.mjs --source trace.json
   node scripts/harness/build-graph-review-import.mjs --source trace.json --write graph-review.json
-  node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\\repo\\pantheon-base --live-callers Authenticate --live-callees Authenticate
-  node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\\repo\\pantheon-base --codegraph-bin C:\\tools\\codegraph.cmd --live-impact AuthService`);
+  node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\\repo\\example-app --live-callers Authenticate --live-callees Authenticate
+  node scripts/harness/build-graph-review-import.mjs --codegraph-path D:\\repo\\example-app --codegraph-bin C:\\tools\\codegraph.cmd --live-impact AuthService`);
 }
 
 function parseArgs(argv) {

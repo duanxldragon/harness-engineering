@@ -2,11 +2,11 @@
 
 Chinese version: [implementation.zh.md](./implementation.zh.md)
 
-You are implementing a Pantheon task using the tool-agnostic Harness process.
+You are implementing a repository task using the tool-agnostic Harness process.
 
 ## Required Inputs
 
-- Task packet: `docs/harness/tasks/<task-id>.task.md`
+- Task Packet: `docs/harness/tasks/<task-id>.task.md`
 - Harness contract: `docs/harness/HARNESS_ENGINEERING_CONTRACT.md`
 - Agent interface contract: `docs/harness/AGENT_INTERFACE_CONTRACT.md`
 - Visual quality protocol for UI work: `docs/harness/VISUAL_QUALITY_PROTOCOL.md`
@@ -15,7 +15,7 @@ You are implementing a Pantheon task using the tool-agnostic Harness process.
 ## Execution Rules
 
 1. Declare the primary layer before editing.
-2. Read contract anchors listed in the task packet.
+2. Read contract anchors listed in the Task Packet.
 3. Keep changes inside `Scope / In`.
 4. Do not touch paths listed in `Expected Files / Do Not Touch`.
 5. Prefer shared scripts under `scripts/harness/` over tool-specific checks.
