@@ -13,10 +13,11 @@ function makeFixture() {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'build-graph-review-import-'));
 }
 
-function makeFakeCodegraph(root, handlers) {
+function makeFakeCodegraph(root, handlers, platform = process.platform) {
   const helperPath = path.join(root, 'codegraph-helper.js');
   const commandPath = path.join(root, 'codegraph.cmd');
   const powershellPath = path.join(root, 'codegraph.ps1');
+  const posixPath = path.join(root, 'codegraph');
   fs.writeFileSync(
     helperPath,
     `const handlers = ${JSON.stringify(handlers, null, 2)};
@@ -30,14 +31,47 @@ const payload = handlers[command];
 if (!payload) {
   console.error('unknown command');
   process.exit(1);
-}
-console.log(JSON.stringify(payload, null, 2));
+  }
+  console.log(JSON.stringify(payload, null, 2));
 `,
   );
   fs.writeFileSync(commandPath, `@echo off\r\nnode "%~dp0\\codegraph-helper.js" %*\r\n`);
   fs.writeFileSync(powershellPath, `node "$PSScriptRoot/codegraph-helper.js" @args\n`);
-  return { helperPath, commandPath, powershellPath };
+  fs.writeFileSync(
+    posixPath,
+    `#!/usr/bin/env sh
+node "$(dirname "$0")/codegraph-helper.js" "$@"
+`,
+  );
+  if (platform !== 'win32' && process.platform !== 'win32') {
+    fs.chmodSync(posixPath, 0o755);
+  }
+  return {
+    helperPath,
+    commandPath,
+    powershellPath,
+    posixPath,
+    codegraphBin: platform === 'win32' ? commandPath : posixPath,
+  };
 }
+
+test('build-graph-review-import fake codegraph fixture exposes a POSIX executable wrapper', () => {
+  const root = makeFixture();
+
+  const { codegraphBin } = makeFakeCodegraph(root, {}, 'linux');
+
+  assert.equal(codegraphBin, path.join(root, 'codegraph'));
+  assert.equal(fs.existsSync(codegraphBin), true);
+  assert.equal(
+    fs.readFileSync(codegraphBin, 'utf8'),
+    `#!/usr/bin/env sh
+node "$(dirname "$0")/codegraph-helper.js" "$@"
+`,
+  );
+  if (process.platform !== 'win32') {
+    assert.notEqual(fs.statSync(codegraphBin).mode & 0o111, 0);
+  }
+});
 
 test('build-graph-review-import converts trace-like JSON into scaffold import shape', () => {
   const root = makeFixture();
@@ -131,7 +165,7 @@ test('build-graph-review-import falls back across paths and finding summaries', 
 
 test('build-graph-review-import supports live codegraph callers and callees', () => {
   const root = makeFixture();
-  makeFakeCodegraph(root, {
+  const { codegraphBin } = makeFakeCodegraph(root, {
     callers: {
       symbol: 'Authenticate',
       callers: [{ name: 'LoginHandler' }],
@@ -149,7 +183,7 @@ test('build-graph-review-import supports live codegraph callers and callees', ()
       '--codegraph-path',
       'D:\\repo\\example-app',
       '--codegraph-bin',
-      path.join(root, 'codegraph.cmd'),
+      codegraphBin,
       '--live-callers',
       'Authenticate',
       '--live-callees',
@@ -173,7 +207,7 @@ test('build-graph-review-import supports live codegraph callers and callees', ()
 
 test('build-graph-review-import supports sync and live impact/context sources', () => {
   const root = makeFixture();
-  makeFakeCodegraph(root, {
+  const { codegraphBin } = makeFakeCodegraph(root, {
     impact: {
       symbol: 'AuthService',
       affected: [{ name: 'LoginHandler' }, { name: 'CreateSession' }],
@@ -193,7 +227,7 @@ test('build-graph-review-import supports sync and live impact/context sources', 
       '--codegraph-path',
       'D:\\repo\\example-app',
       '--codegraph-bin',
-      path.join(root, 'codegraph.cmd'),
+      codegraphBin,
       '--live-impact',
       'AuthService',
       '--live-context',

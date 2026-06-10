@@ -9,6 +9,43 @@ import { fileURLToPath } from 'node:url';
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const SCRIPT = path.resolve(TEST_DIR, 'scaffold-graph-review.mjs');
 
+function makeFakeCodegraph(root, handlers, platform = process.platform) {
+  const helperPath = path.join(root, 'codegraph-helper.js');
+  const commandPath = path.join(root, 'codegraph.cmd');
+  const powershellPath = path.join(root, 'codegraph.ps1');
+  const posixPath = path.join(root, 'codegraph');
+  fs.writeFileSync(
+    helperPath,
+    `const handlers = ${JSON.stringify(handlers, null, 2)};
+const command = process.argv[2];
+if (command === 'callers') {
+  console.log(JSON.stringify(handlers.callers ?? { symbol: 'Authenticate', callers: [{ name: 'LoginHandler' }] }, null, 2));
+  process.exit(0);
+}
+console.error('unknown');
+process.exit(1);
+`,
+  );
+  fs.writeFileSync(commandPath, `@echo off\r\nnode "%~dp0\\codegraph-helper.js" %*\r\n`);
+  fs.writeFileSync(powershellPath, `node "$PSScriptRoot/codegraph-helper.js" @args\n`);
+  fs.writeFileSync(
+    posixPath,
+    `#!/usr/bin/env sh
+node "$(dirname "$0")/codegraph-helper.js" "$@"
+`,
+  );
+  if (platform !== 'win32' && process.platform !== 'win32') {
+    fs.chmodSync(posixPath, 0o755);
+  }
+  return {
+    helperPath,
+    commandPath,
+    powershellPath,
+    posixPath,
+    codegraphBin: platform === 'win32' ? commandPath : posixPath,
+  };
+}
+
 test('repo-shell scaffold-graph-review mirrors root behavior', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'scaffold-graph-review-shell-'));
   fs.mkdirSync(path.join(root, 'docs', 'harness', 'tasks'), { recursive: true });
@@ -46,6 +83,23 @@ test('repo-shell scaffold-graph-review mirrors root behavior', () => {
     fs.readFileSync(path.join(root, '.harness', 'evidence', 'sample', 'commands.json'), 'utf8'),
   );
   assert.deepEqual(evidence.graphChecks.checks, ['cycle', 'hub']);
+});
+
+test('repo-shell scaffold-graph-review fake codegraph fixture exposes a POSIX executable wrapper', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'scaffold-graph-review-shell-live-'));
+  const { codegraphBin } = makeFakeCodegraph(root, {}, 'linux');
+
+  assert.equal(codegraphBin, path.join(root, 'codegraph'));
+  assert.equal(fs.existsSync(codegraphBin), true);
+  assert.equal(
+    fs.readFileSync(codegraphBin, 'utf8'),
+    `#!/usr/bin/env sh
+node "$(dirname "$0")/codegraph-helper.js" "$@"
+`,
+  );
+  if (process.platform !== 'win32') {
+    assert.notEqual(fs.statSync(codegraphBin).mode & 0o111, 0);
+  }
 });
 
 test('repo-shell scaffold-graph-review accepts imported graph review payload', () => {
@@ -125,18 +179,12 @@ test('repo-shell scaffold-graph-review supports direct live codegraph task write
       '- Review File: `.harness/evidence/sample/review.md`',
     ].join('\n'),
   );
-  fs.writeFileSync(
-    path.join(root, 'codegraph-helper.js'),
-    `const command = process.argv[2];
-if (command === 'callers') {
-  console.log(JSON.stringify({ symbol: 'Authenticate', callers: [{ name: 'LoginHandler' }] }, null, 2));
-  process.exit(0);
-}
-console.error('unknown');
-process.exit(1);
-`,
-  );
-  fs.writeFileSync(path.join(root, 'codegraph.cmd'), `@echo off\r\nnode "%~dp0\\codegraph-helper.js" %*\r\n`);
+  const { codegraphBin } = makeFakeCodegraph(root, {
+    callers: {
+      symbol: 'Authenticate',
+      callers: [{ name: 'LoginHandler' }],
+    },
+  });
 
   const output = execFileSync(
     process.execPath,
@@ -149,7 +197,7 @@ process.exit(1);
       '--codegraph-path',
       'D:\\repo\\example-app',
       '--codegraph-bin',
-      path.join(root, 'codegraph.cmd'),
+      codegraphBin,
       '--live-callers',
       'Authenticate',
       'sample',
