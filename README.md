@@ -53,6 +53,18 @@ If you want to adopt it in a new repository:
 
 ## Start Reading
 
+**New (2026-06): Pantheon Harness Methodology**
+
+The Pantheon-specific operational methodology is maintained here as the canonical source:
+
+- [docs/methodology/HARNESS_METHODOLOGY.zh.md](./docs/methodology/HARNESS_METHODOLOGY.zh.md) — 方法总纲 **[entry point]**
+- [docs/methodology/WORKFLOW_ROUTING.md](./docs/methodology/WORKFLOW_ROUTING.md) — 工具路由决策树
+- [docs/methodology/EVOLUTION.md](./docs/methodology/EVOLUTION.md) — 方法论演化机制
+- [CHANGELOG.md](./CHANGELOG.md) — 方法论变更日志
+- [VERSION](./VERSION) — 当前版本 `1.0.0`
+
+**Method release materials:**
+
 - Method release note: [docs/METHOD_RELEASE_1_0.zh.md](./docs/METHOD_RELEASE_1_0.zh.md)
 - Social and community copy pack: [docs/METHOD_RELEASE_1_0_SOCIAL.zh.md](./docs/METHOD_RELEASE_1_0_SOCIAL.zh.md)
 - Full documentation map: [docs/README.md](./docs/README.md)

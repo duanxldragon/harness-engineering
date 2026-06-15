@@ -19,7 +19,24 @@ See: [DOCUMENTATION_I18N_POLICY.md](./DOCUMENTATION_I18N_POLICY.md)
 
 ## Document Groups
 
-### 1. Workspace Root Guides
+### 1. Pantheon Harness Methodology
+
+Directory: [`./methodology/`](./methodology/)
+
+> 这是 Pantheon Harness 方法论的**唯一 canonical 源**。所有"怎么干活"的文档都在这里。
+
+- [HARNESS_METHODOLOGY.zh.md](./methodology/HARNESS_METHODOLOGY.zh.md) — **入口**：三权分立、工作流全景、质量门禁、文档体系
+- [WORKFLOW_ROUTING.md](./methodology/WORKFLOW_ROUTING.md) — 工具路由决策树
+- [TASK_DELEGATION_TEMPLATE.md](./methodology/TASK_DELEGATION_TEMPLATE.md) — Claude→Codex 任务委派标准模板
+- [ACCEPTANCE_CHECKLIST.zh.md](./methodology/ACCEPTANCE_CHECKLIST.zh.md) — 非程序员验收清单
+- [EVOLUTION.md](./methodology/EVOLUTION.md) — 方法论自身的演化机制
+- [RETROSPECTIVE_TEMPLATE.md](./methodology/RETROSPECTIVE_TEMPLATE.md) — 月度复盘模板
+- [codex-development-process-improvement.md](./methodology/codex-development-process-improvement.md) — 流程增强背景
+- [codex-workflow-quick-reference.md](./methodology/codex-workflow-quick-reference.md) — 命令速查
+
+**版本：** `1.0.0`（[CHANGELOG](../../CHANGELOG.md)、[VERSION](../../VERSION)）
+
+### 2. Workspace Root Guides
 
 - [../README.md](../README.md)
 - [../README.zh.md](../README.zh.md)
