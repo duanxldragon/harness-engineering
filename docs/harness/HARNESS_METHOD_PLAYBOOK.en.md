@@ -18,15 +18,18 @@ This file no longer carries the full method definition.
 
 1. First read `agentic-method-kit/README.md`
 2. Then read `agentic-method-kit/HARNESS_CORE_MODEL.md`
-3. Then read `agentic-method-kit/METHOD_FIRST_DELIVERY_POLICY.md`
-4. Then read `agentic-method-kit/HARNESS_COVERAGE_MODEL.md`
-5. Then read `agentic-method-kit/CROSS_AGENT_RATCHET_MODEL.md`
-6. Then read `agentic-method-kit/DESIGN_DEV_QA_GITHUB_GOVERNANCE.md`
-7. Then read `agentic-method-kit/HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.md`
-8. Then read `agentic-method-kit/HARNESS_TEMPLATE_TAXONOMY.md`
-9. Then read `agentic-method-kit/TOOL_ADAPTER_MATRIX.md`
-10. Then read `agentic-method-kit/METHOD_PLAYBOOK.md`
-11. Then read the contracts this repository executes locally:
+3. Then read `agentic-method-kit/EXECUTION_GUARDRAILS.md`
+4. Then read `agentic-method-kit/CONTEXT_ENGINEERING_PROTOCOL.md`
+5. Then read `agentic-method-kit/METHOD_FIRST_DELIVERY_POLICY.md`
+6. Then read `agentic-method-kit/MINIMAL_COMPLEXITY_LADDER.md`
+7. Then read `agentic-method-kit/HARNESS_COVERAGE_MODEL.md`
+8. Then read `agentic-method-kit/CROSS_AGENT_RATCHET_MODEL.md`
+9. Then read `agentic-method-kit/DESIGN_DEV_QA_GITHUB_GOVERNANCE.md`
+10. Then read `agentic-method-kit/HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.md`
+11. Then read `agentic-method-kit/HARNESS_TEMPLATE_TAXONOMY.md`
+12. Then read `agentic-method-kit/TOOL_ADAPTER_MATRIX.md`
+13. Then read `agentic-method-kit/METHOD_PLAYBOOK.md`
+14. Then read the contracts this repository executes locally:
    - `HARNESS_ENGINEERING_CONTRACT.md`
    - `TRIVIALITY_CLASSIFICATION_POLICY.en.md`
    - `TASK_PACKET_SPEC.md`
@@ -37,7 +40,17 @@ This file no longer carries the full method definition.
    - `FAILURE_RATCHET_POLICY.en.md`
    - `FAILURE_REGISTRY_PROMOTION_POLICY.en.md`
    - `HARNESS_RETIREMENT_REVIEW.en.md`
-12. If the current repository adopts a project-specific overlay, then read the overlay-owned protocols, checkers, and upgrade rules.
+15. If the current repository adopts a project-specific overlay, then read the overlay-owned protocols, checkers, and upgrade rules.
+
+## Default Execution Guardrails
+
+Before implementation, run through `EXECUTION_GUARDRAILS.md` by default:
+
+- separate confirmed facts, working assumptions, and open questions instead of guessing silently
+- walk `MINIMAL_COMPLEXITY_LADDER.md` and keep the approach at the smallest load-bearing rung
+- use `CONTEXT_ENGINEERING_PROTOCOL.md` to decide entry sources, retrieval order, and sensitive-context boundaries before implementation
+- declare `Do Not Touch` boundaries before making surgical edits
+- state `Success Criteria` and `Verification Plan` before claiming a task is done
 
 ## Responsibilities In This Repository
 

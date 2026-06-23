@@ -23,7 +23,10 @@ Optional example overlay:
 ## What This Kit Defines
 
 - A tool-agnostic harness core model
+- A context-engineering protocol for layered context surfaces, progressive retrieval, resumable work, and sensitive-context boundaries
 - A method-first delivery policy that keeps process design ahead of production-code fixes
+- Execution guardrails for ambiguity handling, simplicity, surgical diffs, and verifiable completion
+- A minimal complexity ladder for avoiding unnecessary code, dependencies, and abstractions without weakening safety
 - A coverage model for guides, sensors, gates, and failure capture
 - A cross-agent ratchet model for promoting repeated failures without coupling the method to one product repository
 - A delivery governance loop from design through development, QA acceptance, GitHub PR governance, and ratchet closeout
@@ -48,17 +51,20 @@ Specific tools can be recommended by a repository. They do not define the method
 
 1. Read [README.zh.md](./README.zh.md) if your team is Chinese-first
 2. Read [HARNESS_CORE_MODEL.zh.md](./HARNESS_CORE_MODEL.zh.md)
-3. Read [METHOD_FIRST_DELIVERY_POLICY.md](./METHOD_FIRST_DELIVERY_POLICY.md)
-4. Read [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md)
-5. Read [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md)
-6. Read [DESIGN_DEV_QA_GITHUB_GOVERNANCE.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.md)
-7. Read [HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.md](./HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.md)
-8. Read [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
-9. Read [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
-10. Read [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
-11. Copy the templates you need
-12. Adjust [config/method.config.json](./config/method.config.json) if your repo uses different paths
-13. Run the portable checks under [scripts/](./scripts/)
+3. Read [EXECUTION_GUARDRAILS.md](./EXECUTION_GUARDRAILS.md)
+4. Read [CONTEXT_ENGINEERING_PROTOCOL.md](./CONTEXT_ENGINEERING_PROTOCOL.md)
+5. Read [METHOD_FIRST_DELIVERY_POLICY.md](./METHOD_FIRST_DELIVERY_POLICY.md)
+6. Read [MINIMAL_COMPLEXITY_LADDER.md](./MINIMAL_COMPLEXITY_LADDER.md)
+7. Read [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md)
+8. Read [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md)
+9. Read [DESIGN_DEV_QA_GITHUB_GOVERNANCE.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.md)
+10. Read [HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.md](./HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.md)
+11. Read [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
+12. Read [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
+13. Read [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
+14. Copy the templates you need
+15. Adjust [config/method.config.json](./config/method.config.json) if your repo uses different paths
+16. Run the portable checks under [scripts/](./scripts/)
 
 ## Closed Loop
 

@@ -62,6 +62,12 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 
 - <explicit non-goals>
 
+## Assumptions and Open Questions
+
+- Confirmed Facts: `none | facts already verified from code, contracts, logs, or user input`
+- Working Assumptions: `none | current assumption that keeps work moving`
+- Open Questions: `none | ambiguity that should stop execution or change the plan`
+
 ## Structural Scope
 
 - Affected Subgraph: `<entry -> core path -> exit/side effect>` | `none`
@@ -86,6 +92,24 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 ## Implementation Notes
 
 - <boundary or sequencing notes>
+
+## Minimum Viable Approach
+
+- Selected Rung: `skip | reuse | stdlib | native platform | installed dependency | small local code | new dependency`
+- Why This Is Enough: `<one sentence>`
+- Upgrade Trigger: `none | condition that would justify the next rung`
+
+## Success Criteria
+
+- Behaviour Outcome: `<observable result>`
+- Verification Signal: `<command, test, or evidence that proves the result>`
+- Regression Watch: `<behavior that must remain unchanged>`
+
+## Context Strategy
+
+- Entry Sources: `AGENTS.md`, `CLAUDE.md`, current task packet, latest review summary | none
+- Retrieval Order: `entry -> summary -> raw`
+- Sensitive Context: `none | redacted or local-only handling rule`
 
 ## Execution Roles
 
@@ -147,7 +171,23 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 - [ ] Review completed
 ```
 
-`Execution Roles`、`Stop Points`、`State Plan` 是可选 section，但一旦仓库合同要求或任务显式声明这些 section，内容就必须完整、可解释、可校验。
+`Execution Roles`、`Stop Points`、`State Plan`、`Context Strategy` 是可选 section，但一旦仓库合同要求或任务显式声明这些 section，内容就必须完整、可解释、可校验。
+
+为落实 `EXECUTION_GUARDRAILS.zh.md`，对 `non-trivial` 任务，默认推荐补齐这三个短 section：
+
+- `## Assumptions and Open Questions`
+- `## Minimum Viable Approach`
+- `## Success Criteria`
+
+它们可以很短，但不应缺席于需要澄清假设、控制复杂度、定义可证伪完成信号的任务。
+
+对长任务、高上下文任务、跨 session 任务或涉及敏感信息的任务，推荐补 `## Context Strategy`。它用于显式记录：
+
+- 这次任务先读哪些入口源
+- 上下文检索是否遵循 `entry -> summary -> raw`
+- 哪些信息必须脱敏、只本地保留，或不得写入共享 artifact
+
+它的目的不是增加文书，而是把上下文加载顺序和隐私边界写清楚，避免下一次 handoff 或 resume 重新大范围回放。
 
 `Structural Scope` 对 trivial 任务可写 `none`；对 `non-trivial`、跨层、runtime-sensitive、权限/菜单/i18n/审计/生成器/动态模块相关任务，默认应补最小受影响子图说明。它的目的不是要求维护全仓架构图，而是让实现者和 reviewer 审查同一个结构范围。
 
@@ -185,6 +225,7 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 - execution roles when declared
 - stop points when declared
 - state/checkpoint expectations when declared
+- context strategy when declared
 - contract anchors
 - verification plan
 - evidence required

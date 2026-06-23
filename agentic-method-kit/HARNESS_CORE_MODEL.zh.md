@@ -39,6 +39,7 @@ Guides 是前馈控制，用于提高 agent 一开始就走对方向的概率。
 规则：
 
 - 入口 guide 要短，深层信息通过链接展开。
+- Guide 的加载也应渐进式进行：先入口元信息，再任务相关说明，最后按需读取链接资源。
 - 持久 guide 必须有明确来源或事实源。
 - 反复起作用的规则，最终应下沉为 sensor 或 gate。
 
@@ -81,6 +82,7 @@ State 是让人和 agent 能恢复工作的持久记忆。
 - State 必须存在于版本化仓库文件或明确 artifact 位置。
 - State 必须能通过稳定 ID 串联。
 - 长任务必须通过 state artifact 支撑 context reset。
+- 读取历史 state 时应分层进行：先 index，再 summary / timeline，最后 raw detail。
 
 ### 2.4 Gates
 
@@ -220,6 +222,61 @@ TaskIntake
 ```
 
 不是每个任务都需要每个事件。Trivial 任务可在仓库规则允许时跳过 task packet，但仍要明确范围、验证和 known gaps。
+
+### 4.1 人机协同循环
+
+人机协同不是“人给一句话，agent 自由发挥”，也不是“人反复搬运上下文”。默认循环应是：
+
+```text
+HumanIntent
+  -> AgentClarifies
+  -> BoundedTask
+  -> AgentExecutes
+  -> SensorsProduceEvidence
+  -> ReviewerJudges
+  -> HumanDecidesOnlyWhenNeeded
+  -> StateUpdated
+```
+
+协同规则：
+
+- Human 负责目标、优先级、风险接受、产品判断和高影响 gate，不负责在工具之间手动搬运上下文。
+- Agent/dispatcher 负责把意图转成有边界的 task packet、选择最小可用 sensor、执行或分派工作、整理 evidence 和 review artifact。
+- 当信息不足但可以安全推进时，agent 应先做可逆的 repo-local 探索；只有缺少目标、风险接受、凭据、外部生产权限或破坏性授权时才升级给 human。
+- 每次 human 决策都必须写回 state：决定了什么、基于什么证据、哪些风险被接受、下一步由谁负责。
+- 如果 human 被迫连续解释同一类上下文，说明 guide、template、adapter 或 state linkage 不足；应进入 ratchet，而不是继续依赖人记忆。
+
+### 4.2 执行护栏
+
+Harness 应在进入 review 反复拉扯前，先把四类常见失败显式化：
+
+- 没被说出来的歧义
+- 没被证明必要的复杂度
+- 没被 scope 约束的 diff 扩张
+- 没被验证支撑的完成宣称
+
+这些场景的可移植执行护栏，定义在 [EXECUTION_GUARDRAILS.zh.md](./EXECUTION_GUARDRAILS.zh.md)。
+
+落到实践中，意味着 harness 应给 agent 留出位置去记录：
+
+- 已确认事实、工作假设和未决问题
+- 最小可行方案及其升级触发条件
+- 预期 diff 的边界
+- 证明完成的可观察信号
+
+### 4.3 Context Engineering
+
+Harness 不应把所有旧 artifact 一次性前置进 context，而应分层取回。
+
+可移植的 context-loading 规则定义在 [CONTEXT_ENGINEERING_PROTOCOL.zh.md](./CONTEXT_ENGINEERING_PROTOCOL.zh.md)。
+
+落到实践中：
+
+- 先读取仓库入口 guide 和当前 task packet
+- 先取 summary 或 timeline 风格状态，再取原始日志
+- 优先读取 file-local、task-local 或 affected-subgraph-local 历史，而不是整段回放
+- 一旦实验路径胜出，就写回 repo state，避免未来 session 继续依赖聊天记忆
+- 除非仓库明确要求且批准，否则不要把不可留存或敏感输入写进共享 durable state
 
 ## 5. Agent 角色
 

@@ -23,7 +23,10 @@ English version: [README.md](./README.md)
 ## 这个方法包定义什么
 
 - 工具无关的 harness 核心模型
+- 一套 context-engineering 协议，用来定义 context surface 分层、渐进式检索、跨 session 恢复和敏感上下文边界
 - 方法优先交付策略，避免流程尚未清楚时陷入生产代码修复
+- 执行护栏，用来约束歧义处理、简单优先、外科式 diff 和可验证完成
+- 最小复杂度阶梯，用来避免不必要代码、依赖和抽象，同时不削弱安全性
 - 面向 guides、sensors、gates 和 failure capture 的覆盖模型
 - 跨 agent ratchet 模型，把重复失败升级成可复用方法资产，同时避免绑定单一业务仓库
 - 从设计、开发、QA 验收到 GitHub PR 治理和 ratchet closeout 的交付治理闭环
@@ -48,17 +51,20 @@ English version: [README.md](./README.md)
 
 1. 阅读 [README.zh.md](./README.zh.md)
 2. 阅读 [HARNESS_CORE_MODEL.zh.md](./HARNESS_CORE_MODEL.zh.md)
-3. 阅读 [METHOD_FIRST_DELIVERY_POLICY.zh.md](./METHOD_FIRST_DELIVERY_POLICY.zh.md)
-4. 阅读 [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md)
-5. 阅读 [CROSS_AGENT_RATCHET_MODEL.zh.md](./CROSS_AGENT_RATCHET_MODEL.zh.md)
-6. 阅读 [DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md)
-7. 阅读 [HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md](./HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md)
-8. 阅读 [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
-9. 阅读 [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
-10. 阅读 [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
-11. 复制你需要的模板
-12. 如果你的仓库路径约定不同，调整 [config/method.config.json](./config/method.config.json)
-13. 运行 [scripts/](./scripts/) 下的可移植检查脚本
+3. 阅读 [EXECUTION_GUARDRAILS.zh.md](./EXECUTION_GUARDRAILS.zh.md)
+4. 阅读 [CONTEXT_ENGINEERING_PROTOCOL.zh.md](./CONTEXT_ENGINEERING_PROTOCOL.zh.md)
+5. 阅读 [METHOD_FIRST_DELIVERY_POLICY.zh.md](./METHOD_FIRST_DELIVERY_POLICY.zh.md)
+6. 阅读 [MINIMAL_COMPLEXITY_LADDER.zh.md](./MINIMAL_COMPLEXITY_LADDER.zh.md)
+7. 阅读 [HARNESS_COVERAGE_MODEL.zh.md](./HARNESS_COVERAGE_MODEL.zh.md)
+8. 阅读 [CROSS_AGENT_RATCHET_MODEL.zh.md](./CROSS_AGENT_RATCHET_MODEL.zh.md)
+9. 阅读 [DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md)
+10. 阅读 [HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md](./HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md)
+11. 阅读 [HARNESS_TEMPLATE_TAXONOMY.zh.md](./HARNESS_TEMPLATE_TAXONOMY.zh.md)
+12. 阅读 [TOOL_ADAPTER_MATRIX.zh.md](./TOOL_ADAPTER_MATRIX.zh.md)
+13. 阅读 [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
+14. 复制你需要的模板
+15. 如果你的仓库路径约定不同，调整 [config/method.config.json](./config/method.config.json)
+16. 运行 [scripts/](./scripts/) 下的可移植检查脚本
 
 ## 闭环
 

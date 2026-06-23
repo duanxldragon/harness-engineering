@@ -18,15 +18,18 @@ English version: [HARNESS_METHOD_PLAYBOOK.en.md](./HARNESS_METHOD_PLAYBOOK.en.md
 
 1. 先读 `agentic-method-kit/README.zh.md`
 2. 再读 `agentic-method-kit/HARNESS_CORE_MODEL.zh.md`
-3. 再读 `agentic-method-kit/METHOD_FIRST_DELIVERY_POLICY.zh.md`
-4. 再读 `agentic-method-kit/HARNESS_COVERAGE_MODEL.zh.md`
-5. 再读 `agentic-method-kit/CROSS_AGENT_RATCHET_MODEL.zh.md`
-6. 再读 `agentic-method-kit/DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md`
-7. 再读 `agentic-method-kit/HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md`
-8. 再读 `agentic-method-kit/HARNESS_TEMPLATE_TAXONOMY.zh.md`
-9. 再读 `agentic-method-kit/TOOL_ADAPTER_MATRIX.zh.md`
-10. 再读 `agentic-method-kit/METHOD_PLAYBOOK.zh.md`
-11. 再读当前仓库需要落地执行的合同：
+3. 再读 `agentic-method-kit/EXECUTION_GUARDRAILS.zh.md`
+4. 再读 `agentic-method-kit/CONTEXT_ENGINEERING_PROTOCOL.zh.md`
+5. 再读 `agentic-method-kit/METHOD_FIRST_DELIVERY_POLICY.zh.md`
+6. 再读 `agentic-method-kit/MINIMAL_COMPLEXITY_LADDER.zh.md`
+7. 再读 `agentic-method-kit/HARNESS_COVERAGE_MODEL.zh.md`
+8. 再读 `agentic-method-kit/CROSS_AGENT_RATCHET_MODEL.zh.md`
+9. 再读 `agentic-method-kit/DESIGN_DEV_QA_GITHUB_GOVERNANCE.zh.md`
+10. 再读 `agentic-method-kit/HUMAN_AGENT_COLLABORATION_PLATFORM_ASSESSMENT.zh.md`
+11. 再读 `agentic-method-kit/HARNESS_TEMPLATE_TAXONOMY.zh.md`
+12. 再读 `agentic-method-kit/TOOL_ADAPTER_MATRIX.zh.md`
+13. 再读 `agentic-method-kit/METHOD_PLAYBOOK.zh.md`
+14. 再读当前仓库需要落地执行的合同：
    - `HARNESS_ENGINEERING_CONTRACT.md`
    - `TRIVIALITY_CLASSIFICATION_POLICY.md`
    - `TASK_PACKET_SPEC.md`
@@ -37,7 +40,17 @@ English version: [HARNESS_METHOD_PLAYBOOK.en.md](./HARNESS_METHOD_PLAYBOOK.en.md
    - `FAILURE_RATCHET_POLICY.md`
    - `FAILURE_REGISTRY_PROMOTION_POLICY.md`
    - `HARNESS_RETIREMENT_REVIEW.md`
-12. 如果当前仓库采用项目专属 overlay，再读取 overlay-owned protocols、checker 和升级规则。
+15. 如果当前仓库采用项目专属 overlay，再读取 overlay-owned protocols、checker 和升级规则。
+
+## 默认执行护栏
+
+在进入实现前，默认先过一遍 `EXECUTION_GUARDRAILS.zh.md`：
+
+- 先区分 confirmed facts、working assumptions 和 open questions，不要静默猜测。
+- 先走 `MINIMAL_COMPLEXITY_LADDER.zh.md`，把方案压到最小可承重复杂度。
+- 先按 `CONTEXT_ENGINEERING_PROTOCOL.zh.md` 明确 entry sources、检索顺序和敏感上下文边界。
+- 先声明 `Do Not Touch` 边界，再做手术式改动。
+- 先写 `Success Criteria` 和 `Verification Plan`，再把完成定义落到证据上。
 
 ## 当前仓库职责
 

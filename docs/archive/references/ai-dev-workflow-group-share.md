@@ -2,7 +2,7 @@
 
 > Historical sharing material. This file is for communication context, not current execution routing.
 >
-> Current workflow routing lives in [Pantheon Workflow Routing](./WORKFLOW_ROUTING.md). Older references to `superpowers` or `gstack` as primary flow steps are not active instructions. `impeccable` remains the active UI visual quality gate.
+> Current workflow routing lives in [Pantheon Workflow Routing](../../methodology/WORKFLOW_ROUTING.md). Older references to `superpowers` or `gstack` as primary flow steps are not active instructions. `impeccable` remains the active UI visual quality gate.
 
 这份文档不是讲 AI 概念，也不是讲某个工具怎么用得更花。
 

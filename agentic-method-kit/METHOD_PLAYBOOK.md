@@ -7,12 +7,14 @@ This playbook turns a set of tools into a single operating method.
 Read these method foundations first:
 
 1. [HARNESS_CORE_MODEL.md](./HARNESS_CORE_MODEL.md)
-2. [METHOD_FIRST_DELIVERY_POLICY.md](./METHOD_FIRST_DELIVERY_POLICY.md)
-3. [HARNESS_COVERAGE_MODEL.md](./HARNESS_COVERAGE_MODEL.md)
-4. [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md)
-5. [DESIGN_DEV_QA_GITHUB_GOVERNANCE.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.md)
-6. [HARNESS_TEMPLATE_TAXONOMY.md](./HARNESS_TEMPLATE_TAXONOMY.md)
-7. [TOOL_ADAPTER_MATRIX.md](./TOOL_ADAPTER_MATRIX.md)
+2. [CONTEXT_ENGINEERING_PROTOCOL.md](./CONTEXT_ENGINEERING_PROTOCOL.md)
+3. [METHOD_FIRST_DELIVERY_POLICY.md](./METHOD_FIRST_DELIVERY_POLICY.md)
+4. [MINIMAL_COMPLEXITY_LADDER.md](./MINIMAL_COMPLEXITY_LADDER.md)
+5. [HARNESS_COVERAGE_MODEL.md](./HARNESS_COVERAGE_MODEL.md)
+6. [CROSS_AGENT_RATCHET_MODEL.md](./CROSS_AGENT_RATCHET_MODEL.md)
+7. [DESIGN_DEV_QA_GITHUB_GOVERNANCE.md](./DESIGN_DEV_QA_GITHUB_GOVERNANCE.md)
+8. [HARNESS_TEMPLATE_TAXONOMY.md](./HARNESS_TEMPLATE_TAXONOMY.md)
+9. [TOOL_ADAPTER_MATRIX.md](./TOOL_ADAPTER_MATRIX.md)
 
 ## Default Stack
 
@@ -25,6 +27,44 @@ Read these method foundations first:
 ## Default Workflow
 
 The default workflow is method-first. Do not start production-code changes for non-trivial work until the intake, profile, verification, review, and ratchet plan are clear.
+
+### 0. Collaboration Protocol
+
+Every non-trivial task should first establish a lightweight collaboration protocol so context does not get lost between the human, planner, executor, and reviewer.
+
+- State what the human must answer: goal, unacceptable risk, acceptance standard, and high-impact gates that require a stop.
+- State what the agent owns: reading repository sources of truth, assembling the task packet, running commands, saving evidence, and turning review results into a decision-ready summary.
+- State stop points: missing authority, production or external-system action, data deletion or migration, scope expansion, insufficient evidence, or conflict between implementer and reviewer conclusions.
+- State handoff artifacts: task packet, evidence directory, review artifact, and decision log must link to each other.
+- State the lightweight path: trivial or L0/L1 work may skip full closure, but still needs scope, verification, and known gaps.
+
+### 0.1 Minimal Complexity
+
+Before implementation, apply [MINIMAL_COMPLEXITY_LADDER.md](./MINIMAL_COMPLEXITY_LADDER.md):
+
+- Record the highest rung that satisfies the task: skip, reuse, stdlib, native platform, installed dependency, one local expression, or minimum new code.
+- Prefer deletion, reuse, standard library, native platform features, and existing dependencies before new abstractions or dependencies.
+- Keep trust-boundary validation, authorization, audit, accessibility, i18n, runtime evidence, and explicit user requirements out of the simplification target.
+- For non-trivial logic, leave the smallest runnable check that would fail if the logic regresses.
+- If the chosen simplification has a known ceiling, record the trigger with a `minimal-complexity:` comment or equivalent debt ledger entry.
+
+### 0.2 Execution Guardrails
+
+Before implementation, apply [EXECUTION_GUARDRAILS.md](./EXECUTION_GUARDRAILS.md):
+
+- Write down confirmed facts, working assumptions, and open questions when ambiguity exists.
+- Record the smallest viable approach before introducing a new abstraction or dependency.
+- Constrain the intended diff before editing adjacent files.
+- Convert "done" into an observable success signal before writing code.
+
+### 0.3 Context Strategy
+
+Before implementation, apply [CONTEXT_ENGINEERING_PROTOCOL.md](./CONTEXT_ENGINEERING_PROTOCOL.md):
+
+- decide which entry sources actually govern this task instead of replaying broad history
+- prefer `entry -> summary -> raw` retrieval rather than opening raw logs first
+- if the task carries sensitive or non-retainable input, record the redaction or local-only handling rule before saving evidence
+- use checkpoints or rewind for reversible exploration when available, then write the chosen path back into repo state
 
 ### 1. Intake
 
@@ -51,6 +91,8 @@ The default workflow is method-first. Do not start production-code changes for n
 - Create a task packet from the plan
 - Select a quality profile or explicitly record `none`
 - Record the portable failure class and ratchet decision when the task addresses repeated failure
+- Add short sections for `Assumptions and Open Questions`, `Minimum Viable Approach`, and `Success Criteria` unless the task is genuinely trivial
+- For long-running, high-context, cross-session, or sensitive work, add a short `Context Strategy` section so retrieval order and privacy boundaries are explicit
 - Fill linkage fields:
   - task id
   - openspec change
@@ -69,6 +111,7 @@ The default workflow is method-first. Do not start production-code changes for n
 - Use disciplined execution against the plan
 - For debugging, route into `systematic-debugging`
 - Treat implementation as the generator loop only; do not treat it as approval
+- Keep the diff surgical; if a file cannot be justified by scope, verification, or evidence closure, do not touch it
 - When the repository has CodeGraph, use it to constrain the change to the affected subgraph instead of trying to maintain a full-repo graph for small edits
 
 ### 6. UI Quality

@@ -2,7 +2,7 @@
 
 > Historical sharing material. This file preserves an earlier explanation of the AI development process and is not an active routing contract.
 >
-> Current workflow routing lives in [Pantheon Workflow Routing](./WORKFLOW_ROUTING.md). Mentions of `superpowers`, `gstack`, or older OpenSpec-first chains below are presentation context, not current execution instructions. `impeccable` remains the active UI visual quality gate.
+> Current workflow routing lives in [Pantheon Workflow Routing](../../methodology/WORKFLOW_ROUTING.md). Mentions of `superpowers`, `gstack`, or older OpenSpec-first chains below are presentation context, not current execution instructions. `impeccable` remains the active UI visual quality gate.
 
 ## 1. 这次分享想讲什么
 
@@ -40,7 +40,7 @@
 
 ### 一条总流程
 
-旧版分享稿中的流程链已废弃。当前执行链路以 [Pantheon Workflow Routing](./WORKFLOW_ROUTING.md) 为准；其中 `impeccable` 仍是 UI 视觉质量门。
+旧版分享稿中的流程链已废弃。当前执行链路以 [Pantheon Workflow Routing](../../methodology/WORKFLOW_ROUTING.md) 为准；其中 `impeccable` 仍是 UI 视觉质量门。
 
 ### 让 AI 越来越懂你的 5 件事
 
@@ -1012,7 +1012,7 @@ Pantheon 不允许一上来就“泛泛地改 system 模块”。
 
 ### 一条推荐主链
 
-旧版分享链路已废弃；当前执行路由以 [Pantheon Workflow Routing](./WORKFLOW_ROUTING.md) 为准。`impeccable` 保留为 UI 视觉质量门。
+旧版分享链路已废弃；当前执行路由以 [Pantheon Workflow Routing](../../methodology/WORKFLOW_ROUTING.md) 为准。`impeccable` 保留为 UI 视觉质量门。
 
 ### 这套方法最适合什么场景
 
@@ -1061,7 +1061,7 @@ Pantheon 不允许一上来就“泛泛地改 system 模块”。
 
 最小流程：
 
-当前最小流程按 [Pantheon Workflow Routing](./WORKFLOW_ROUTING.md) 选择，不再在本分享稿中定义。
+当前最小流程按 [Pantheon Workflow Routing](../../methodology/WORKFLOW_ROUTING.md) 选择，不再在本分享稿中定义。
 
 要求：
 
@@ -1080,7 +1080,7 @@ Pantheon 不允许一上来就“泛泛地改 system 模块”。
 
 最小流程：
 
-当前 UI / 高风险流程按 [Pantheon Workflow Routing](./WORKFLOW_ROUTING.md) 选择；UI 任务仍必须经过 `impeccable`。
+当前 UI / 高风险流程按 [Pantheon Workflow Routing](../../methodology/WORKFLOW_ROUTING.md) 选择；UI 任务仍必须经过 `impeccable`。
 
 要求：
 

@@ -108,6 +108,15 @@ Agent 负责：
 
 同样，旧 workaround 不应永久累积。重大模型或工具升级后，应按 `HARNESS_RETIREMENT_REVIEW.md` 评估哪些约束可以降级、替换或删除。
 
+### 4.7 默认执行护栏
+
+除明确属于 trivial 的任务外，执行前默认应应用 `EXECUTION_GUARDRAILS.zh.md`：
+
+- 先思考再编码：区分已确认事实、工作假设和未决问题。
+- 简单优先：先走 `MINIMAL_COMPLEXITY_LADDER.zh.md`，选择最小可承重方案。
+- 手术式改动：先声明 `Do Not Touch` 边界，只触碰承担目标行为的文件和行。
+- 目标驱动验证：先写 `Success Criteria` 和验证信号，再声明完成。
+
 ## 5. 标准工作流
 
 所有非 trivial 任务必须按以下流程推进：

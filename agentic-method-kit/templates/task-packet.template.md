@@ -40,6 +40,12 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 
 - explicit non-goals
 
+## Assumptions and Open Questions
+
+- Confirmed Facts: `none | facts already verified from code, contracts, logs, or user input`
+- Working Assumptions: `none | current assumption that keeps work moving`
+- Open Questions: `none | ambiguity that should stop execution or change the plan`
+
 ## Expected Files
 
 ### Create
@@ -57,6 +63,24 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 ## Implementation Notes
 
 - notes
+
+## Minimum Viable Approach
+
+- Selected Rung: `skip | reuse | stdlib | native platform | installed dependency | small local code | new dependency`
+- Why This Is Enough: `<one sentence>`
+- Upgrade Trigger: `none | condition that would justify the next rung`
+
+## Success Criteria
+
+- Behaviour Outcome: `<observable result>`
+- Verification Signal: `<command, test, or evidence that proves the result>`
+- Regression Watch: `<behavior that must remain unchanged>`
+
+## Context Strategy
+
+- Entry Sources: `AGENTS.md`, `CLAUDE.md`, current task packet, latest review summary | none
+- Retrieval Order: `entry -> summary -> raw`
+- Sensitive Context: `none | redacted or local-only handling rule`
 
 ## Method Readiness
 

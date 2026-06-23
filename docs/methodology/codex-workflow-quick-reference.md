@@ -51,7 +51,7 @@ node scripts/codex-workflow.mjs run .codex-flow/generated/pantheon-workspace-rou
 
 ## 参考入口
 
-- [Workspace routing rules](../CLAUDE.md)
+- [Workspace routing rules](../../AGENTS.md)
 - [Pantheon Workflow Routing](./WORKFLOW_ROUTING.md)
 - [Codex development process card](./codex-development-process-improvement.md)
-- [Workspace inheritance rules](./WORKSPACE_INHERITANCE.md)
+- [Workspace inheritance rules](../../sample-overlays/pantheon/docs/WORKSPACE_INHERITANCE.md)

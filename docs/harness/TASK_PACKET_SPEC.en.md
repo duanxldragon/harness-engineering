@@ -62,6 +62,12 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 
 - <explicit non-goals>
 
+## Assumptions and Open Questions
+
+- Confirmed Facts: `none | facts already verified from code, contracts, logs, or user input`
+- Working Assumptions: `none | current assumption that keeps work moving`
+- Open Questions: `none | ambiguity that should stop execution or change the plan`
+
 ## Structural Scope
 
 - Affected Subgraph: `<entry -> core path -> exit/side effect>` | `none`
@@ -86,6 +92,24 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 ## Implementation Notes
 
 - <boundary or sequencing notes>
+
+## Minimum Viable Approach
+
+- Selected Rung: `skip | reuse | stdlib | native platform | installed dependency | small local code | new dependency`
+- Why This Is Enough: `<one sentence>`
+- Upgrade Trigger: `none | condition that would justify the next rung`
+
+## Success Criteria
+
+- Behaviour Outcome: `<observable result>`
+- Verification Signal: `<command, test, or evidence that proves the result>`
+- Regression Watch: `<behavior that must remain unchanged>`
+
+## Context Strategy
+
+- Entry Sources: `AGENTS.md`, `CLAUDE.md`, current task packet, latest review summary | none
+- Retrieval Order: `entry -> summary -> raw`
+- Sensitive Context: `none | redacted or local-only handling rule`
 
 ## Execution Roles
 
@@ -147,7 +171,23 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 - [ ] Review completed
 ```
 
-`Execution Roles`, `Stop Points`, and `State Plan` are optional sections, but once a repository contract requires them or a task declares them explicitly, their content must be complete, interpretable, and checkable.
+`Execution Roles`, `Stop Points`, `State Plan`, and `Context Strategy` are optional sections, but once a repository contract requires them or a task declares them explicitly, their content must be complete, interpretable, and checkable.
+
+To operationalize `EXECUTION_GUARDRAILS.md`, `non-trivial` work should also default to three short sections:
+
+- `## Assumptions and Open Questions`
+- `## Minimum Viable Approach`
+- `## Success Criteria`
+
+They are intentionally short, but they should not be omitted from work that depends on explicit assumptions, simplicity control, or falsifiable completion signals.
+
+For long-running, high-context, cross-session, or sensitive work, `## Context Strategy` is also recommended. It should make three things explicit:
+
+- which entry sources should be read first
+- whether retrieval follows `entry -> summary -> raw`
+- which inputs must be redacted, kept local-only, or excluded from shared durable artifacts
+
+The goal is not extra paperwork. The goal is to make context-loading order and privacy boundaries explicit before the next handoff or resume.
 
 `Structural Scope` may be `none` for trivial work. For `non-trivial`, cross-layer, runtime-sensitive, permission/menu/i18n/audit/generator/dynamic-module tasks, it should usually capture the smallest affected subgraph so implementers and reviewers inspect the same structural boundary.
 
@@ -185,6 +225,7 @@ Tool adapters may translate a task packet into their execution format, but they 
 - execution roles when declared
 - stop points when declared
 - state/checkpoint expectations when declared
+- context strategy when declared
 - contract anchors
 - verification plan
 - evidence required

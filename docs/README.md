@@ -34,7 +34,7 @@ Directory: [`./methodology/`](./methodology/)
 - [codex-development-process-improvement.md](./methodology/codex-development-process-improvement.md) — 流程增强背景
 - [codex-workflow-quick-reference.md](./methodology/codex-workflow-quick-reference.md) — 命令速查
 
-**版本：** `1.0.0`（[CHANGELOG](../../CHANGELOG.md)、[VERSION](../../VERSION)）
+**版本：** `1.0.0`（[CHANGELOG](../CHANGELOG.md)、[VERSION](../VERSION)）
 
 ### 2. Workspace Root Guides
 

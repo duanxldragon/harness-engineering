@@ -108,6 +108,15 @@ Repeated failures should not only patch code. They should ratchet into guides, t
 
 Old workarounds must not accumulate forever. After major model or tool upgrades, review which constraints can be downgraded, replaced, or removed according to `HARNESS_RETIREMENT_REVIEW.en.md`.
 
+### 4.7 Default Execution Guardrails
+
+Unless work is explicitly trivial, execution should apply `EXECUTION_GUARDRAILS.md` by default:
+
+- think before coding: separate confirmed facts, working assumptions, and open questions
+- simplicity first: walk `MINIMAL_COMPLEXITY_LADDER.md` and choose the smallest load-bearing approach
+- surgical changes: declare `Do Not Touch` boundaries and only touch files and lines that carry the requested behavior
+- goal-driven verification: define `Success Criteria` and the verification signal before declaring completion
+
 ## 5. Standard Workflow
 
 All non-trivial tasks must follow this flow:
