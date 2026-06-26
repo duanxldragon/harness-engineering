@@ -49,8 +49,8 @@ pantheon-harness/
 
 ## Quick Start
 
-1. **Entry point**: [architecture/methodology/HARNESS_METHODOLOGY.zh.md](./architecture/methodology/HARNESS_METHODOLOGY.zh.md)
-2. **Workflow routing**: [architecture/methodology/WORKFLOW_ROUTING.md](./architecture/methodology/WORKFLOW_ROUTING.md)
+1. **Entry point**: [architecture/methodology/harness-methodology.zh.md](./architecture/methodology/harness-methodology.zh.md)
+2. **Workflow routing**: [architecture/methodology/workflow-routing.md](./architecture/methodology/workflow-routing.md)
 3. **Harness protocols**: [architecture/harness/](./architecture/harness/)
 
 ## Method Core Documents

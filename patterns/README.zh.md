@@ -93,8 +93,8 @@ English version: [README.md](./README.md)
 
 - [VERSION](./VERSION)
 - [METHOD_VERSION.json](./METHOD_VERSION.json)
-- [CHANGELOG.md](./CHANGELOG.md)
-- [UPGRADE.md](./UPGRADE.md)
+- [changelog.md](./changelog.md)
+- [upgrade.md](./upgrade.md)
 
 ## 健康检查
 

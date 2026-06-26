@@ -1,0 +1,7 @@
+refactor: normalize markdown filenames to kebab-case
+
+- Rename all uppercase .md files to kebab-case across docs/harness/,
+  patterns/, architecture/harness/, and architecture/methodology/
+- Update internal cross-references in README, AGENTS.md, and
+  other landing files to point to lowercase paths
+- Add See: links in docs/harness/ landing files for doc integrity

@@ -14,11 +14,11 @@ updated_at: 2026-06-17
 
 本分级是对通用 Harness 方法的 repo-local 收敛，不替代：
 
-- `docs/harness/HARNESS_ENGINEERING_CONTRACT.md`
-- `docs/harness/TRIVIALITY_CLASSIFICATION_POLICY.md`
-- `docs/harness/TASK_PACKET_SPEC.md`
-- `docs/harness/VERIFICATION_EVIDENCE_SPEC.md`
-- `docs/harness/REVIEW_LOOP_SPEC.md`
+- `docs/harness/harness-engineering-contract.md`
+- `docs/harness/triviality-classification-policy.md`
+- `docs/harness/task-packet-spec.md`
+- `docs/harness/verification-evidence-spec.md`
+- `docs/harness/review-loop-spec.md`
 
 当仓库合同要求更严格时，以仓库合同为准。
 

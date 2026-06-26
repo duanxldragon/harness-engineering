@@ -4,7 +4,7 @@
 
 ## Source of Truth
 
-See: [architecture/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md](../../architecture/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md)
+See: [architecture/harness/failure-registry-promotion-policy.md](../../architecture/harness/failure-registry-promotion-policy.md)
 
 ## Content
 

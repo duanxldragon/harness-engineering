@@ -68,7 +68,7 @@ pantheon-harness/
 ## Quick Start
 
 1. Read [README.md](./README.md) for overview
-2. Read [architecture/methodology/HARNESS_METHODOLOGY.zh.md](./architecture/methodology/HARNESS_METHODOLOGY.zh.md) for entry point
+2. Read [architecture/methodology/harness-methodology.zh.md](./architecture/methodology/harness-methodology.zh.md) for entry point
 3. Reference [architecture/harness/](./architecture/harness/) for protocols
 
 ## Validation Commands

@@ -4,7 +4,7 @@
 
 ## Source of Truth
 
-See: [architecture/harness/HARNESS_COVERAGE_MODEL.md](../../architecture/harness/HARNESS_COVERAGE_MODEL.md)
+See: [architecture/harness/harness-coverage-model.md](../../architecture/harness/harness-coverage-model.md)
 
 ## Content
 

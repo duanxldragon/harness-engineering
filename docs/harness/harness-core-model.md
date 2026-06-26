@@ -6,7 +6,7 @@ This repository exposes the core model from the `architecture/harness/` reading 
 
 ## Source of Truth
 
-See: [architecture/harness/HARNESS_CORE_MODEL.md](../../architecture/harness/HARNESS_CORE_MODEL.md)
+See: [architecture/harness/harness-core-model.md](../../architecture/harness/harness-core-model.md)
 
 ## Content
 

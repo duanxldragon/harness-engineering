@@ -4,7 +4,7 @@
 
 ## Source of Truth
 
-See: [architecture/harness/TRIVIALITY_CLASSIFICATION_POLICY.md](../../architecture/harness/TRIVIALITY_CLASSIFICATION_POLICY.md)
+See: [architecture/harness/triviality-classification-policy.md](../../architecture/harness/triviality-classification-policy.md)
 
 ## Content
 

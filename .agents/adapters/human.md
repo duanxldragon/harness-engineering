@@ -18,7 +18,7 @@ Activate this adapter when a human is performing review.
 ## Constraints
 
 - Humans provide judgment on quality
-- Use [ACCEPTANCE_CHECKLIST.zh.md](../architecture/methodology/ACCEPTANCE_CHECKLIST.zh.md)
+- Use [acceptance-checklist.zh.md](../architecture/methodology/acceptance-checklist.zh.md)
 - Final approval authority
 
 ## Evidence Format

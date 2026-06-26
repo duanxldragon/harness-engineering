@@ -46,10 +46,10 @@ All check scripts accept `--root <path>` so they can be run from fixture directo
 
 ## Policy Links
 
-- trivial / non-trivial classification: [`docs/harness/TRIVIALITY_CLASSIFICATION_POLICY.md`](../../docs/harness/TRIVIALITY_CLASSIFICATION_POLICY.md)
-- visual evidence promotion: [`docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md`](../../docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md)
-- failure registry promotion: [`docs/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md`](../../docs/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md)
-- retirement review: [`docs/harness/HARNESS_RETIREMENT_REVIEW.md`](../../docs/harness/HARNESS_RETIREMENT_REVIEW.md)
+- trivial / non-trivial classification: [`docs/harness/triviality-classification-policy.md`](../../docs/harness/triviality-classification-policy.md)
+- visual evidence promotion: [`docs/harness/visual-evidence-promotion-policy.md`](../../docs/harness/visual-evidence-promotion-policy.md)
+- failure registry promotion: [`docs/harness/failure-registry-promotion-policy.md`](../../docs/harness/failure-registry-promotion-policy.md)
+- retirement review: [`docs/harness/harness-retirement-review.md`](../../docs/harness/harness-retirement-review.md)
 
 ## Boundary
 

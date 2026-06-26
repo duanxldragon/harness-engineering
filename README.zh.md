@@ -42,8 +42,8 @@ pantheon-harness/
 
 ## 快速开始
 
-1. **入口文档**: [architecture/methodology/HARNESS_METHODOLOGY.zh.md](./architecture/methodology/HARNESS_METHODOLOGY.zh.md)
-2. **工作流路由**: [architecture/methodology/WORKFLOW_ROUTING.md](./architecture/methodology/WORKFLOW_ROUTING.md)
+1. **入口文档**: [architecture/methodology/harness-methodology.zh.md](./architecture/methodology/harness-methodology.zh.md)
+2. **工作流路由**: [architecture/methodology/workflow-routing.md](./architecture/methodology/workflow-routing.md)
 3. **Harness 协议**: [architecture/harness/](./architecture/harness/)
 
 ## 方法核心文档

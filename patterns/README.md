@@ -29,7 +29,7 @@ Repository-local `architecture/harness/*` files may project or summarize the met
 
 1. Read [README.zh.md](./README.zh.md) if your team is Chinese-first
 2. Read [HARNESS_CORE_MODEL.zh.md](./HARNESS_CORE_MODEL.zh.md)
-3. Read [EXECUTION_GUARDRAILS.md](./EXECUTION_GUARDRAILS.md)
+3. Read [execution-guardrails.md](./execution-guardrails.md)
 4. Read [METHOD_PLAYBOOK.zh.md](./METHOD_PLAYBOOK.zh.md)
 5. Copy the templates you need from [templates/](./templates/)
 6. Adjust [config/method.config.json](../config/method.config.json) if your repo uses different paths
@@ -43,8 +43,8 @@ Version metadata:
 
 - [VERSION](../VERSION)
 - [METHOD_VERSION.json](./METHOD_VERSION.json)
-- [CHANGELOG.md](./CHANGELOG.md)
-- [UPGRADE.md](./UPGRADE.md)
+- [changelog.md](./changelog.md)
+- [upgrade.md](./upgrade.md)
 
 ## Health Check
 

@@ -14,4 +14,4 @@ Dynamic workflow patterns based on Claude Dynamic Workflows research.
 
 ## Usage
 
-See [architecture/methodology/WORKFLOW_ROUTING.md](../architecture/methodology/WORKFLOW_ROUTING.md) for pattern selection guidance.
+See [architecture/methodology/workflow-routing.md](../architecture/methodology/workflow-routing.md) for pattern selection guidance.

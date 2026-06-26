@@ -4,7 +4,7 @@
 
 ## Source of Truth
 
-See: [architecture/harness/TOOL_ADAPTER_MATRIX.md](../../architecture/harness/TOOL_ADAPTER_MATRIX.md)
+See: [architecture/harness/tool-adapter-matrix.md](../../architecture/harness/tool-adapter-matrix.md)
 
 ## Content
 

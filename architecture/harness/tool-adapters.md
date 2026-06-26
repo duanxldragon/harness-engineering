@@ -14,12 +14,12 @@ Adapter 只负责把通用协议映射到具体工具。
 
 通用协议在：
 
-- `docs/harness/HARNESS_METHOD_PLAYBOOK.md`
-- `docs/harness/HARNESS_ENGINEERING_CONTRACT.md`
-- `docs/harness/AGENT_INTERFACE_CONTRACT.md`
-- `docs/harness/TASK_PACKET_SPEC.md`
-- `docs/harness/VERIFICATION_EVIDENCE_SPEC.md`
-- `docs/harness/REVIEW_LOOP_SPEC.md`
+- `docs/harness/harness-method-playbook.md`
+- `docs/harness/harness-engineering-contract.md`
+- `docs/harness/agent-interface-contract.md`
+- `docs/harness/task-packet-spec.md`
+- `docs/harness/verification-evidence-spec.md`
+- `docs/harness/review-loop-spec.md`
 
 其中 `HARNESS_METHOD_PLAYBOOK.md` 负责回答“默认先做什么、再做什么、每个工具负责什么”；其余合同负责边界、格式和门禁。
 

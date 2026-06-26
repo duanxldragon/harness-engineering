@@ -17,7 +17,7 @@ This directory contains tool-specific adapter configurations for Pantheon Harnes
 
 ## Adapter Matrix
 
-See [TOOL_ADAPTER_MATRIX.md](../architecture/harness/TOOL_ADAPTER_MATRIX.md) for full adapter capability matrix.
+See [tool-adapter-matrix.md](../architecture/harness/tool-adapter-matrix.md) for full adapter capability matrix.
 
 ## Usage
 
@@ -30,5 +30,5 @@ Adapters define the interface contract between Pantheon Harness and each agent t
 
 ## Related
 
-- [AGENT_INTERFACE_CONTRACT.md](../architecture/harness/AGENT_INTERFACE_CONTRACT.md)
-- [TOOL_ADAPTERS.md](../architecture/harness/TOOL_ADAPTERS.md)
+- [agent-interface-contract.md](../architecture/harness/agent-interface-contract.md)
+- [tool-adapters.md](../architecture/harness/tool-adapters.md)

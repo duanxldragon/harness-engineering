@@ -46,10 +46,10 @@ node --test scripts/harness/*.test.mjs
 
 ## Policy 关联
 
-- trivial / non-trivial 判定：[`docs/harness/TRIVIALITY_CLASSIFICATION_POLICY.md`](../../docs/harness/TRIVIALITY_CLASSIFICATION_POLICY.md)
-- visual evidence 晋升规则：[`docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md`](../../docs/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md)
-- failure registry 晋升规则：[`docs/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md`](../../docs/harness/FAILURE_REGISTRY_PROMOTION_POLICY.md)
-- retirement review：[`docs/harness/HARNESS_RETIREMENT_REVIEW.md`](../../docs/harness/HARNESS_RETIREMENT_REVIEW.md)
+- trivial / non-trivial 判定：[`docs/harness/triviality-classification-policy.md`](../../docs/harness/triviality-classification-policy.md)
+- visual evidence 晋升规则：[`docs/harness/visual-evidence-promotion-policy.md`](../../docs/harness/visual-evidence-promotion-policy.md)
+- failure registry 晋升规则：[`docs/harness/failure-registry-promotion-policy.md`](../../docs/harness/failure-registry-promotion-policy.md)
+- retirement review：[`docs/harness/harness-retirement-review.md`](../../docs/harness/harness-retirement-review.md)
 
 ## 边界
 

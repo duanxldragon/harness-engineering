@@ -4,7 +4,7 @@
 
 ## Source of Truth
 
-See: [architecture/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md](../../architecture/harness/VISUAL_EVIDENCE_PROMOTION_POLICY.md)
+See: [architecture/harness/visual-evidence-promotion-policy.md](../../architecture/harness/visual-evidence-promotion-policy.md)
 
 ## Content
 

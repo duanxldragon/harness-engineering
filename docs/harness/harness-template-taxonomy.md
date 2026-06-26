@@ -4,7 +4,7 @@
 
 ## Source of Truth
 
-See: [architecture/harness/HARNESS_TEMPLATE_TAXONOMY.md](../../architecture/harness/HARNESS_TEMPLATE_TAXONOMY.md)
+See: [architecture/harness/harness-template-taxonomy.md](../../architecture/harness/harness-template-taxonomy.md)
 
 ## Content
 

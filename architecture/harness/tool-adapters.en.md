@@ -14,12 +14,12 @@ An adapter only maps the shared protocol into a concrete tool.
 
 The shared protocol lives in:
 
-- `docs/harness/HARNESS_METHOD_PLAYBOOK.md`
-- `docs/harness/HARNESS_ENGINEERING_CONTRACT.md`
-- `docs/harness/AGENT_INTERFACE_CONTRACT.md`
-- `docs/harness/TASK_PACKET_SPEC.md`
-- `docs/harness/VERIFICATION_EVIDENCE_SPEC.md`
-- `docs/harness/REVIEW_LOOP_SPEC.md`
+- `docs/harness/harness-method-playbook.md`
+- `docs/harness/harness-engineering-contract.md`
+- `docs/harness/agent-interface-contract.md`
+- `docs/harness/task-packet-spec.md`
+- `docs/harness/verification-evidence-spec.md`
+- `docs/harness/review-loop-spec.md`
 
 `HARNESS_METHOD_PLAYBOOK.md` answers what should happen first, what happens next, and what each tool is responsible for. The other contracts define boundaries, formats, and gates.
 
