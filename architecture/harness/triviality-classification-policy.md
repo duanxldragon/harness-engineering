@@ -35,6 +35,14 @@ English version: [TRIVIALITY_CLASSIFICATION_POLICY.en.md](./TRIVIALITY_CLASSIFIC
 - 只读查询、日志查看、状态汇报
 - 已有 formatter 覆盖、且不改变行为的纯格式化
 
+## 3.1 Proto First 判定
+
+Proto First 任务不属于 trivial，**也不属于 non-trivial 的标准定义**。Proto First 是独立的开发模式：
+
+- 如果任务明确为探索性开发、方案验证，应使用 [Proto First Workflow](./proto-driven-development.md)
+- Proto First 不需要完整的 Task Packet，但需要 Proto Goal 和 Decision Criteria
+- Proto First 验证成功后，可能需要进入 L1 或 L2 完成生产实现
+
 ## 4. 输出要求
 
 ### 4.1 Trivial

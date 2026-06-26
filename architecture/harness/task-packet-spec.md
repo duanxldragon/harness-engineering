@@ -142,12 +142,15 @@ app | domain/<name> | service/<name> | package/<name> | infra | docs | method | 
 
 ## Context Strategy
 
+> v1.2+ 增强：参考 [Context Engineering Guide](./context-engineering-guide.md)
+
 - Entry Sources: `AGENTS.md`, `CLAUDE.md`, current task packet, latest review summary | none
 - Retrieval Order: `entry -> summary -> raw`
 - Retrieval Helpers: `none | codegraph | graph report | wiki hot cache`
 - Promotion Target: `none | repo wiki | decision log | guide update`
 - Response Budget: `terse | standard | detailed`
 - Sensitive Context: `none | redacted or local-only handling rule`
+- Subagent Usage: `none | investigation | parallel-execution | research`
 
 ## Execution Roles
 

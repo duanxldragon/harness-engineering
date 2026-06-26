@@ -309,3 +309,66 @@ flowchart TD
 | v1.0 | 2026-06-15 | 初始版本：角色分离模型、Task Packet 模板、SonarQube 闭环、验收清单 |
 | v1.0.1 | 2026-06-23 | 将总纲从 Claude/Codex 固定分工改为工具无关角色分离模型 |
 | v1.1 | 2026-06-26 | 增强质量门禁矩阵（按档位差异化）、新增 Human Gate 标准 |
+
+## 8. Context Engineering 规范（v1.2+ 新增）
+
+### 8.1 CLAUDE.md 编写原则
+
+参考 [Context Engineering Guide](./context-engineering-guide.md)：
+
+| 原则 | 说明 |
+|------|------|
+| 大小控制 | 建议 <200 行，超出则拆分 |
+| 持久规则 | 只放全局适用规则 |
+| 工具无关 | 不绑定特定 agent runtime |
+| 懒加载 | 用 skills 处理特定领域规则 |
+
+### 8.2 Plan First 流程
+
+非 trivial 任务必须遵循：
+
+```
+探索 → 计划 → 执行 → 审查 → 验收
+```
+
+- **探索**：理解需求和代码结构
+- **计划**：输出结构化方案后再执行
+- **执行**：按计划实施
+- **审查**：验证 diff 和 evidence
+- **验收**：Human 最终确认
+
+### 8.3 Subagent 使用场景
+
+| 场景 | 推荐使用 Subagent | 主会话处理 |
+|------|------------------|------------|
+| 深度文件阅读（10+ 文件） | 是 | |
+| 跨路径搜索 | 是 | |
+| 并行调查 | 是 | |
+| 研究任务 | 是 | |
+| 实现 | | 是 |
+| 快速修复 | | 是 |
+| 协调 | | 是 |
+
+### 8.4 Evidence First 原则
+
+**先验证，后声称完成。**
+
+验证要求：
+- 命令输出必须有
+- UI 任务必须有截图
+- Runtime-sensitive 任务必须有日志/指标
+- 验证跳过必须记录原因和风险
+
+## 9. 最佳实践参考（v1.2+ 新增）
+
+参考 [Agentic Best Practices Reference](./agentic-best-practices-reference.md)：
+
+| 实践维度 | Claude Code | OpenAI Codex | Pantheon Harness |
+|---------|------------|--------------|-----------------|
+| Plan First | /plan mode | /plan | 推荐 Plan Mode |
+| Context 管理 | CLAUDE.md < 200行 | AGENTS.md | CLAUDE.md 大小控制 |
+| 隔离 | Subagents | Subagents | Task Packet + Subagents |
+| Skills | SKILL.md | SKILL.md | SKILL.md |
+| Multi-Agent | Agent Teams | Multi-agent modes | 按需使用 |
+| 并行开发 | git worktrees | git worktrees | 推荐 worktree |
+| Evidence | 强制要求 | 强制要求 | Verification Evidence |

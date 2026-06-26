@@ -6,6 +6,35 @@ Pantheon Harness 方法论变更记录。按 semver 管理。
 
 ---
 
+## [1.3.0] — 2026-06-26
+
+### Added
+- **Workflow Templates**: 新增 `workflow-templates.md`，包含 L0/L1/L2/UI/Bug Fix/Proto First 6 个工作流模板
+- **CI/CD Integration Guide**: 新增 `ci-cd-integration.md`，包含 CI/CD 门禁矩阵、Pipeline 流程、本地预检命令
+- **Proto First Development**: 新增 `proto-driven-development.md`，定义原型驱动开发模式
+- **Branch and PR Workflow**: 新增 `branch-pr-workflow.md`，包含分支命名规范、PR 创建流程、PR 模板
+
+### Changed
+- **WORKFLOW_ROUTING.md**: 新增 Proto First 路由入口、Proto First 到 Routing Matrix
+- **CODEX_WORKFLOW_QUICK_REFERENCE.md**: 新增 Proto First 相关命令说明
+
+### Synchronized to pantheon-base
+- 同步工作流模板到相关文档
+
+## [1.2.0] — 2026-06-26
+
+### Added
+- **Context Engineering Guide**: 新增 `context-engineering-guide.md`，包含 CLAUDE.md 大小控制、懒加载规则、上下文预算、Subagent 使用场景
+- **Agentic Best Practices Reference**: 新增 `agentic-best-practices-reference.md`，对比 Claude Code、OpenAI Codex 和 Pantheon Harness 最佳实践
+
+### Changed
+- **HARNESS_METHODOLOGY.zh.md**: 新增第 8 节 Context Engineering 规范（Plan First、Subagent 使用、Evidence First）、第 9 节最佳实践参考对比表
+- **WORKFLOW_ROUTING.md**: 新增 Context Budget 考虑、Subagent 路由规则、Evidence Gate、Plan Mode 触发条件
+- **TASK_PACKET_SPEC.md**: Context Strategy 新增 Subagent Usage 字段说明
+
+### Synchronized to pantheon-base
+- 同步 Context Engineering 规范到相关文档
+
 ## [1.1.0] — 2026-06-26
 
 ### Added

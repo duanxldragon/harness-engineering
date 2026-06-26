@@ -29,6 +29,30 @@ node scripts/codex-workflow.mjs run .codex-flow/generated/pantheon-workspace-rou
 - `PANTHEON_WORKFLOW_TASK`：给 workflow 一个简短任务说明
 - `PANTHEON_TARGET_REPO`：给 workflow 一个目标仓库提示
 
+## Proto First 快速命令
+
+```bash
+# 启动 Proto First 工作流
+node scripts/codex-workflow.mjs run .codex-flow/generated/proto-first.workflow.ts
+```
+
+Proto First 用于探索性开发、方案验证。参考 [Proto First Development](./proto-driven-development.md)。
+
+## CI/CD 本地预检
+
+```bash
+# Go Backend
+cd pantheon-base/backend && go test ./...
+
+# Frontend
+cd pantheon-base/frontend && npm run type-check && npm run lint && npm run build
+
+# SonarQube
+sonar-scanner
+```
+
+参考 [CI/CD Integration](./ci-cd-integration.md)。
+
 ## 最小任务包
 
 ```text

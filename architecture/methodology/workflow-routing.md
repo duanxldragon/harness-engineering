@@ -1,6 +1,6 @@
 # Pantheon Workflow Routing
 
-This document is the workspace-level routing contract for development work. It decides which surface owns each part of a task so the tools do not compete with each other.
+>This document is the workspace-level routing contract for development work. It decides which surface owns each part of a task so the tools do not compete with each other.
 
 `workflow.md` is a discussion record. Use this document, `CLAUDE.md`, and `docs/codex-workflow-quick-reference.md` as the operational sources.
 
@@ -32,6 +32,9 @@ For Pantheon day-to-day delivery, first classify the task as:
 - `L0` direct change
 - `L1` lean delivery
 - `L2` full governance
+- `Proto First` 原型驱动（适用于探索性开发、方案验证）
+
+参考 [Proto First Development](./proto-driven-development.md) 了解更多。
 
 Then route within that tier instead of defaulting every non-trivial task to the heaviest loop.
 
@@ -48,6 +51,123 @@ Task arrives
   |     -> OMX goal path: $ultragoal
   |     -> Use $team only for coordinated multi-lane execution
   |     -> Use $ralph only for a persistent single-owner loop
+  |
+  +-- Is this an exploratory/prototype task?
+  |     -> Proto First workflow (see proto-driven-development.md)
+  |
+  +-- Are there independent branches, many files/items to inspect, or a resumable analysis pipeline?
+  |     -> codex-flow inside the chosen outer path
+  |
+  +-- Does the task touch UI, layout, visual states, dashboards, forms, tables, charts, or responsive behavior?
+  |     -> impeccable gate before implementation and before completion
+  |
+  +-- Does it need browser evidence, QA, shipping, health, canary, or security review?
+        -> GStack / Browser / Codex Security as the operational gate
+```
+
+When two paths apply, prefer composition over replacement:
+
+1. OMX chooses the lane and stop condition.
+2. `codex-flow` runs independent or resumable inner branches when that materially helps.
+3. Native Codex integrates, edits, and verifies the final change unless a specific OMX runtime owns that execution.
+
+## Context Budget and Subagent Routing (v1.2+)
+
+### When to Use Subagents
+
+Use subagents to keep the main context clean. Reference [Context Engineering Guide](./context-engineering-guide.md) for details.
+
+| Scenario | Use Subagent | Keep in Main |
+|----------|--------------|--------------|
+| Deep file reading (10+ files) | Yes | |
+| Cross-path searching | Yes | |
+| Parallel investigation | Yes | |
+| Research tasks | Yes | |
+| Implementation | | Yes |
+| Quick fixes | | Yes |
+| Coordination | | Yes |
+
+### Context Budget Consideration
+
+When routing, consider context capacity:
+
+- **L0 tasks**: Minimal context, direct execution
+- **L1 tasks**: Standard context, may use subagents for investigation
+- **L2 tasks**: Full context budget, plan first, use subagents strategically
+
+### Evidence Gate
+
+**Verify before routing to next stage.**
+
+```
+Generator completes
+  -> Verify evidence exists (commands output, screenshots if UI)
+  -> Reviewer examines evidence
+  -> Only route to next stage if evidence passes
+  -> Block or escalate if evidence is missing or insufficient
+```
+
+### Plan Mode Trigger (v1.2+)
+
+Non-trivial tasks should use Plan Mode:
+
+- **L1 tasks**: Recommended plan before implementation
+- **L2 tasks**: Required plan before implementation
+
+Use `/plan` or equivalent to define the path before executing.
+
+`workflow.md` is a discussion record. Use this document, `CLAUDE.md`, and `docs/codex-workflow-quick-reference.md` as the operational sources.
+
+For the current solo-maintainer stage, apply [Solo Delivery Tiers](./SOLO_DELIVERY_TIERS.md) before selecting a lane. Choose the lightest tier that can safely finish the task, then apply the routing rules below.
+
+## Core Model
+
+Use the smallest workflow that can finish the task with evidence.
+
+| Layer | Owner | Role |
+|---|---|---|
+| Direct execution | Native Codex | Small, clear, low-risk edits and answers |
+| Outer orchestration | OMX | Clarification, planning, lane selection, durable goals, team coordination, quality gate routing |
+| Inner parallel execution | `dynamic-workflow` / `codex-flow` | Independent branches, batch review, resumable analysis, repeatable pipelines |
+| Structural context | CodeGraph | Symbol lookup, impact, callers/callees, trace, affected subgraph |
+| UI quality gate | `impeccable` | Visual quality, responsive behavior, rendered evidence expectations |
+| Operational gates | GStack / Browser / Codex Security | Browser QA, ship, health, canary, security review, live/operator checks |
+
+OMX is not a replacement for every tool. It is the coordinator. `codex-flow` is not the coordinator. It is the resumable fan-out engine. CodeGraph and `impeccable` are gates that must be used inside whichever execution path applies.
+
+Keep `impeccable`. It is the current UI visual quality gate because it catches visual polish, layout, responsive, and interaction-state issues better than generic code review. OMX and `codex-flow` route work; they do not replace `impeccable`.
+
+## Decision Tree
+
+Start every non-trivial task by identifying the target repository, layer, risk, and evidence requirement.
+
+For Pantheon day-to-day delivery, first classify the task as:
+
+- `L0` direct change
+- `L1` lean delivery
+- `L2` full governance
+- `Proto First` 原型驱动（适用于探索性开发、方案验证）
+
+参考 [Proto First Development](./proto-driven-development.md) 了解更多。
+
+Then route within that tier instead of defaulting every non-trivial task to the heaviest loop.
+
+```text
+Task arrives
+  |
+  +-- Is it one clear low-risk local change?
+  |     -> Native Codex + minimum relevant verification
+  |
+  +-- Is intent, scope, design, or lane unclear?
+  |     -> OMX planning path: $deep-interview or $ralplan
+  |
+  +-- Is there an approved plan that needs durable execution?
+  |     -> OMX goal path: $ultragoal
+  |     -> Use $team only for coordinated multi-lane execution
+  |     -> Use $ralph only for a persistent single-owner loop
+  |
+  +-- Is this an exploratory/prototype task?
+  |     -> Proto First workflow (see proto-driven-development.md)
   |
   +-- Are there independent branches, many files/items to inspect, or a resumable analysis pipeline?
   |     -> codex-flow inside the chosen outer path
@@ -71,6 +191,7 @@ When two paths apply, prefer composition over replacement:
 |---|---|---|
 | Single-file fix, docs typo, obvious local bug | Native Codex | Minimum targeted test/check |
 | `L1` ordinary solo delivery | Native Codex or OMX planning path | Lean plan plus targeted verification |
+| `Proto First` exploratory/prototype task | Proto First workflow | Proto validation + decision artifact |
 | Ambiguous request, missing boundaries, unclear acceptance | OMX `$deep-interview` or `$ralplan` | CodeGraph when repo structure matters |
 | Architecture/design/tradeoff decision | OMX `$ralplan` | CodeGraph impact, explicit acceptance criteria |
 | Approved multi-step implementation | Native Codex or OMX `$ultragoal` based on durability need | Tests/build/smoke proportional to risk |
