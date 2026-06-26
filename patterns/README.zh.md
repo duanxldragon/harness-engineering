@@ -87,9 +87,7 @@ English version: [README.md](./README.md)
 
 ## 版本管理
 
-当前版本：
-
-- `1.0.0`
+当前版本：`1.1.0`
 
 版本元数据：
 
@@ -97,3 +95,11 @@ English version: [README.md](./README.md)
 - [METHOD_VERSION.json](./METHOD_VERSION.json)
 - [CHANGELOG.md](./CHANGELOG.md)
 - [UPGRADE.md](./UPGRADE.md)
+
+## 健康检查
+
+运行健康检查验证方法包完整性：
+
+```bash
+node scripts/harness/check-method-health.mjs --strict
+```

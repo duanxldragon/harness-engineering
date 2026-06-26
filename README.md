@@ -20,15 +20,22 @@ Pantheon Harness provides the methodology layer for repeatable agentic delivery:
 ```
 pantheon-harness/
 ├── architecture/          # Architecture & methodology
-│   ├── harness/          # Harness protocols
+│   ├── harness/        # Harness protocols & contracts
 │   └── methodology/      # Methodological docs
+├── .agents/              # Agent adapters
+│   └── adapters/        # Tool-specific adapters
+├── .github/              # GitHub templates
+│   └── pull_request_template.md
 ├── config/agents/        # Agent configurations
+├── docs/harness/         # Repo shell landing files
 ├── patterns/             # Core method patterns & templates
+├── patterns/templates/   # Document templates
+├── patterns/config/      # Method configuration
 ├── skills/               # Codex/Cursor skills
 ├── workflows/            # Dynamic workflow patterns
 ├── verify/               # Verification schemas & scripts
 ├── tools/                # Tools (openspec, etc.)
-└── examples/             # Reference implementations
+└── examples/            # Reference implementations
 ```
 
 ## Core Concepts
@@ -58,7 +65,7 @@ pantheon-harness/
 
 ## Status
 
-Current version: `1.0.0`
+Current version: `1.1.0`
 
 ## Validation
 

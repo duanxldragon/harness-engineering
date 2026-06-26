@@ -18,18 +18,27 @@ This AGENTS.md scopes guidance to `pantheon-harness`. Parent AGENTS.md guidance 
 pantheon-harness/
 ├── AGENTS.md              # This file
 ├── README.md              # Main documentation entry
+├── README.zh.md           # 中文文档入口
 ├── CHANGELOG.md           # Method changelog
-├── VERSION                # Current version
+├── VERSION                # Current version: 1.1.0
+├── MIGRATION.md           # Migration guide from harness-engineering
 ├── architecture/          # Architecture & method documentation
 │   ├── harness/           # Harness protocols & contracts
 │   └── methodology/       # Methodology docs
-├── config/
-│   └── agents/            # Agent configurations
+├── .agents/               # Agent adapters
+│   └── adapters/          # Tool-specific adapters (codex, claude-code, cursor, etc.)
+├── .github/               # GitHub templates
+│   └── pull_request_template.md
+├── config/agents/         # Agent configurations
+├── docs/harness/          # Repo shell landing files
 ├── patterns/              # Core method patterns & templates
+│   ├── templates/         # Document templates
+│   ├── config/            # Method configuration
+│   └── METHOD_VERSION.json # Version metadata
 ├── rules/                 # Harness evidence & verification
-├── skills/                # Codex/Cursor skills
 ├── scripts/               # Harness bootstrap scripts
-├── workflows/             # Dynamic workflow patterns
+├── skills/                # Codex/Cursor agent skills
+├── workflows/            # Dynamic workflow patterns
 ├── verify/                # Verification schemas & scripts
 ├── evaluations/           # Evaluation materials
 ├── memory/                # Project memory

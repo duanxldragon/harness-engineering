@@ -1,0 +1,62 @@
+name: Harness Method Health
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Method Health Check
+        run: node scripts/harness/check-method-health.mjs --strict
+
+      - name: Run Adoption Check
+        run: node scripts/harness/check-adoption.mjs
+
+  docs-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check Doc Links
+        run: node scripts/harness/check-doc-links.mjs --strict
+
+      - name: Check Doc Inventory
+        run: node scripts/harness/check-doc-inventory.mjs
+
+  template-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check Template Health
+        run: node scripts/harness/check-template-health.mjs --strict
+
+      - name: Check Task Packet
+        run: node scripts/harness/check-task-packet.mjs --strict

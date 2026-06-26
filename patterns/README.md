@@ -37,7 +37,7 @@ Repository-local `architecture/harness/*` files may project or summarize the met
 
 ## Versioning
 
-Current version: `1.0.0`
+Current version: `1.1.0`
 
 Version metadata:
 
@@ -45,3 +45,11 @@ Version metadata:
 - [METHOD_VERSION.json](./METHOD_VERSION.json)
 - [CHANGELOG.md](./CHANGELOG.md)
 - [UPGRADE.md](./UPGRADE.md)
+
+## Health Check
+
+Run the health check to verify method kit integrity:
+
+```bash
+node scripts/harness/check-method-health.mjs --strict
+```
