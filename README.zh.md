@@ -144,13 +144,32 @@ node pantheon-harness/scripts/harness/check-adoption.mjs --root .
 
 ## 当前状态
 
-当前版本：`1.3.0`
+- 当前版本：`1.3.0`
+- 最新 Release：`v1.3.0`
+- 方法论本体：`pantheon-harness`
+
+### v1.3.0 重点
+
+- 将独立方法论壳从 `harness-engineering` 重命名并加固为 `pantheon-harness`。
+- 将 `architecture/harness` 治理文档统一迁移到 YAML frontmatter。
+- 加强文档、任务包、证据、review、graph-review、visual-evidence、sync-drift 等 gate。
+- 在 `docs/harness/tasks/` 和 `.harness/evidence/` 中记录任务包、证据和 review。
 
 ## 验证
 
 ```powershell
+node --test scripts/harness/*.test.mjs
+node --test verify/scripts/*.test.mjs
 node scripts/harness/check-adoption.mjs --strict
 node scripts/harness/check-method-health.mjs --strict
+node scripts/harness/check-doc-frontmatter.mjs --root . --strict
+node scripts/harness/check-doc-links.mjs --root . --strict
+node scripts/harness/check-doc-inventory.mjs --root . --strict
+node scripts/harness/check-task-packet.mjs --root .
+node scripts/harness/check-evidence.mjs --root . --strict
+node scripts/harness/check-review.mjs --root . --strict
+node scripts/harness/check-graph-review.mjs --root . --strict
+node scripts/harness/check-visual-evidence.mjs --root . --strict
 ```
 
 ## 规范来源

@@ -6,17 +6,28 @@ Pantheon Harness 方法论变更记录。按 semver 管理。
 
 ---
 
-## [1.3.0] — 2026-06-26
+## [1.3.0] — 2026-06-27
 
 ### Added
 - **Workflow Templates**: 新增 `workflow-templates.md`，包含 L0/L1/L2/UI/Bug Fix/Proto First 6 个工作流模板
 - **CI/CD Integration Guide**: 新增 `ci-cd-integration.md`，包含 CI/CD 门禁矩阵、Pipeline 流程、本地预检命令
 - **Proto First Development**: 新增 `proto-driven-development.md`，定义原型驱动开发模式
 - **Branch and PR Workflow**: 新增 `branch-pr-workflow.md`，包含分支命名规范、PR 创建流程、PR 模板
+- **Governance Evidence**: 新增 3 份任务包和对应 `.harness/evidence/` 证据/review，覆盖 migration hardening、frontmatter migration、known issue closure
+- **Document Frontmatter Gate**: 新增并验证 YAML frontmatter gate，要求治理文档声明 `title`、`doc_type`、`layer`、`status`、`updated_at`
+- **Graph and Visual Evidence Gates**: 新增 graph-review artifact consistency 和 visual-evidence not-applicable 回归覆盖
 
 ### Changed
 - **WORKFLOW_ROUTING.md**: 新增 Proto First 路由入口、Proto First 到 Routing Matrix
 - **CODEX_WORKFLOW_QUICK_REFERENCE.md**: 新增 Proto First 相关命令说明
+- **Project Identity**: 将独立方法论壳重命名并加固为 `pantheon-harness`
+- **Architecture Docs**: 将 30 个 `architecture/harness` legacy metadata 文档迁移到 YAML frontmatter
+- **Validation Scripts**: 加强 adoption、method-health、doc inventory、sync drift、task packet、evidence、review 等 gate 的当前 layout 支持
+
+### Fixed
+- 修复 hardening artifact 中过期的 frontmatter follow-up / known gap
+- 修复 graph-review task/evidence/review 元数据漂移
+- 修复 `check-visual-evidence` 对显式 non-UI 方法文档任务的误判
 
 ### Synchronized to pantheon-base
 - 同步工作流模板到相关文档

@@ -144,13 +144,32 @@ If UI is touched, also require browser or screenshot evidence.
 
 ## Current Status
 
-Current version: `1.3.0`
+- Current version: `1.3.0`
+- Latest release: `v1.3.0`
+- Method shell: `pantheon-harness`
+
+### v1.3.0 Highlights
+
+- Renamed and hardened the standalone method shell from `harness-engineering` to `pantheon-harness`.
+- Normalized `architecture/harness` governance docs to YAML frontmatter.
+- Added stricter document, task packet, evidence, review, graph-review, visual-evidence, and sync-drift gates.
+- Recorded task packets, evidence, and reviews under `docs/harness/tasks/` and `.harness/evidence/`.
 
 ## Validation
 
 ```powershell
+node --test scripts/harness/*.test.mjs
+node --test verify/scripts/*.test.mjs
 node scripts/harness/check-adoption.mjs --strict
 node scripts/harness/check-method-health.mjs --strict
+node scripts/harness/check-doc-frontmatter.mjs --root . --strict
+node scripts/harness/check-doc-links.mjs --root . --strict
+node scripts/harness/check-doc-inventory.mjs --root . --strict
+node scripts/harness/check-task-packet.mjs --root .
+node scripts/harness/check-evidence.mjs --root . --strict
+node scripts/harness/check-review.mjs --root . --strict
+node scripts/harness/check-graph-review.mjs --root . --strict
+node scripts/harness/check-visual-evidence.mjs --root . --strict
 ```
 
 ## Canonical Sources
