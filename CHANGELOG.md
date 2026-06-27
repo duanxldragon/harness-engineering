@@ -16,6 +16,7 @@ Pantheon Harness 方法论变更记录。按 semver 管理。
 - **Governance Evidence**: 新增 3 份任务包和对应 `.harness/evidence/` 证据/review，覆盖 migration hardening、frontmatter migration、known issue closure
 - **Document Frontmatter Gate**: 新增并验证 YAML frontmatter gate，要求治理文档声明 `title`、`doc_type`、`layer`、`status`、`updated_at`
 - **Graph and Visual Evidence Gates**: 新增 graph-review artifact consistency 和 visual-evidence not-applicable 回归覆盖
+- **Release Notes Template**: 新增固定 GitHub Release 命名与正文模板，Release 标题统一为 `vX.Y.Z`
 
 ### Changed
 - **WORKFLOW_ROUTING.md**: 新增 Proto First 路由入口、Proto First 到 Routing Matrix

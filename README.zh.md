@@ -128,6 +128,13 @@ pantheon-harness/
 | `VERSION` | 根目录 | 当前版本（如 `1.3.0`） |
 | `CHANGELOG.md` | 根目录 | 完整版本历史 |
 | `patterns/upgrade.md` | patterns/ | 升级指南 |
+| `patterns/templates/release-notes.template.md` | patterns/templates/ | GitHub Release 正文模板 |
+
+Release 命名约定：
+
+- GitHub tag：`vX.Y.Z`
+- GitHub Release 标题：`vX.Y.Z`
+- 标题保持固定，发布摘要写入正文。
 
 ## CI 集成
 

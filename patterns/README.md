@@ -55,6 +55,9 @@ Version metadata:
 - [CHANGELOG.md](../CHANGELOG.md)
 - [changelog.md](./changelog.md)
 - [upgrade.md](./upgrade.md)
+- [templates/release-notes.template.md](./templates/release-notes.template.md)
+
+GitHub Release titles should use the fixed `vX.Y.Z` format. Put the summary and highlights in the release body.
 
 ## Health Check
 

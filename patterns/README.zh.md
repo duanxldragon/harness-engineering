@@ -55,6 +55,9 @@ English version: [README.md](./README.md)
 - [CHANGELOG.md](../CHANGELOG.md)
 - [changelog.md](./changelog.md)
 - [upgrade.md](./upgrade.md)
+- [templates/release-notes.template.md](./templates/release-notes.template.md)
+
+GitHub Release 标题统一使用固定 `vX.Y.Z` 格式；摘要和亮点写在 release 正文中。
 
 ## 健康检查
 

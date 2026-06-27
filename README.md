@@ -128,6 +128,13 @@ Internal Only (not needed by consumers):
 | `VERSION` | Root | Current version (e.g., `1.3.0`) |
 | `CHANGELOG.md` | Root | Full version history |
 | `patterns/upgrade.md` | patterns/ | Upgrade guide |
+| `patterns/templates/release-notes.template.md` | patterns/templates/ | GitHub Release body template |
+
+Release naming convention:
+
+- GitHub tag: `vX.Y.Z`
+- GitHub Release title: `vX.Y.Z`
+- Keep the title fixed and put the release summary in the body.
 
 ## CI Integration
 
